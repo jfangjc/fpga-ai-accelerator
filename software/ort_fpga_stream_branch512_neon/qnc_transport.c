@@ -164,10 +164,10 @@ static void output4(const uint8_t *src,int32x4_t columns[4]) {
 }
 #endif
 static int load(qnc *c,const int8_t *w,unsigned m,unsigned k,
-                const int32_t *bias,const int32_t *mult,const uint8_t *shift,uint8_t zero) {
+                const int32_t *bias,const int32_t *mult,const uint8_t *shift,uint8_t zero,unsigned opcode) {
  if(!c||!w||!m||!k||m>1024||k>1024) return -EINVAL;
  c->valid=0;c->dw_valid=0; c->tag=c->tag==UINT_MAX?1:c->tag+1; unsigned g=(m+15)/16,bytes=16+g*k*16;
- double start=now(); header(c->tx,12,k,m,c->tag);c->tx[5]=(uint8_t)c->slot;
+ double start=now(); header(c->tx,opcode,k,m,c->tag);c->tx[5]=opcode==12?(uint8_t)c->slot:0;
  /* Every valid byte is overwritten; only padded output lanes need clearing. */
  if(m%16) memset(c->tx+16+(g-1)*k*16,0,k*16);
  for(unsigned o=0;o<m;) {
@@ -193,10 +193,32 @@ static int load(qnc *c,const int8_t *w,unsigned m,unsigned k,
  int rc=transact(c,bytes,16,1,0); if(!rc) rc=ack(c,c->rx,k,m,c->tag);
  if(!rc) { c->k=k; c->m=m; c->valid=1; c->quantized=bias!=NULL; c->stats.loads++; } return rc;
 }
-int qnc_load(qnc *c,const int8_t *w,unsigned m,unsigned k) {return load(c,w,m,k,NULL,NULL,NULL,0);}
+int qnc_load(qnc *c,const int8_t *w,unsigned m,unsigned k) {return load(c,w,m,k,NULL,NULL,NULL,0,12);}
+int qnc_load_i8_single(qnc *c,const int8_t *w,unsigned m,unsigned k) {
+ if(!c)return -EINVAL;
+ c->slot=0;
+ for(unsigned i=0;i<32;i++)c->slots[i].valid=c->slots[i].dw_valid=0;
+ return load(c,w,m,k,NULL,NULL,NULL,0,1);
+}
+int qnc_load_i8_single_packet(qnc *c,uint8_t *packet,size_t bytes,unsigned m,unsigned k) {
+ if(!c||!packet||!m||!k||m>1024||k>1024||bytes!=16+(size_t)((m+15)/16)*k*16) return -EINVAL;
+ c->valid=0;c->dw_valid=0;c->slot=0;
+ for(unsigned i=0;i<32;i++)c->slots[i].valid=c->slots[i].dw_valid=0;
+ c->tag=c->tag==UINT_MAX?1:c->tag+1;
+ double start=now();header(packet,1,k,m,c->tag);
+ c->profile.load_pack_seconds+=now()-start;
+ /* The synchronous transport reads this packet directly, avoiding another
+  * transpose/copy. Restore the context's owned scratch buffer on every path. */
+ uint8_t *scratch=c->tx;c->tx=packet;
+ int rc=transact(c,(unsigned)bytes,16,1,0);
+ c->tx=scratch;
+ if(!rc)rc=ack(c,c->rx,k,m,c->tag);
+ if(!rc){c->k=k;c->m=m;c->valid=1;c->quantized=0;c->stats.loads++;}
+ return rc;
+}
 int qnc_load_quant(qnc *c,const int8_t *w,unsigned m,unsigned k,const int32_t *b,const int32_t *mult,const uint8_t *shift,uint8_t z) {
  if(!b)return -EINVAL;
- return load(c,w,m,k,b,mult,shift,z);
+ return load(c,w,m,k,b,mult,shift,z,12);
 }
 int qnc_invalidate(qnc *c) {
  if(!c) return -EINVAL;

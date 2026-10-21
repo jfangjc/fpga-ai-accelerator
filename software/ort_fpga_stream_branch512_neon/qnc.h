@@ -16,6 +16,13 @@ qnc *qnc_create(qnc_exchange exchange, void *opaque);
 void qnc_close(qnc *ctx);
 int qnc_select_slot(qnc *ctx, unsigned slot);
 int qnc_load(qnc *ctx, const int8_t *weights, unsigned m, unsigned k);
+/* Raw signed weights on the single-cache BULK image (opcode 1).
+ * Not compatible with the retained branch image. Invalidates other residents. */
+int qnc_load_i8_single(qnc *ctx, const int8_t *weights, unsigned m, unsigned k);
+/* Mutable 16-byte header plus prepacked [ceil(M/16),K,16] signed weights.
+ * Header is overwritten on each call. Packet must remain alive through return.
+ * Single-cache bulk image only; retains the original raw load API above. */
+int qnc_load_i8_single_packet(qnc *ctx, uint8_t *packet, size_t bytes, unsigned m, unsigned k);
 int qnc_load_quant(qnc *ctx, const int8_t *weights, unsigned m, unsigned k,
                    const int32_t *bias, const int32_t *multiplier,
                    const uint8_t *shift, uint8_t zero);

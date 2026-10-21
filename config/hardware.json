@@ -1,0 +1,19 @@
+{
+  "format_version": 1,
+  "app": "asr-v3-mic-select",
+  "clock_hz": 100000000,
+  "protocol": "bulk",
+  "capture_abi": "MIC1",
+  "sample_rate": 16000,
+  "selection": {
+    "0": "primary-left",
+    "1": "primary-right",
+    "2": "secondary-left",
+    "3": "secondary-right"
+  },
+  "files_sha256": {
+    "asr-v3-mic-select.bit.bin": "56179f557544fba3221a41b7fc8e81b61a0d041403a4a24d70a1e09dc39317b2",
+    "asr-v3-mic-select.dtbo": "de44bbd3040cfcc963d061f932161fc129433a0c5597041725b0f44cce918687",
+    "shell.json": "5b262494370cdb4f3e2ef124072cfaf68fd2f0bdc8c0a207913dedfba66cd841"
+  }
+}
