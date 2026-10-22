@@ -65,21 +65,29 @@ class Encoder:
         self.runtime = runtime
         self.buffers = [torch.empty((1, 0, encoder.config.hidden_size)) for _ in encoder.layers]
         self.committed = [0] * len(encoder.layers)
+        self.preview = self.buffers[0][:, :0]
+        self.profile = {'attention_seconds': 0., 'mlp_seconds': 0., 'bookkeeping_seconds': 0.}
 
-    def push(self, features, final=False):
+    def push(self, features, final=False, provisional=False):
         x = features
+        unstable = 0
         for i, layer in enumerate(self.encoder.layers):
+            stage_start = time.perf_counter()
             left, right = self.encoder.config.sliding_windows[i]
             # Match HF's strict inequalities: 16 includes self, 4 includes 3 future frames.
             lookahead = max(0, right - 1)
             b = torch.cat((self.buffers[i], x), dim=1)
             start = self.committed[i]
-            stop = b.shape[1] if final else max(start, b.shape[1] - lookahead)
+            stable_end = b.shape[1] - unstable
+            committed_stop = b.shape[1] if final else max(start, stable_end - lookahead)
+            stop = b.shape[1] if provisional else committed_stop
             if stop > start:
                 q = torch.arange(start, stop)[:, None]
                 k = torch.arange(b.shape[1])[None, :]
                 distance = q - k
                 allowed = ((distance >= 0) & (distance < left)) | ((distance < 0) & (-distance < right))
+                attention_start = time.perf_counter()
+                self.profile['bookkeeping_seconds'] += attention_start-stage_start
                 # Only compute queries/FFNs for newly committed frames. Historical
                 # layer inputs remain available as keys/values for left context.
                 if self.runtime is not None:
@@ -101,13 +109,25 @@ class Encoder:
                     result = result.transpose(1, 2).contiguous().reshape(1, stop-start, -1)
                     x = b[:, start:stop] + attention.o_proj(result)
                     mlp_input = layer.post_attention_layernorm(x)
+                mlp_start = time.perf_counter()
+                self.profile['attention_seconds'] += mlp_start-attention_start
                 x = x + layer.mlp(mlp_input)
+                stage_start = time.perf_counter()
+                self.profile['mlp_seconds'] += stage_start-mlp_start
             else:
                 x = b[:, :0]
-            discard = max(0, stop - max(0, left - 1))
-            self.buffers[i] = b[:, discard:].clone()
-            self.committed[i] = stop - discard
-        return self.encoder.final_norm(x) if x.shape[1] else x
+            # Retain only stable layer inputs. The provisional suffix must be
+            # recomputed from upstream inputs on the next update, never cached
+            # as committed context or appended to the utterance memory.
+            discard = max(0, committed_stop - max(0, left - 1))
+            self.buffers[i] = b[:, discard:stable_end].clone()
+            self.committed[i] = committed_stop - discard
+            unstable = stop - committed_stop
+            self.profile['bookkeeping_seconds'] += time.perf_counter()-stage_start
+        x = self.encoder.final_norm(x) if x.shape[1] else x
+        stable = x.shape[1] - unstable
+        self.preview = x[:, stable:]
+        return x[:, :stable]
 
 
 class DecoderUpdate:
@@ -136,12 +156,13 @@ class DecoderUpdate:
 
 class Stream:
     def __init__(self, model, processor, max_seconds=30, max_tokens=256, reuse_draft=True, decoder_runtime=None, encoder_runtime=None,
-                 preview_seconds=None, preview_overlap_seconds=1, defer_final=False):
+                 preview_seconds=None, preview_overlap_seconds=1, defer_final=False, provisional_preview=False):
         if max_seconds <= 0 or max_tokens < 1:
             raise ValueError('Positive utterance and token limits required')
         self.model, self.processor = model, processor
         self.frontend = Frontend(model.model.encoder.embedder, encoder_runtime)
         self.encoder = Encoder(model.model.encoder, encoder_runtime)
+        self.provisional_preview = provisional_preview
         # Strict right windows include self. Each downstream layer adds its
         # future context at the encoder hop, after both causal convolutions.
         hop = self.frontend.frame * self.frontend.e.conv1.stride[0] * self.frontend.e.conv2.stride[0]
@@ -181,16 +202,19 @@ class Stream:
         start_time = time.perf_counter()
         features = self.frontend.push(audio, final)
         frontend_end = time.perf_counter()
-        encoded = self.encoder.push(features, final)
+        encoded = self.encoder.push(features, final, provisional=self.provisional_preview and not final)
         encoder_end = time.perf_counter()
         self.profile['frontend_seconds'] += frontend_end - start_time
         self.profile['encoder_seconds'] += encoder_end - frontend_end
+        for key, value in self.encoder.profile.items():
+            self.profile['encoder_'+key] = value
         self.closed = final
         if encoded.shape[1]:
             self.memory.append(encoded)
-        if not self.memory or not decode:
+        memories = self.memory + ([self.encoder.preview] if self.encoder.preview.shape[1] else [])
+        if not memories or not decode:
             return {'text': '', 'tokens': [], 'final': final, 'frames': sum(x.shape[1] for x in self.memory)}
-        memory = torch.cat(self.memory, dim=1)
+        memory = torch.cat(memories, dim=1)
         if memory.shape[1] > self.model.config.max_position_embeddings:
             raise ValueError('Encoder position limit exceeded')
         frames = memory.shape[1]
@@ -198,8 +222,14 @@ class Stream:
             self.final_job = self.decode_job(memory, self.max_tokens, ())
             return {**self.last_preview, 'final': False, 'frames': frames, 'refinement_pending': True}
         if self.preview_frames and not final:
+            previous_start = self.preview_start
             while frames-self.preview_start > self.preview_frames:
                 self.preview_start += self.preview_step
+            if self.provisional_preview and self.preview_start != previous_start:
+                # A draft from the preceding window describes different audio.
+                # Verifying its whole vocabulary projection usually rejects at
+                # the first token and then repeats the work autoregressively.
+                self.draft = []
             memory = memory[:, self.preview_start:]
         # Partial token limits follow the selected window's duration, not the
         # entire phrase. Full-context final decoding retains the full budget.
@@ -219,7 +249,9 @@ class Stream:
             event.update(window_text=raw, window_start_frame=self.preview_start,
                          window_frames=memory.shape[1], overlap_uncertain=uncertain)
         self.last_preview = dict(event)
-        return {**event, 'final': final, 'frames': frames}
+        return {**event, 'final': final, 'frames': frames,
+                'provisional_frames': self.encoder.preview.shape[1],
+                'provisional_encoder': self.provisional_preview and not final}
 
     def decode_job(self, memory, limit, draft=()):
         def prepare():

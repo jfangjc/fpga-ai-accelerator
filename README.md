@@ -58,6 +58,40 @@ The accuracy mode measured 0.99 s p95 preview update age and 2.24 s p95 final la
 on a 62.5-second paced test. Final lag excludes silence waiting. Recognition
 accuracy on real conversation and 2x speedup over CPU remain unqualified.
 
+`--provisional-preview` selects an experimental Tiny accuracy profile with
+250 ms updates and overlapping one-second previews. It decodes the unfinished
+encoder tail, then recomputes that
+tail when more audio arrives. Preview text can change; final refinement uses
+committed features and the complete phrase context. The normal accuracy mode
+remains the default. The 700 ms silence endpoint still applies to finals.
+
+To compare the two preview modes on the same paced audio, run this command
+inside the board wrapper above (use an existing mono 16 kHz WAV and new output
+directory):
+
+```sh
+.venv/bin/python scripts/benchmark_moonshine_preview.py --wav clip.wav \
+  --ort-decoder build/tiny-decoder --ort-encoder build/tiny-encoder \
+  --out reports/preview-comparison
+```
+
+The benchmark uses 30 Hz DC removal in both modes. Its 500 ms target is p95
+oldest-update age, measured from paced acquisition through computation, including
+the update's audio duration and any required encoder lookahead. It does not
+measure aligned word latency. JSONL logs include provisional frame counts and
+decoder timing; score finals against reference transcripts with the accuracy
+tool before selecting a profile for conversation. The selected profile measured
+480/469/476 ms p95 on the sustained and two synthetic conversation fixtures;
+see [measurements and board run command](docs/preview-latency.md). Matched CPU
+INT8 runs measured 475/525/523 ms on those fixtures; the FPGA latency benefit
+is modest and depends on the workload.
+
+Further opt-in native host transforms and a specialized one-token decoder
+reduced mean hybrid preview computation by 4–7% in matched paced runs. Hybrid
+p95 update age measured 473/454/464 ms across the same three fixtures, with
+unchanged synthetic final word accuracy. See the
+[optimization measurements and deployment options](docs/hybrid-optimization.md).
+
 ## Checks
 
 ```sh

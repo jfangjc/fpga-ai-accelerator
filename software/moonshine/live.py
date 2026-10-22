@@ -83,7 +83,8 @@ class Engine:
         event = self.stream.push(audio, final=final)
         lag = max(0., (time.monotonic_ns()-self.last_end_ns)/1e6)
         self.max_lag_ms = max(self.max_lag_ms, lag)
-        lookahead_ms = getattr(self.stream, 'lookahead_samples', 0)*1000/RATE
+        lookahead_ms = (0 if event.get('provisional_encoder') else
+                        getattr(self.stream, 'lookahead_samples', 0)*1000/RATE)
         # Conservative age of the oldest audio in this update, including the
         # encoder's future-context allowance. This is not word-aligned latency.
         update_age = lag+len(audio)*1000/RATE+lookahead_ms
@@ -308,14 +309,18 @@ def main():
     p.add_argument('--size', choices=('small', 'tiny'), default='small')
     p.add_argument('--backend', choices=('cpu-int8', 'oracle', 'fpga'), default='fpga')
     p.add_argument('--library', default='build/native/libqnc_moonshine.so')
+    p.add_argument('--native-projections', action='store_true', help='FPGA: exact native input quantization and output restoration; requires rebuilt library')
     p.add_argument('--ort-decoder', type=Path, required=True)
     p.add_argument('--ort-encoder', type=Path)
     p.add_argument('--threads', type=int)
     p.add_argument('--native-threads', type=int, default=4)
+    p.add_argument('--decoder-step-threads', type=int, help='Separate native thread count for one-token decoder calls')
+    p.add_argument('--decoder-generic-step', action='store_true', help='Use the original graph for one-token decoder calls even when specialized artifacts exist')
     p.add_argument('--low-latency', action='store_true', help='Experimental Tiny: coalesce queued partials, 250 ms updates, 3 s context, 350 ms endpoint; shorter context can reduce accuracy')
     p.add_argument('--accuracy', action='store_true', help='Tiny: overlapping previews, natural pause boundaries and cooperative full-phrase final refinement')
-    p.add_argument('--preview-seconds', type=float, default=2)
-    p.add_argument('--preview-overlap-seconds', type=float, default=1)
+    p.add_argument('--provisional-preview', action='store_true', help='Experimental Tiny accuracy mode: unfinished encoder tail, 250 ms updates, one-second revisable previews')
+    p.add_argument('--preview-seconds', type=float)
+    p.add_argument('--preview-overlap-seconds', type=float)
     p.add_argument('--overlap-ms', type=float, help='Audio context retained across forced phrase boundaries')
     p.add_argument('--pause-after-seconds', type=float, default=6)
     p.add_argument('--pause-ms', type=float, default=250)
@@ -323,6 +328,7 @@ def main():
     p.add_argument('--attack-ms', type=float, default=60)
     p.add_argument('--min-speech-ms', type=float, default=200)
     p.add_argument('--encoder-precision', choices=('int8', 'float'), default='int8')
+    p.add_argument('--encoder-scheduling', choices=('sleep', 'run-spin'), default='sleep')
     p.add_argument('--decoder-precision', choices=('int8', 'float'), default='int8')
     p.add_argument('--chunk-ms', type=int)
     p.add_argument('--vad-dbfs', type=float, default=-55)
@@ -333,6 +339,12 @@ def main():
     p.add_argument('--out', type=Path, help='New JSONL event log; audio is not stored')
     p.add_argument('--display', choices=('json', 'text'), default='json')
     a = p.parse_args()
+    if a.provisional_preview:
+        a.accuracy = True
+    if a.preview_seconds is None:
+        a.preview_seconds = 1 if a.provisional_preview else 2
+    if a.preview_overlap_seconds is None:
+        a.preview_overlap_seconds = .5 if a.provisional_preview else 1
     if a.accuracy:
         a.low_latency = True
     if a.low_latency and a.size != 'tiny':
@@ -353,11 +365,15 @@ def main():
         p.error('Capture duration must be finite and nonnegative')
     if a.native_threads < 1 or (a.threads is not None and a.threads < 1):
         p.error('Thread counts must be positive')
+    if a.decoder_step_threads is not None and a.decoder_step_threads < 1:
+        p.error('Decoder step thread count must be positive')
+    if a.native_projections and a.backend != 'fpga':
+        p.error('--native-projections requires the FPGA backend')
     highpass_hz = a.highpass_hz if a.highpass_hz is not None else (0 if a.wav else 30)
     if not math.isfinite(highpass_hz) or not 0 <= highpass_hz <= 200:
         p.error('High-pass cutoff must be between 0 and 200 Hz')
     highpass = Highpass(highpass_hz) if highpass_hz else None
-    chunk = a.chunk_ms if a.chunk_ms is not None else (400 if a.accuracy else (250 if a.low_latency else (2500 if a.size == 'small' else 1000)))
+    chunk = a.chunk_ms if a.chunk_ms is not None else (250 if a.provisional_preview else (400 if a.accuracy else (250 if a.low_latency else (2500 if a.size == 'small' else 1000))))
     selection = None
     if a.mic_input is not None or a.mic_channel is not None:
         selection = 2*int(a.mic_input == 'secondary')+int(a.mic_channel == 'right')
@@ -368,7 +384,7 @@ def main():
         pre_roll_ms=a.pre_roll_ms, attack_ms=a.attack_ms, min_speech_ms=a.min_speech_ms)
     Engine(None, lambda e: None, **segmentation)
     log = a.out.open('x', encoding='utf-8') if a.out else None
-    device, captured, engine = None, None, None
+    device, captured, engine, decoder, encoder, model = None, None, None, None, None, None
     status, raw_nonzero, raw_clipped = 0, 0, 0
     health_count, health_sum, health_power, health_peak, health_clips = 0, 0., 0., 0., 0
     def emit(event):
@@ -398,19 +414,22 @@ def main():
         from .ort_decoder import digest
         from .streaming import Stream
         start = time.monotonic()
-        device = BulkDevice(a.library) if a.backend == 'fpga' else None
+        device = BulkDevice(a.library, native_projections=a.native_projections) if a.backend == 'fpga' else None
         model, processor, metadata = load(a.size, a.backend, device=device,
                                           threads=a.threads or (4 if a.size == 'small' else 2))
-        decoder = Runtime(a.ort_decoder, metadata, threads=a.native_threads, scheduling='run-spin', precision=a.decoder_precision)
+        decoder = Runtime(a.ort_decoder, metadata, threads=a.native_threads, scheduling='run-spin', precision=a.decoder_precision,
+                          step_threads=a.decoder_step_threads, single_token=not a.decoder_generic_step)
         encoder = None
         if a.ort_encoder:
             from .ort_encoder import Runtime as EncoderRuntime
-            encoder = EncoderRuntime(a.ort_encoder, metadata, threads=a.native_threads, precision=a.encoder_precision)
+            encoder = EncoderRuntime(a.ort_encoder, metadata, threads=a.native_threads, precision=a.encoder_precision,
+                                     scheduling=a.encoder_scheduling)
         def factory():
             return Stream(model, processor, max_seconds=a.max_seconds, max_tokens=256,
                           decoder_runtime=decoder, encoder_runtime=encoder,
                           preview_seconds=a.preview_seconds if a.accuracy else None,
-                          preview_overlap_seconds=a.preview_overlap_seconds, defer_final=a.accuracy)
+                          preview_overlap_seconds=a.preview_overlap_seconds, defer_final=a.accuracy,
+                          provisional_preview=a.provisional_preview)
         engine = Engine(factory, emit, **segmentation)
         source = Replay(a.wav, paced=not a.unpaced) if a.wav else Microphone(a.capture_helper, a.capture_seconds, selection)
         emit({'type': 'ready', 'model': metadata, 'decoder_runtime': decoder.metadata,
@@ -423,6 +442,9 @@ def main():
               'chunk_ms': chunk, 'vad_dbfs': a.vad_dbfs, 'silence_ms': a.silence_ms,
               'coalesce_partials': a.low_latency,
               'accuracy_mode': a.accuracy, 'segmentation': segmentation,
+              'provisional_preview': a.provisional_preview,
+              'native_projections': a.native_projections,
+              'inference_library_sha256': digest(a.library) if device else None,
               'preview_seconds': a.preview_seconds if a.accuracy else None,
               'preview_overlap_seconds': a.preview_overlap_seconds if a.accuracy else None,
               'max_seconds': a.max_seconds, 'gain': a.gain, 'highpass_hz': highpass_hz})
@@ -466,6 +488,13 @@ def main():
             emit({'type': 'summary', 'exit_code': status, **(engine.summary() if engine else {}),
                   'raw_clipped_samples': raw_clipped,
                   'queue_high_water_ms': captured.high_water_blocks*20 if captured else 0,
+                  'decoder_profile': dict(decoder.profile) if decoder else None,
+                  'encoder_runtime_profile': dict(encoder.profile) if encoder else None,
+                  'projection_profiles': {name: {'shape': [m.projection.m, m.projection.k],
+                      'calls': m.projection.calls, **m.projection.profile}
+                      for name, m in model.named_modules() if hasattr(m, 'projection')
+                      and hasattr(m.projection, 'profile')} if model else {},
+                  'physical_timings': device.timings() if device else None,
                   'physical': device.stats() if device else None})
         finally:
             if device:

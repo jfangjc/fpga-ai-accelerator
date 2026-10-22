@@ -13,9 +13,10 @@ from moonshine.matrix import BulkDevice, Projection
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--library', default='build/native/libqnc_moonshine.so')
+    p.add_argument('--native-projections', action='store_true')
     p.add_argument('--out', type=Path, required=True)
     a = p.parse_args()
-    device = BulkDevice(a.library)
+    device = BulkDevice(a.library, native_projections=a.native_projections)
     rows = []
     rng = np.random.default_rng(260)
     try:

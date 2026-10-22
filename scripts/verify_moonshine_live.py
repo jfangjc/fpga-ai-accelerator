@@ -48,9 +48,12 @@ def main():
     if any(meta[k] != metadata[k] for k in ('model', 'revision', 'runtime_sources_sha256')):
         raise ValueError('Source/model changed since the FPGA recording')
     decoder = Runtime(a.ort_decoder, meta, threads=ready['decoder_runtime']['threads'], scheduling='run-spin',
-                      precision=ready['decoder_runtime']['precision'])
+                      precision=ready['decoder_runtime']['precision'],
+                      step_threads=ready['decoder_runtime'].get('single_token_threads'),
+                      single_token=ready['decoder_runtime'].get('single_token_graph') != 'generic')
     encoder = EncoderRuntime(a.ort_encoder, meta, threads=ready['encoder_runtime']['threads'],
-                             precision=ready['encoder_runtime']['attention_precision'])
+                             precision=ready['encoder_runtime']['attention_precision'],
+                             scheduling=ready['encoder_runtime'].get('scheduling', 'sleep'))
     for actual, expected in ((decoder.metadata, ready['decoder_runtime']), (encoder.metadata, ready['encoder_runtime'])):
         if actual != expected:
             raise ValueError('Native artifacts or runtime differ from the recorded session')
@@ -66,7 +69,8 @@ def main():
                             decoder_runtime=decoder, encoder_runtime=encoder,
                             preview_seconds=ready.get('preview_seconds'),
                             preview_overlap_seconds=ready.get('preview_overlap_seconds') or 0,
-                            defer_final=ready.get('accuracy_mode', False))
+                            defer_final=ready.get('accuracy_mode', False),
+                            provisional_preview=ready.get('provisional_preview', False))
             states[utterance] = [stream, row['audio_start_sample'], None]
         state = states[utterance]
         stream, position, pending = state

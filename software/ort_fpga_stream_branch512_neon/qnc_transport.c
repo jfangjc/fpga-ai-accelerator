@@ -326,6 +326,77 @@ int qnc_run_f32(qnc *c,const float *x,size_t t,const float *scales,float *y,floa
 }
 void qnc_get_stats(const qnc *c,qnc_stats *stats) { if(c&&stats) *stats=c->stats; }
 void qnc_get_profile(const qnc *c,qnc_profile *profile) { if(c&&profile) *profile=c->profile; }
+
+int qnc_quantize_rows_f32(const float *x,size_t rows,unsigned k,int8_t *q,float *scale) {
+ if(!x||!q||!scale||!rows||!k||rows>SIZE_MAX/k/sizeof(float))return -EINVAL;
+ size_t total=rows*k,i=0;float peak=0;
+#ifdef QNC_NEON
+ float32x4_t max4=vdupq_n_f32(0),largest=vdupq_n_f32(FLT_MAX);
+ for(;i+4<=total;i+=4) {
+  float32x4_t a=vabsq_f32(vld1q_f32(x+i));
+  if(vminvq_u32(vcleq_f32(a,largest))!=UINT_MAX)return -EDOM;
+  max4=vmaxq_f32(max4,a);
+ }
+ peak=vmaxvq_f32(max4);
+#endif
+ for(;i<total;i++){if(!isfinite(x[i]))return -EDOM;float a=fabsf(x[i]);if(a>peak)peak=a;}
+ float s=peak/127.0f;if(s==0)s=1;*scale=s;
+ for(size_t r=0;r<rows;r++) {
+  unsigned c=0;
+#ifdef QNC_NEON
+  float32x4_t divisor=vdupq_n_f32(s);
+  for(;c+4<=k;c+=4) {
+   float32x4_t v=vdivq_f32(vld1q_f32(x+r*k+c),divisor);
+   v=vminq_f32(vdupq_n_f32(127),vmaxq_f32(vdupq_n_f32(-127),v));
+   int32_t rounded[4];vst1q_s32(rounded,vcvtnq_s32_f32(v));
+   for(unsigned lane=0;lane<4;lane++)q[(size_t)(c+lane)*rows+r]=(int8_t)rounded[lane];
+  }
+#endif
+  for(;c<k;c++)q[(size_t)c*rows+r]=quant(x[r*k+c],s);
+ }
+ return 0;
+}
+
+int qnc_restore_rows_i32(const int32_t *x,size_t rows,unsigned m,const float *scales,
+ float activation_scale,const float *bias,float *y) {
+ if(!x||!scales||!y||!rows||!m||rows>SIZE_MAX/m/sizeof(float)||
+    !isfinite(activation_scale)||activation_scale<=0)return -EINVAL;
+ for(unsigned c=0;c<m;c++)if(!isfinite(scales[c])||scales[c]<=0||
+    (bias&&!isfinite(bias[c])))return -EDOM;
+ unsigned c=0;
+#ifdef QNC_NEON
+ for(;c+4<=m;c+=4) {
+  float s[4];for(unsigned lane=0;lane<4;lane++)s[lane]=scales[c+lane]*activation_scale;
+  size_t r=0;
+  for(;r+4<=rows;r+=4) {
+   float32x4_t v[4];
+   for(unsigned lane=0;lane<4;lane++) {
+    v[lane]=vmulq_f32(vcvtq_f32_s32(vld1q_s32(x+(size_t)(c+lane)*rows+r)),vdupq_n_f32(s[lane]));
+    if(bias)v[lane]=vaddq_f32(v[lane],vdupq_n_f32(bias[c+lane]));
+   }
+   float32x4x2_t a=vtrnq_f32(v[0],v[1]),b=vtrnq_f32(v[2],v[3]);
+   vst1q_f32(y+r*m+c,vcombine_f32(vget_low_f32(a.val[0]),vget_low_f32(b.val[0])));
+   vst1q_f32(y+(r+1)*m+c,vcombine_f32(vget_low_f32(a.val[1]),vget_low_f32(b.val[1])));
+   vst1q_f32(y+(r+2)*m+c,vcombine_f32(vget_high_f32(a.val[0]),vget_high_f32(b.val[0])));
+   vst1q_f32(y+(r+3)*m+c,vcombine_f32(vget_high_f32(a.val[1]),vget_high_f32(b.val[1])));
+  }
+  for(;r<rows;r++)for(unsigned lane=0;lane<4;lane++) {
+   float value=(float)x[(size_t)(c+lane)*rows+r]*s[lane];
+   if(bias)value+=bias[c+lane];
+   y[r*m+c+lane]=value;
+  }
+ }
+#endif
+ for(;c<m;c++) {
+  float s=scales[c]*activation_scale;
+  for(size_t r=0;r<rows;r++) {
+   float value=(float)x[(size_t)c*rows+r]*s;
+   if(bias)value+=bias[c];
+   y[r*m+c]=value;
+  }
+ }
+ return 0;
+}
 static int run_bulk(qnc *c,const uint8_t *x,size_t t,size_t valid_t,uint8_t *y,int pair) {
  if(!c || !c->valid || !c->quantized || !x || !y || !t || t>256)return -EINVAL;
  if(pair && (!c->dw_valid || valid_t>t))return -EINVAL;

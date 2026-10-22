@@ -122,6 +122,24 @@ class LiveTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.engine(chunk_ms=3000, max_seconds=2)
 
+    def test_provisional_preview_omits_future_wait_but_final_keeps_lookahead(self):
+        class Provisional(FakeStream):
+            lookahead_samples = int(.24*RATE)
+
+            def push(self, samples, final=False):
+                return {**super().push(samples, final), 'provisional_encoder': not final}
+
+        rows = []
+        engine = Engine(Provisional, rows.append, chunk_ms=200, silence_ms=200)
+        self.feed(engine, np.concatenate((np.full(RATE, .03, np.float32), np.zeros(RATE, np.float32))))
+        partials = [r for r in rows if r['type'] == 'partial']
+        self.assertTrue(partials)
+        for row in partials:
+            self.assertEqual(row['encoder_lookahead_ms'], 0)
+            self.assertAlmostEqual(row['oldest_update_age_ms'], row['lag_ms']+row['update_audio_ms'])
+        final = next(r for r in rows if r['type'] == 'final')
+        self.assertEqual(final['encoder_lookahead_ms'], 240)
+
     def test_generation_limit_never_commits_incomplete_text_as_final(self):
         class Incomplete(FakeStream):
             def push(self, samples, final=False):

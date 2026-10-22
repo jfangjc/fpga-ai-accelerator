@@ -51,6 +51,12 @@ int qnc_run_f32(qnc *ctx, const float *x, size_t times, const float *weight_scal
                 float *y, float *activation_scale);
 void qnc_get_stats(const qnc *ctx, qnc_stats *stats);
 void qnc_get_profile(const qnc *ctx, qnc_profile *profile);
+/* Host helpers: time-major float input -> channel-major INT8; channel-major
+ * INT32 accumulation -> time-major float output. Same whole-matrix scale and
+ * nearest-even rounding as the NumPy projection reference. No device access. */
+int qnc_quantize_rows_f32(const float *x,size_t rows,unsigned k,int8_t *q,float *scale);
+int qnc_restore_rows_i32(const int32_t *x,size_t rows,unsigned m,const float *scales,
+                         float activation_scale,const float *bias,float *y);
 int qnc_run_branch_reuse(qnc*,uint8_t*,size_t,size_t,unsigned,unsigned,const uint8_t*,size_t,size_t,uint8_t*,uint8_t*,unsigned);
 int qnc_run_branch_registered(qnc*,uint64_t,uint8_t*,size_t,size_t,unsigned,unsigned,const uint8_t*,size_t,size_t,uint8_t*,uint8_t*,unsigned);
 #endif

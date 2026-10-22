@@ -6,6 +6,7 @@ decoder cache survives an encoder-memory update. PyTorch remains the reference.
 import argparse
 import hashlib
 import json
+import time
 from pathlib import Path
 
 import numpy as np
@@ -175,8 +176,9 @@ def export(size, directory):
 
 
 class Cache:
-    def __init__(self, keys, values):
+    def __init__(self, keys, values, profile=None):
         self.keys, self.values = keys, values
+        self.profile = profile
 
     def get_seq_length(self):
         return self.keys.shape[3]
@@ -184,12 +186,16 @@ class Cache:
     def crop(self, amount):
         if amount >= 0:
             raise ValueError('Decoder cache crop expects a negative removal count')
+        start = time.perf_counter()
         self.keys = self.keys[:, :, :, :amount, :].copy()
         self.values = self.values[:, :, :, :amount, :].copy()
+        if self.profile is not None:
+            self.profile['cache_crop_seconds'] += time.perf_counter()-start
 
 
 class Runtime:
-    def __init__(self, directory, model_metadata, threads=2, precision='int8', scheduling='sleep'):
+    def __init__(self, directory, model_metadata, threads=2, precision='int8', scheduling='sleep',
+                 step_threads=None, single_token=True):
         import onnxruntime as ort
         directory = Path(directory)
         self.manifest = json.loads((directory/'manifest.json').read_text())
@@ -203,9 +209,25 @@ class Runtime:
                 raise ValueError('Decoder artifact hash mismatch: '+filename)
             self.sessions[name] = ort.InferenceSession(str(directory/filename), sess_options=opts,
                                                        providers=['CPUExecutionProvider'])
+        filename = 'single-'+precision+'.onnx'
+        self.single_specialized = single_token and filename in self.manifest['files']
+        if step_threads is not None and step_threads < 1:
+            raise ValueError('Single-token thread count must be positive')
+        if self.single_specialized or step_threads is not None:
+            filename = filename if self.single_specialized else 'step-'+precision+'.onnx'
+            if digest(directory/filename) != self.manifest['files'][filename]:
+                raise ValueError('Single-token decoder artifact hash mismatch')
+            self.sessions['single'] = ort.InferenceSession(str(directory/filename),
+                sess_options=session_options(step_threads or threads, scheduling), providers=['CPUExecutionProvider'])
         self.metadata = {'engine': 'onnxruntime', 'precision': precision, 'version': ort.__version__,
                          'manifest_sha256': digest(directory/'manifest.json'), 'threads': threads,
                          'scheduling': scheduling}
+        if 'single' in self.sessions:
+            self.metadata.update(single_token_graph='specialized' if self.single_specialized else 'generic',
+                                 single_token_threads=step_threads or threads)
+        self.profile = {'memory_seconds': 0., 'step_seconds': 0., 'argmax_seconds': 0.,
+                        'step_calls': 0, 'step_tokens': 0, 'single_seconds': 0., 'single_calls': 0,
+                        'prefill_seconds': 0., 'prefill_calls': 0, 'input_seconds': 0., 'cache_crop_seconds': 0.}
 
     def update(self, memory):
         return Update(self, memory)
@@ -214,10 +236,13 @@ class Runtime:
 class Update:
     def __init__(self, runtime, memory):
         self.runtime = runtime
+        start = time.perf_counter()
         self.cross_keys, self.cross_values = runtime.sessions['memory'].run(None, {'memory': memory.numpy()})
+        runtime.profile['memory_seconds'] += time.perf_counter()-start
 
     def predict(self, input_ids, cache=None):
         runtime = self.runtime
+        begin = time.perf_counter()
         n = input_ids.shape[1]
         if cache is None:
             m = runtime.manifest
@@ -225,12 +250,26 @@ class Update:
             cache = Cache(np.empty(shape, np.float32), np.empty(shape, np.float32))
         old = cache.get_seq_length()
         positions = np.arange(old, old+n, dtype=np.int64)[None]
-        mask = np.where(np.arange(old+n)[None] <= positions.T, np.float32(0), np.float32(-np.inf))[None, None]
-        logits, keys, values = runtime.sessions['step'].run(None, {
-            'input_ids': input_ids.numpy(), 'positions': positions, 'mask': mask,
+        single = n == 1 and 'single' in runtime.sessions
+        feeds = {'input_ids': input_ids.numpy(), 'positions': positions,
             'past_keys': cache.keys, 'past_values': cache.values,
-            'cross_keys': self.cross_keys, 'cross_values': self.cross_values})
-        return logits.argmax(axis=-1)[0].tolist(), Cache(keys, values)
+            'cross_keys': self.cross_keys, 'cross_values': self.cross_values}
+        if not (single and runtime.single_specialized):
+            feeds['mask'] = np.where(np.arange(old+n)[None] <= positions.T,
+                np.float32(0), np.float32(-np.inf))[None, None]
+        start = time.perf_counter()
+        runtime.profile['input_seconds'] += start-begin
+        logits, keys, values = runtime.sessions['single' if single else 'step'].run(None, feeds)
+        end = time.perf_counter()
+        predictions = logits.argmax(axis=-1)[0].tolist()
+        runtime.profile['step_seconds'] += end-start
+        kind = 'single' if n == 1 else 'prefill'
+        runtime.profile[kind+'_seconds'] += end-start
+        runtime.profile[kind+'_calls'] += 1
+        runtime.profile['argmax_seconds'] += time.perf_counter()-end
+        runtime.profile['step_calls'] += 1
+        runtime.profile['step_tokens'] += n
+        return predictions, Cache(keys, values, runtime.profile)
 
 
 if __name__ == '__main__':

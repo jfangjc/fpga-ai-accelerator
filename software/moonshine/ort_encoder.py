@@ -5,6 +5,7 @@ weights stay float32; the optional INT8 policy applies to attention projections.
 """
 import argparse
 import json
+import time
 from pathlib import Path
 
 import numpy as np
@@ -147,15 +148,23 @@ class Runtime:
             'convolution_precision': 'float32', 'threads': threads, 'version': ort.__version__,
             'scheduling': scheduling,
             'manifest_sha256': digest(directory/'manifest.json')}
+        self.profile = {'attention_seconds': 0., 'convolution_seconds': 0.,
+                        'attention_calls': 0, 'convolution_calls': 0}
 
     def attention(self, index, buffer, start, stop, mask):
+        begin = time.perf_counter()
         residual, normalized = self.sessions[f'attention-{index}'].run(None, {
             'buffer': buffer.contiguous().numpy(), 'start': np.array(start, np.int64),
             'stop': np.array(stop, np.int64), 'mask': mask.numpy()})
+        self.profile['attention_seconds'] += time.perf_counter()-begin
+        self.profile['attention_calls'] += 1
         return torch.from_numpy(residual), torch.from_numpy(normalized)
 
     def convolution(self, index, input):
+        begin = time.perf_counter()
         result, = self.sessions[f'conv{index}'].run(None, {'input': input.contiguous().numpy()})
+        self.profile['convolution_seconds'] += time.perf_counter()-begin
+        self.profile['convolution_calls'] += 1
         return torch.from_numpy(result)
 
 
