@@ -92,6 +92,13 @@ p95 update age measured 473/454/464 ms across the same three fixtures, with
 unchanged synthetic final word accuracy. See the
 [optimization measurements and deployment options](docs/hybrid-optimization.md).
 
+A further experimental profile measured **267/264/257 ms hybrid p95** on these
+fixtures using 120 ms updates and 400 ms revisable previews. This reduces preview
+context and delays final refinement: sustained final lag p95 reached 8.62 s.
+The FPGA advantage over a CPU run with the same streaming settings remains
+modest. See [the sub-300 ms experiments and tradeoffs](docs/sub300-experiments.md)
+before selecting this opt-in profile.
+
 ## Checks
 
 ```sh

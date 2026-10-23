@@ -233,7 +233,7 @@ static int8_t quant(float x,float scale) {
  return (int8_t)n;
 }
 static int run(qnc *c,const void *x,size_t t,void *y,const float *scales,float scale,int mode) {
- int fp=mode==1,quantized=mode==2;
+ int fp=mode==1,quantized=mode==2,add=mode==3;
  if(!c||!c->valid||!x||!y||!t||t>SIZE_MAX/1024/sizeof(float)) return -EINVAL;
  if(c->quantized!=quantized)return -EINVAL;
  unsigned k=c->k,m=c->m,pb=16+16*k,rb=16+(quantized?256:1024)*((m+15)/16),limit=RX_CAP/rb;
@@ -283,20 +283,29 @@ static int run(qnc *c,const void *x,size_t t,void *y,const float *scales,float s
      for(unsigned lane=0;lane<4;lane++) {
       if(fp) vst1q_f32((float*)y+(size_t)(o+lane)*t+offset+j,
              vmulq_f32(vcvtq_f32_s32(columns[lane]),vdupq_n_f32(scales[o+lane]*scale)));
-      else vst1q_s32((int32_t*)y+(size_t)(o+lane)*t+offset+j,columns[lane]);
+      else {
+       int32_t *dst=(int32_t*)y+(size_t)(o+lane)*t+offset+j;
+       vst1q_s32(dst,add?vaddq_s32(vld1q_s32(dst),columns[lane]):columns[lane]);
+      }
      }
     }
     for(unsigned lane=0;lane<4;lane++) for(unsigned tail=j;tail<nt;tail++) {
      uint32_t bits=get32(result+((o/16)*256+tail*16+o%16+lane)*4); int32_t value; memcpy(&value,&bits,4);
      if(fp) ((float*)y)[(size_t)(o+lane)*t+offset+tail]=(float)value*(scales[o+lane]*scale);
-     else ((int32_t*)y)[(size_t)(o+lane)*t+offset+tail]=value;
+     else {
+      int32_t *dst=(int32_t*)y+(size_t)(o+lane)*t+offset+tail;
+      uint32_t sum=bits;if(add){uint32_t old;memcpy(&old,dst,4);sum+=old;}memcpy(dst,&sum,4);
+     }
     }
    }
 #endif
    for(;o<m;o++) for(unsigned j=0;j<nt;j++) {
     uint32_t bits=get32(result+((o/16)*256+j*16+o%16)*4); int32_t value; memcpy(&value,&bits,4);
     if(fp) ((float*)y)[(size_t)o*t+offset+j]=(float)value*(scales[o]*scale);
-    else ((int32_t*)y)[(size_t)o*t+offset+j]=value;
+    else {
+     int32_t *dst=(int32_t*)y+(size_t)o*t+offset+j;
+     uint32_t sum=bits;if(add){uint32_t old;memcpy(&old,dst,4);sum+=old;}memcpy(dst,&sum,4);
+    }
    }
   }
   c->profile.unpack_seconds+=now()-unpack_start;
@@ -304,6 +313,7 @@ static int run(qnc *c,const void *x,size_t t,void *y,const float *scales,float s
  } return 0;
 }
 int qnc_run_i8(qnc *c,const int8_t *x,size_t t,int32_t *y) { return run(c,x,t,y,NULL,1,0); }
+int qnc_run_i8_accumulate(qnc *c,const int8_t *x,size_t t,int32_t *y) { return run(c,x,t,y,NULL,1,3); }
 int qnc_run_quant(qnc *c,const int8_t *x,size_t t,uint8_t *y) {return run(c,x,t,y,NULL,1,2);}
 int qnc_run_f32(qnc *c,const float *x,size_t t,const float *scales,float *y,float *activation_scale) {
  if(!c||!c->valid||!x||!t||!scales||t>SIZE_MAX/1024/sizeof(float)) return -EINVAL;
@@ -341,19 +351,25 @@ int qnc_quantize_rows_f32(const float *x,size_t rows,unsigned k,int8_t *q,float 
 #endif
  for(;i<total;i++){if(!isfinite(x[i]))return -EDOM;float a=fabsf(x[i]);if(a>peak)peak=a;}
  float s=peak/127.0f;if(s==0)s=1;*scale=s;
- for(size_t r=0;r<rows;r++) {
-  unsigned c=0;
 #ifdef QNC_NEON
-  float32x4_t divisor=vdupq_n_f32(s);
-  for(;c+4<=k;c+=4) {
-   float32x4_t v=vdivq_f32(vld1q_f32(x+r*k+c),divisor);
-   v=vminq_f32(vdupq_n_f32(127),vmaxq_f32(vdupq_n_f32(-127),v));
-   int32_t rounded[4];vst1q_s32(rounded,vcvtnq_s32_f32(v));
-   for(unsigned lane=0;lane<4;lane++)q[(size_t)(c+lane)*rows+r]=(int8_t)rounded[lane];
+ /* Quantize contiguous channel vectors, then transpose a small tile. The old
+  * loop scattered every byte separately into K independent time rows. */
+ float32x4_t divisor=vdupq_n_f32(s);
+ for(size_t r=0;r<rows;r+=16) {
+  unsigned nr=rows-r<16?(unsigned)(rows-r):16,c=0;
+  for(;c+16<=k;c+=16) {
+   uint8_t tile[256];
+   for(unsigned j=0;j<nr;j++)quant16(tile+j*16,x+(r+j)*k+c,divisor);
+   if(nr<16)memset(tile+nr*16,0,(16-nr)*16);
+   output_partial_u8(tile,(uint8_t*)q+(size_t)c*rows+r,rows,nr,16,1);
   }
-#endif
-  for(;c<k;c++)q[(size_t)c*rows+r]=quant(x[r*k+c],s);
+  for(;c<k;c++)for(unsigned j=0;j<nr;j++)q[(size_t)c*rows+r+j]=quant(x[(r+j)*k+c],s);
  }
+#else
+ for(size_t r=0;r<rows;r++) {
+  for(unsigned c=0;c<k;c++)q[(size_t)c*rows+r]=quant(x[r*k+c],s);
+ }
+#endif
  return 0;
 }
 

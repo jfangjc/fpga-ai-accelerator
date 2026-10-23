@@ -45,6 +45,9 @@ int qnc_run_registered(qnc *ctx,uint64_t handle,uint8_t *packet,size_t prefix_by
                        const uint8_t *x,size_t times,size_t valid_times,uint8_t *y);
 int qnc_invalidate(qnc *ctx);
 int qnc_run_i8(qnc *ctx, const int8_t *x, size_t times, int32_t *y);
+/* Add raw FPGA results into an existing [M,T] INT32 buffer during unpacking.
+ * Arithmetic wraps modulo 2^32; callers requiring exact sums must bound K. */
+int qnc_run_i8_accumulate(qnc *ctx, const int8_t *x, size_t times, int32_t *y);
 /* X[K,T], Y[M,T], contiguous. Whole-layer dynamic symmetric quantization,
  * nearest-even division rounding, saturation [-127,127]. No bias or activation. */
 int qnc_run_f32(qnc *ctx, const float *x, size_t times, const float *weight_scales,

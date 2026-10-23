@@ -39,6 +39,13 @@ def main():
             np.testing.assert_array_equal(device.multiply(packet, x), expected)
             if device.stats()['loads'] != loads:
                 raise AssertionError('Resident prepared matrix was unnecessarily reloaded')
+            if device.accumulate is not None:
+                output = np.full_like(expected, 12345)
+                self_output = device.multiply(packet, x, out=output)
+                assert self_output is output
+                np.testing.assert_array_equal(output, expected)
+                device.multiply(packet, x, out=output, accumulate=True)
+                np.testing.assert_array_equal(output, expected*2)
             rows.append({'m': m, 'k': k, 't': t, 'seconds': seconds,
                          'prepared_seconds': prepared_seconds, 'exact': True, 'prepared_exact': True})
         # Both dimensions exceed a hardware tile; verify scaling and accumulation too.

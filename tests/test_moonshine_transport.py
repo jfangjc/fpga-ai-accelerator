@@ -18,6 +18,63 @@ from moonshine.matrix import PackedWeights
 
 @unittest.skipUnless(os.environ.get('MOONSHINE_NATIVE_LIBRARY'), 'Set MOONSHINE_NATIVE_LIBRARY for native callback tests')
 class TransportTests(unittest.TestCase):
+    def test_raw_accumulation_in_unpacker(self):
+        lib = ct.CDLL(os.environ['MOONSHINE_NATIVE_LIBRARY'])
+        callback_type = ct.CFUNCTYPE(ct.c_int, ct.c_void_p, ct.c_void_p, ct.c_void_p,
+                                    ct.c_uint32, ct.c_uint32, ct.c_uint32, ct.c_int)
+        errors = []
+        resident = [None]
+        def exchange(opaque, tx, rx, txbytes, rxbytes, count, batch):
+            try:
+                for p in range(count):
+                    packet = ct.string_at(tx+p*txbytes, txbytes)
+                    magic, op, k, tag = struct.unpack_from('<IIII', packet)
+                    m = op >> 16
+                    self.assertEqual(magic, 0x32434e51)
+                    answer = struct.pack('<IIII', 0x32524e51, 0, k | m << 16, tag)
+                    if op & 65535 == 1:
+                        resident[0] = np.frombuffer(packet[16:], np.int8).reshape(-1, k, 16).transpose(0, 2, 1).reshape(-1, k)[:m].copy()
+                    else:
+                        self.assertEqual(op & 65535, 2)
+                        x = np.frombuffer(packet[16:], np.int8).reshape(k, 16)
+                        y = resident[0].astype(np.int32) @ x.astype(np.int32)
+                        padded = np.zeros(((m+15)//16*16, 16), np.int32)
+                        padded[:m] = y
+                        answer += padded.reshape(-1, 16, 16).transpose(0, 2, 1).astype('<i4').tobytes()
+                    self.assertEqual(len(answer), rxbytes)
+                    ct.memmove(rx+p*rxbytes, answer, len(answer))
+                return 0
+            except Exception as error:
+                errors.append(str(error))
+                return -errno.EIO
+        callback = callback_type(exchange)
+        lib.qnc_create.argtypes = [callback_type, ct.c_void_p]
+        lib.qnc_create.restype = ct.c_void_p
+        lib.qnc_close.argtypes = [ct.c_void_p]
+        lib.qnc_load_i8_single.argtypes = [ct.c_void_p, ct.c_void_p, ct.c_uint, ct.c_uint]
+        for name in ('qnc_run_i8', 'qnc_run_i8_accumulate'):
+            getattr(lib, name).argtypes = [ct.c_void_p, ct.c_void_p, ct.c_size_t, ct.c_void_p]
+        context = lib.qnc_create(callback, None)
+        self.assertTrue(context)
+        rng = np.random.default_rng(300)
+        try:
+            for m in (1, 3, 4, 17):
+                weights = rng.integers(-127, 128, (m, 7), dtype=np.int8)
+                self.assertEqual(lib.qnc_load_i8_single(context, weights.ctypes.data, m, 7), 0)
+                for t in (1, 3, 4, 15, 16, 17, 33):
+                    x = rng.integers(-127, 128, (7, t), dtype=np.int8)
+                    expected = weights.astype(np.int32) @ x.astype(np.int32)
+                    output = np.full((m, t), -1234567, np.int32)
+                    self.assertEqual(lib.qnc_run_i8(context, x.ctypes.data, t, output.ctypes.data), 0)
+                    np.testing.assert_array_equal(output, expected)
+                    for initial in (0, 1234567, np.iinfo(np.int32).max, np.iinfo(np.int32).min):
+                        output.fill(initial)
+                        self.assertEqual(lib.qnc_run_i8_accumulate(context, x.ctypes.data, t, output.ctypes.data), 0)
+                        np.testing.assert_array_equal(output, (expected.astype(np.int64)+initial).astype(np.int32))
+            self.assertFalse(errors, errors)
+        finally:
+            lib.qnc_close(context)
+
     def test_borrowed_packet_is_restored_on_success_and_failures(self):
         lib = ct.CDLL(os.environ['MOONSHINE_NATIVE_LIBRARY'])
         callback_type = ct.CFUNCTYPE(ct.c_int, ct.c_void_p, ct.c_void_p, ct.c_void_p,

@@ -114,6 +114,9 @@ class BulkDevice:
         except AttributeError as error:
             raise RuntimeError('Rebuild the Moonshine library with scripts/build_moonshine.sh') from error
         self.lib.qnc_run_i8.argtypes = [ct.c_void_p, ct.c_void_p, ct.c_size_t, ct.c_void_p]
+        self.accumulate = getattr(self.lib, 'qnc_run_i8_accumulate', None)
+        if self.accumulate is not None:
+            self.accumulate.argtypes = self.lib.qnc_run_i8.argtypes
         self.lib.qnc_get_stats.argtypes = [ct.c_void_p, ct.POINTER(Stats)]
         self.lib.qnc_get_profile.argtypes = [ct.c_void_p, ct.POINTER(NativeProfile)]
         self.ctx = self.lib.qnc_open(path.encode())
@@ -140,7 +143,7 @@ class BulkDevice:
         self.lib.qnc_get_profile(self.ctx, ct.byref(native))
         return {**self.profile, 'native': {name: getattr(native, name) for name, _ in native._fields_}}
 
-    def multiply(self, weights, x):
+    def multiply(self, weights, x, out=None, accumulate=False):
         prepared = isinstance(weights, PackedWeights)
         if not prepared:
             weights = np.ascontiguousarray(weights, dtype=np.int8)
@@ -148,7 +151,12 @@ class BulkDevice:
         m, k = (weights.m, weights.k) if prepared else weights.shape
         if x.ndim != 2 or x.shape[0] != k or not 0 < m <= 1024 or not 0 < k <= 1024 or x.shape[1] == 0:
             raise ValueError('Bulk tile dimensions must be in [1,1024]')
-        y = np.empty((m, x.shape[1]), dtype=np.int32)
+        if accumulate and (out is None or self.accumulate is None):
+            raise ValueError('Accumulation requires an output buffer and rebuilt native library')
+        y = np.empty((m, x.shape[1]), dtype=np.int32) if out is None else out
+        if (y.dtype != np.int32 or y.shape != (m, x.shape[1]) or
+                not y.flags.c_contiguous or not y.flags.writeable or np.shares_memory(y, x)):
+            raise ValueError('Expected a writable, separate, contiguous INT32 output buffer')
         with self.lock:
             if self.failed or not self.ctx:
                 raise RuntimeError('FPGA context is closed or failed')
@@ -165,7 +173,8 @@ class BulkDevice:
                     raise OSError(-rc, 'FPGA weight load failed')
                 self.resident = weights
             start = time.perf_counter()
-            rc = self.lib.qnc_run_i8(self.ctx, x.ctypes.data, x.shape[1], y.ctypes.data)
+            run = self.accumulate if accumulate else self.lib.qnc_run_i8
+            rc = run(self.ctx, x.ctypes.data, x.shape[1], y.ctypes.data)
             self.profile['run_seconds'] += time.perf_counter()-start
             if rc:
                 self.failed = True
@@ -210,9 +219,15 @@ class Projection:
         # Every operand is bounded by 127, including all K tiles. Most model
         # projections fit INT32 exactly; retain INT64 for larger generic inputs.
         accumulator = np.int32 if self.k <= np.iinfo(np.int32).max // (127*127) else np.int64
-        total = np.zeros((self.m, rows), dtype=accumulator)
+        direct = isinstance(self.device, BulkDevice) and self.device.accumulate is not None and accumulator == np.int32
+        total = np.empty((self.m, rows), dtype=accumulator) if direct else np.zeros((self.m, rows), dtype=accumulator)
         for index, (o, i, w) in enumerate(self.tiles):
             a = np.ascontiguousarray(qx[i:i+w.shape[1]])
+            if direct:
+                # First K tile overwrites every output; subsequent K tiles add
+                # in the native unpack loop, avoiding temporary tensors/copies.
+                self.device.multiply(self.prepared[index], a, out=total[o:o+w.shape[0]], accumulate=i != 0)
+                continue
             if self.device is not None:
                 partial = self.device.multiply(self.prepared[index] if self.prepared is not None else w, a)
             else:

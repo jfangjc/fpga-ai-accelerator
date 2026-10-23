@@ -5,7 +5,9 @@ new files; this script does not change the board's hardware configuration.
 """
 import argparse
 import json
+import math
 from pathlib import Path
+import numpy as np
 import subprocess
 import sys
 
@@ -30,7 +32,11 @@ def main():
     p.add_argument('--chunk-ms', type=int, default=250)
     p.add_argument('--highpass-hz', type=float, default=30)
     p.add_argument('--provisional-only', action='store_true')
+    p.add_argument('--target-p95-ms', type=float, default=500,
+                   help='Paced oldest-update age target; use 300 for the experimental fast profile')
     a = p.parse_args()
+    if not math.isfinite(a.target_p95_ms) or a.target_p95_ms <= 0:
+        p.error('--target-p95-ms must be finite and positive')
     if a.native_projections and a.backend != 'fpga':
         p.error('--native-projections requires --backend fpga')
     a.out.mkdir(parents=True, exist_ok=False)
@@ -61,13 +67,16 @@ def main():
         result = report(rows)
         partials = [r for r in rows if r['type'] == 'partial']
         result['partial_mean_processing_ms'] = sum(r['processing_seconds'] for r in partials)*1000/max(1, len(partials))
+        compute = [r['processing_seconds']*1000 for r in partials]
+        result['partial_p95_processing_ms'] = float(np.percentile(compute, 95)) if compute else None
+        result['partial_over_interval_count'] = sum(ms > (a.chunk_ms if name == 'provisional' else 400) for ms in compute)
         result['partial_nonempty_count'] = sum(bool(r['text'].strip()) for r in partials)
         result['partial_token_limit_count'] = sum(bool(r.get('token_limit_reached')) for r in partials)
         result['final_texts'] = [r['text'] for r in rows if r['type'] == 'final']
-        result['target_p95_update_age_ms'] = 500
+        result['target_p95_update_age_ms'] = a.target_p95_ms
         age = result['partial_oldest_update_age_ms']
         result['target_passed'] = bool(result['clean_completion'] and result['live_timing_eligible']
-            and age and age['p95'] <= 500)
+            and age and age['p95'] < a.target_p95_ms)
         (a.out/(name+'-report.json')).write_text(json.dumps(result, indent=2)+'\n')
         results[name] = result
         print(json.dumps({'mode': name, **result}), flush=True)

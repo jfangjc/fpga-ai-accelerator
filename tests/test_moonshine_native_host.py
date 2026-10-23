@@ -18,7 +18,8 @@ class NativeHostTests(unittest.TestCase):
 
     def test_quantization_layout_rounding_and_zero_scale(self):
         rng = np.random.default_rng(260)
-        for rows, k in ((1, 1), (3, 7), (4, 4), (16, 320), (17, 1280), (33, 31)):
+        for rows, k in ((1, 1), (3, 7), (4, 4), (1, 320), (8, 320), (12, 1280),
+                        (15, 17), (16, 320), (17, 1280), (19, 319), (33, 31)):
             for x in (rng.normal(size=(rows, k)).astype(np.float32), np.zeros((rows, k), np.float32)):
                 expected, scale = quantize_input(x.T)
                 actual, native_scale = self.host.quantize(x)
