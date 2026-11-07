@@ -1,0 +1,18 @@
+// KV260 overlay for stt-kv260 with the PL clocks, the HP0 port width and one UIO node per block
+/dts-v1/;
+/plugin/;
+/ {
+ fragment@0 { target = <&fpga_full>; __overlay__ { firmware-name = "stt-kv260.bit.bin"; }; };
+ fragment@1 { target-path = "/"; __overlay__ {
+  stt-clock0 { compatible = "xlnx,fclk"; clocks = <&zynqmp_clk 71>; assigned-clocks = <&zynqmp_clk 71>; assigned-clock-rates = <100000000>; };
+  stt-clock1 { compatible = "xlnx,fclk"; clocks = <&zynqmp_clk 72>; assigned-clocks = <&zynqmp_clk 72>; assigned-clock-rates = <150000000>; };
+ }; };
+ fragment@2 { target = <&amba>; __overlay__ {
+  #address-cells = <2>; #size-cells = <2>;
+  stt-afi { compatible = "xlnx,afi-fpga"; config-afi = <4 0 5 0 14 0xa00>; resets = <&zynqmp_reset 116>; };
+  frontend@a0000000 { compatible = "generic-uio"; linux,uio-name = "stt-frontend"; reg = <0 0xa0000000 0 0x10000>; };
+  frontend-dma@a0010000 { compatible = "generic-uio"; linux,uio-name = "stt-frontend-dma"; reg = <0 0xa0010000 0 0x10000>; };
+  reset@a0020000 { compatible = "generic-uio"; linux,uio-name = "stt-reset"; reg = <0 0xa0020000 0 0x10000>; };
+  engine-dma@a0030000 { compatible = "generic-uio"; linux,uio-name = "stt-engine-dma"; reg = <0 0xa0030000 0 0x10000>; };
+ }; };
+};
