@@ -42,7 +42,7 @@ module tb_frontend_control;
             $fatal(1, "FAIL FIFO backpressure");
         end
 
-        // LED on; a 1 us button glitch is ignored, a held press is accepted once
+        // LED on, a 1 us button glitch is ignored and a held press is accepted once
         write_reg(0, 8);
         if (!led) begin
             $fatal(1, "FAIL LED");

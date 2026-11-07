@@ -1,8 +1,9 @@
-# Run every RTL testbench in xsim: vivado -mode batch -source sim/run.tcl
+# Run every RTL testbench in xsim with vivado -mode batch -source sim/run.tcl
 set root [file normalize [file join [file dirname [info script]] ..]]
 set bin [file join $::env(XILINX_VIVADO) bin]
 set suites {
  frontend {tb_frontend_stream tb_frontend_control}
+ engine   {tb_engine tb_engine_memory tb_engine_compute}
 }
 
 proc tool {log name args} {
@@ -21,7 +22,7 @@ proc run_suite {component tests} {
  file mkdir $work
  cd $work
  # Packages compile first
- set sources [lsort [glob [file join $root rtl $component *.sv]]]
+ set sources [lsort [glob [file join $root rtl $component *.sv] [file join $root rtl $component * *.sv]]]
  set sources [concat [lsearch -all -inline $sources *_pkg.sv] [lsearch -all -inline -not $sources *_pkg.sv]]
  set passed 0
  foreach tb $tests {

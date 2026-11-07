@@ -96,7 +96,7 @@ module stt_frontend (
                 pace <= 6249;
             end
 
-            // Button debounce: 10 ms
+            // Button debounce of 10 ms
             button_sync <= {button_sync[0], pmod_btn_sw1};
             debounce <= button_sync[1] == pressed ? 0 : debounce + 1;
             if (&debounce && button_sync[1] != pressed) begin

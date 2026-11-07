@@ -41,7 +41,7 @@ module tb_frontend_stream;
                     low <= features;
                 end
                 else begin
-                    band[f][w/2] = {features, low};
+                    band[f][w / 2] = {features, low};
                 end
                 if (features_last != (w == 127)) begin
                     $fatal(1, "FAIL TLAST at word %0d", words);

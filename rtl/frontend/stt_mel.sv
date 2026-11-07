@@ -97,7 +97,7 @@ module stt_mel
                         default: begin
                             // The top band has no upper neighbour
                             if (mel_q[61:56] != 63) begin
-                                bands[mel_q[61:56]+1] <= band_q + pw;
+                                bands[mel_q[61:56] + 1] <= band_q + pw;
                             end
                             if (n == 256) begin
                                 word <= 0;

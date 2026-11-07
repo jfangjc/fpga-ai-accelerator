@@ -43,7 +43,7 @@ module stt_fft
     logic signed [63:0] xy;
 
     function automatic logic [8:0] reverse(input logic [8:0] x);
-        for (int i = 0; i < 9; i++) reverse[i] = x[8-i];
+        for (int i = 0; i < 9; i++) reverse[i] = x[8 - i];
     endfunction
 
     assign ready = state == COLLECT;
@@ -52,7 +52,7 @@ module stt_fft
     assign pre_value = 32'(sample * 64'sd16 - (64'(previous * 25'sd16273900) >>> 20)); // x - 0.97 x', Q4
     assign window_value = 32'(64'(history_q) * hann_q >>> 18);
 
-    // Butterfly: a +- b * w
+    // Butterfly a +- b * w
     assign half = 9'(1) << (stage - 1);
     assign tr = (rr - ii) >>> 22;
     assign ti = (ri + ir) >>> 22;
@@ -87,7 +87,7 @@ module stt_fft
         if (state == COLLECT && valid) begin
             history[write_pointer] <= pre_value;
         end
-        history_q <= history[oldest+n];
+        history_q <= history[oldest + n];
         hann_q <= hann[n < 320 ? n : 0];
         wr_q <= wr[8'(j << (9 - stage))];
         wi_q <= wi[8'(j << (9 - stage))];
