@@ -23,9 +23,9 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 add_compile_options(-Wall -Wextra)
 
-# The driver, the two runners and the phrases, shared by caption and transcript
+# The driver, the two runners, the phrases and the live loop, shared by caption and transcript
 find_package(Threads REQUIRED)
-add_library(common STATIC kv260.c hybrid.c cpu.c phrase.c)
+add_library(common STATIC kv260.c hybrid.c cpu.c phrase.c live.c)
 target_link_libraries(common PUBLIC m Threads::Threads)
 
 # caption prints live captions, transcript turns a WAV file into text
