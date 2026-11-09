@@ -18,6 +18,11 @@ static int load(const char* path) {
         fprintf(stderr, "Cannot read %s\n", path);
         return -1;
     }
+    // The engine would read QNW1 weights as a program and stall
+    if (bytes >= 4 && !memcmp(program, "QNW1", 4)) {
+        fprintf(stderr, "%s is the cpu model, hybrid needs quartznet_engine.bin\n", path);
+        return -1;
+    }
     program_bytes = bytes;
     engine_write(SLOT, program, bytes);
     return 0;

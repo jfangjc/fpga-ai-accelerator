@@ -133,7 +133,7 @@ static size_t ctc(unsigned count, char text[TEXT]) {
 }
 
 // A phrase longer than 6.4 s runs in windows that overlap by 3.2 s
-size_t phrase_decode(const runner* model, char text[TEXT]) {
+long phrase_decode(const runner* model, char text[TEXT]) {
     static int8_t features[FE_BANDS * ENGINE_FRAMES], logits[ENGINE_CLASSES * ENGINE_FRAMES];
     unsigned filled = kept_classes; // output frames decoded
     for (unsigned start = kept_start;; start += ENGINE_FRAMES / 2) {
@@ -148,7 +148,8 @@ size_t phrase_decode(const runner* model, char text[TEXT]) {
         }
         int out = model->run(features, padded, n, logits, &valid);
         if (out < 0) {
-            break;
+            *text = 0;
+            return -1;
         }
         unsigned offset = start / 2, end = last ? offset + valid : offset + 3 * ENGINE_FRAMES / 8;
         for (; filled < end; filled++) {

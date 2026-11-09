@@ -130,18 +130,27 @@ int main(int argc, char** argv) {
     pthread_create(&thread, NULL, capture, NULL);
 
     static char text[TEXT];
-    int state = PHRASE_SILENT;
+    int state = PHRASE_SILENT, failed = 0;
     long waiting;
     uint64_t power[FE_BANDS];
     for (long t = 0; next_frame(t, power, &waiting); t++) {
         int speaking = state == PHRASE_SPEECH;
         state = phrase_push(power, GAIN);
         if (state == PHRASE_END) {
-            show(text, phrase_decode(model, text), 1);
+            long kept = phrase_decode(model, text);
+            if (kept < 0) {
+                failed = 1;
+                break;
+            }
+            show(text, kept, 1);
         }
         else if (state == PHRASE_SPEECH && phrase_length() % PREVIEW == 0 && waiting < PREVIEW) {
             // A preview, skipped when behind
-            size_t kept = phrase_decode(model, text);
+            long kept = phrase_decode(model, text);
+            if (kept < 0) {
+                failed = 1;
+                break;
+            }
             if (*text) {
                 show(text, kept, 0);
             }
@@ -155,8 +164,14 @@ int main(int argc, char** argv) {
             stopping = 1;
         }
     }
-    if (state == PHRASE_SPEECH) { // stopped mid-phrase
-        show(text, phrase_decode(model, text), 1);
+    if (state == PHRASE_SPEECH && !failed) { // stopped mid-phrase
+        long kept = phrase_decode(model, text);
+        if (kept < 0) {
+            failed = 1;
+        }
+        else {
+            show(text, kept, 1);
+        }
     }
     stopping = 1;
     pthread_join(thread, NULL);
@@ -165,5 +180,5 @@ int main(int argc, char** argv) {
         fputs("Front end stopped\n", stderr);
         return 1;
     }
-    return 0;
+    return failed;
 }

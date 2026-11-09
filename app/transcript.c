@@ -87,7 +87,10 @@ int main(int argc, char** argv) {
     for (size_t t = 0; t < frames; t++) {
         int state = phrase_push(power[t], 1);
         if (state == PHRASE_END || (state == PHRASE_SPEECH && t == frames - 1)) {
-            phrase_decode(model, text);
+            if (phrase_decode(model, text) < 0) {
+                fclose(out);
+                return 1;
+            }
             if (*text) {
                 fprintf(out, "%s\n", text);
             }
