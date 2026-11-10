@@ -33,7 +33,7 @@ with wave.open('soak.wav', 'wb') as out:
             out.writeframes(block)
             if count >= duration*16000:
                 break
-Path('playlist.json').write_text(json.dumps(manifest, indent=2)+'\n')
+Path('playlist.json').write_text(json.dumps(manifest, indent=2)+'\n', newline='\n')
 uio = next(p.parent.name for p in Path('/sys/class/uio').glob('uio*/name')
            if p.read_text().strip() == 'stt-frontend')
 regfile = open('/dev/'+uio, 'rb', buffering=0)
@@ -46,12 +46,12 @@ command = [str(BASE/'src/build/sw/app/sttcap'), '--source', 'pl-inject', 'soak.w
            '--blob', str(CPU/'quartznet_int8.bin'), '--prior', str(CPU/'running_prior.json'),
            '--threads', '3', '--port', '8765', '--log', 'soak.jsonl',
            '--stages', 'soak.stages.csv', '--ppm', 'caption.ppm']
-Path('command.json').write_text(json.dumps(command, indent=2)+'\n')
+Path('command.json').write_text(json.dumps(command, indent=2)+'\n', newline='\n')
 start = time.monotonic()
 stop_power = threading.Event()
 def power():
     # Reuse the sensor selection/scaling in tools/power.sh; retain every sample.
-    with open('power.jsonl', 'w', buffering=1) as f:
+    with open('power.jsonl', 'w', buffering=1, newline='\n') as f:
         while not stop_power.is_set():
             before = time.monotonic()
             result = subprocess.run(['sh', str(BASE/'src/tools/power.sh'), '1', '0'],
@@ -72,19 +72,19 @@ def client():
         else:
             raise RuntimeError('TCP did not start')
         sock.settimeout(None)
-        with sock, sock.makefile('r') as stream, open('tcp.jsonl', 'w', buffering=1) as f:
+        with sock, sock.makefile('r') as stream, open('tcp.jsonl', 'w', buffering=1, newline='\n') as f:
             for line in stream:
                 f.write(json.dumps(dict(received_monotonic=time.monotonic(), event=json.loads(line)))+'\n')
     except Exception as error:
         tcp_error.append(repr(error))
 
-with open('soak.stdout', 'w') as stdout, open('soak.stderr', 'w') as stderr:
+with open('soak.stdout', 'w', newline='\n') as stdout, open('soak.stderr', 'w', newline='\n') as stderr:
     proc = subprocess.Popen(command, stdout=stdout, stderr=stderr)
-    Path('app.pid').write_text(str(proc.pid)+'\n')
+    Path('app.pid').write_text(str(proc.pid)+'\n', newline='\n')
     pt = threading.Thread(target=power)
     ct = threading.Thread(target=client)
     pt.start(); ct.start()
-    with open('monitor.jsonl', 'w', buffering=1) as f:
+    with open('monitor.jsonl', 'w', buffering=1, newline='\n') as f:
         while proc.poll() is None:
             try:
                 status = Path(f'/proc/{proc.pid}/status').read_text()
@@ -101,6 +101,6 @@ with open('soak.stdout', 'w') as stdout, open('soak.stderr', 'w') as stderr:
             time.sleep(1)
     stop_power.set(); pt.join(); ct.join(timeout=5)
 Path('run-result.json').write_text(json.dumps(dict(exit=proc.returncode,
-    wall_seconds=time.monotonic()-start, audio_seconds=duration, tcp_errors=tcp_error), indent=2)+'\n')
+    wall_seconds=time.monotonic()-start, audio_seconds=duration, tcp_errors=tcp_error), indent=2)+'\n', newline='\n')
 regs.close(); regfile.close()
 raise SystemExit(proc.returncode)

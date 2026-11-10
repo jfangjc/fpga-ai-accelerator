@@ -1,13 +1,17 @@
 # QuartzNet golden reference
 
-Run commands from the repository root with Python on PATH, or use
-`wsl -d FedoraLinux-44 -- .venv/bin/python` in place of `python` on this host.
-No NeMo installation is needed. All weights, datasets and generated vectors
-live in ignored `data/`; do not commit them.
+Run every command from the repository root, on Windows or Linux. No NeMo
+installation is needed. All weights, datasets and generated vectors live in
+ignored `data/`; do not commit them. Only `download`, `calibrate`, `export`
+and `qnc2_export` are needed to produce the release assets. The other commands
+check that the results reproduce.
+
+Create the environment with `py -3.14 -m venv .venv` on Windows or
+`python3 -m venv .venv` on Linux. Then activate it: `.venv\Scripts\activate`
+on Windows, `source .venv/bin/activate` on Linux. The commands below use
+`python` for the activated environment.
 
 ```
-python -m venv .venv
-# Activate the venv, then:
 pip install -r model/requirements.txt
 python model/download.py --datasets
 python model/verify.py

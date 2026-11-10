@@ -35,5 +35,5 @@ result['i2'] = {'windows': len(accepted), 'logit_bytes': sum(int(r['logits']) fo
                 'fallback_windows': sum(r['mode'] == 'layer' for r in accepted)}
 result['log_sha256'] = {p.name: hashlib.sha256(p.read_bytes()).hexdigest()
                         for p in root.glob('*.log')}
-(root / 'summary.json').write_text(json.dumps(result, indent=2) + '\n')
+(root / 'summary.json').write_text(json.dumps(result, indent=2) + '\n', newline='\n')
 print(json.dumps(result, indent=2))

@@ -29,7 +29,8 @@ $client=Start-Job -ScriptBlock {
   param($directory,$address,$output,$rawOutput)
   $ErrorActionPreference='Stop'
   Set-Location $directory
-  & wsl -d FedoraLinux-44 -- .venv/bin/python tools/caption_client.py $address --wait 120 --timestamps --output $output --json-output $rawOutput
+  $python = if(Test-Path '.venv/Scripts/python.exe'){ @('.venv/Scripts/python.exe') } else { @('wsl','-d','FedoraLinux-44','--','.venv/bin/python') }  # Windows venv, else WSL
+  & $python[0] @($python | Select-Object -Skip 1) tools/caption_client.py $address --wait 120 --timestamps --output $output --json-output $rawOutput
   if($LASTEXITCODE){throw 'PC TCP client failed'}
 } -ArgumentList $root,$boardHost,"results/t2/demo/$Tag/pc-tcp.txt","results/t2/demo/$Tag/pc-tcp.jsonl"
 try {
@@ -44,7 +45,8 @@ try {
   Receive-Job $client -ErrorAction Stop
   if($job.State -ne 'Completed' -or $client.State -ne 'Completed'){throw 'Demo worker failed'}
   & $board get "stt/t2/demo/$Tag/evidence/*" $evidence
-  & wsl -d FedoraLinux-44 -- .venv/bin/python tests/demo/check_demo.py "results/t2/demo/$Tag"
+  $python = if(Test-Path '.venv/Scripts/python.exe'){ @('.venv/Scripts/python.exe') } else { @('wsl','-d','FedoraLinux-44','--','.venv/bin/python') }  # Windows venv, else WSL
+  & $python[0] @($python | Select-Object -Skip 1) tests/demo/check_demo.py "results/t2/demo/$Tag"
   if($LASTEXITCODE){throw 'Demo evidence validation failed'}
 } finally {
   # Never terminate an active board process on a client error; it finishes replay.

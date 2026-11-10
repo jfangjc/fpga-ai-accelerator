@@ -16,7 +16,7 @@ for i,r in enumerate(rows):
    f=features(x,mode,q.get('running_prior') if mode=='running' else None);f.tofile(out/(r['id']+'.'+mode+'.f32'))
    inp=np.clip(round_away(f/np.float32(q['input_scale'])),-128,127).astype(np.int8);inp.tofile(out/(r['id']+'.'+mode+'.i8'))
  for_dummy=0
-(out/'clips.json').write_text(json.dumps(rows))
+(out/'clips.json').write_text(json.dumps(rows), newline='\n')
 # Independent complete networks, including T=1 and odd allocated T.
 for T in [1,17,101]:
  x=np.random.default_rng(T).integers(-128,128,(64,T),dtype=np.int8)

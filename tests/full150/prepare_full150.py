@@ -15,4 +15,4 @@ full = np.frombuffer((out / 'window0.i8').read_bytes(), np.int8).reshape(64, -1)
 long = np.tile(full[:, :774], (1, 3))[:, :1552]
 (out / 'window1552.i8').write_bytes(np.ascontiguousarray(long).tobytes())
 rows.append(f'{remote}/window1552.i8\t1552\t1552')
-(out / 'chunks.tsv').write_text('\n'.join(rows) + '\n')
+(out / 'chunks.tsv').write_text('\n'.join(rows) + '\n', newline='\n')

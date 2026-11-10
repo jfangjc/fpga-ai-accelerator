@@ -48,5 +48,5 @@ summary = dict(result, events=len(events), tcp_events=len(tcp), tcp_missing_capt
                startup_state_events_before_connection=len(missing), finals=finals,
                display='fb', capture=capture, merged=max(e.get('merged', 0) for e in updates),
                lost_frames=0, ppm_sha256=hashlib.sha256(ppm).hexdigest(), pass_rehearsal=True)
-(folder/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
+(folder/'summary.json').write_text(json.dumps(summary, indent=2)+'\n', newline='\n')
 print(json.dumps(summary, indent=2))

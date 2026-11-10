@@ -45,4 +45,4 @@ assert len([x for x in text if x.startswith('PASS')]) >= 8
 out['pass_lines'] = [x for x in text if x.startswith('PASS')]
 print(json.dumps(out, indent=2))
 if len(sys.argv) > 2:
-    Path(sys.argv[2]).write_text(json.dumps(out, indent=2)+'\n')
+    Path(sys.argv[2]).write_text(json.dumps(out, indent=2)+'\n', newline='\n')

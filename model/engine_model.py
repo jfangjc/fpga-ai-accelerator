@@ -201,7 +201,7 @@ if __name__ == '__main__':
     records = read_qnw(Path(a.weights).read_bytes())
     result = [predict(records, t, a.mhz) for t in (150, 800)]
     if a.output:
-        Path(a.output).write_text(json.dumps(result, indent=2)+'\n')
+        Path(a.output).write_text(json.dumps(result, indent=2)+'\n', newline='\n')
     for r in result:
         print(f"T={r['steps']}: {r['cycles']} cycles, {r['ms']:.3f} ms, {r['gmac_s']:.3f} GMAC/s")
 

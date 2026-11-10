@@ -34,7 +34,7 @@ with wave.open('soak.wav', 'wb') as out:
             count += len(block)//2
             if count >= rate*duration:
                 break
-with open('soak.stdout', 'w') as output:
+with open('soak.stdout', 'w', newline='\n') as output:
     proc = subprocess.Popen([app, '--source', 'pl-inject', 'soak.wav',
         '--blob', f'{cpu}/quartznet_int8.bin', '--prior', f'{cpu}/running_prior.json',
         '--threads', '3', '--log', 'soak.jsonl', '--port', '8765',
@@ -85,6 +85,6 @@ result = dict(exit=proc.returncode, seconds=time.monotonic()-start,
     path_over_50ms=sum(v > 50 for v in stages.get('path', [])),
     queue_over_50ms=sum(v > 50 for v in stages.get('queue', [])),
     update_ms_max=max(e['update_ms'] for e in updates if e.get('latency_valid')))
-Path('soak-summary.json').write_text(json.dumps(result, indent=2)+'\n')
+Path('soak-summary.json').write_text(json.dumps(result, indent=2)+'\n', newline='\n')
 print(json.dumps({k:v for k,v in result.items() if k!='rss_kib'}), flush=True)
 raise SystemExit(proc.returncode)

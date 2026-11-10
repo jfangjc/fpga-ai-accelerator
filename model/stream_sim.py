@@ -725,10 +725,10 @@ def main():
                     doc = dict(id=row['id'], reference=row['text'], window=window, lookahead=key[0],
                                padding=padding, hop=policy.HOP, compute_ms=key[1],
                                events=timelines[key])
-                    (Path(a.timelines)/f"{row['id']}.json").write_text(json.dumps(doc, indent=1))
+                    (Path(a.timelines)/f"{row['id']}.json").write_text(json.dumps(doc, indent=1), newline='\n')
             temporary = output.with_suffix('.tmp')
             temporary.write_text(json.dumps(dict(command=' '.join(['model/stream_sim.py']+sys.argv[1:]),
-                                                 **metadata, results=reports), indent=1))
+                                                 **metadata, results=reports), indent=1), newline='\n')
             temporary.replace(output)
             r = reports[-len(points)]
             print(f"W={window} {padding} R={r['lookahead']} c={r['compute_ms']}: preview {r['preview_wer']:.4f} "
@@ -785,7 +785,7 @@ def finish_study(a):
         text = re.sub(rf'^{constant} = .*$', f'{constant} = {best[key]!r}', text, flags=re.M)
     text = text.replace('Provisional buffered operating point;', 'Selected buffered operating point;')
     source.write_text(text+'\n# SELECTED STUDY POLICIES (c=60 ms; measured board acceptance remains separate)\n'
-                      +'OPERATING_POINTS = '+repr(policies)+'\n')
+                      +'OPERATING_POINTS = '+repr(policies)+'\n', newline='\n')
     lines = ['# Streaming study', '',
              'Complete 40-clip simulation, current replay contract. These are assumed service times, not board measurements.', '',
              'Selection minimizes committed preview WER subject to final WER <=10% and the stated L_update p95 bound at c=60 ms. '
@@ -810,7 +810,7 @@ def finish_study(a):
               'CPU estimates scale 300-900 ms by the same factor. The sensitivity rows instead specify c directly. '
               'Final service scales by final/full-window MACs and blocks subsequent previews. '
               'Latest-only merging preserves the oldest unserved audio timestamp; lost stitch frames are recorded in JSON.', '']
-    Path('docs/results/streaming.md').write_text('\n'.join(lines))
+    Path('docs/results/streaming.md').write_text('\n'.join(lines), newline='\n')
 
 
 if __name__ == '__main__':

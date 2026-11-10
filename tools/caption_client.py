@@ -46,8 +46,8 @@ def main():
             if time.monotonic() >= deadline:
                 raise
             time.sleep(.02)
-    output = open(args.output, 'w', encoding='utf-8') if args.output else None
-    raw = open(args.json_output, 'w', encoding='utf-8') if args.json_output else None
+    output = open(args.output, 'w', encoding='utf-8', newline='\n') if args.output else None
+    raw = open(args.json_output, 'w', encoding='utf-8', newline='\n') if args.json_output else None
     def emit(line):
         print(line, flush=True)
         if output:

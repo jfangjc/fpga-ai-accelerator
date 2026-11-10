@@ -7,12 +7,22 @@ $board=Join-Path $PSScriptRoot board.ps1
 Set-Location $root
 $fw='build/release/firmware/stt-full150'
 if(-not (Test-Path "$fw/stt-full150.bit.bin")) {
-  # The validated overlay lives on the board; keep a local copy for the release.
+  # Take the overlay from a local ./hw/build.ps1 full150 if there is one, otherwise
+  # from the board's validated copy. product_release.py checks its hashes either way.
   New-Item -ItemType Directory -Force $fw | Out-Null
-  & $board get 'stt/full150/firmware/*' $fw | Out-Null
+  $built='build/hw/full150'
+  if(Test-Path "$built/stt-full150.bit.bin") {
+    Copy-Item "$built/stt-full150.bit.bin","$built/stt-full150.dtbo","$built/shell.json" $fw
+  } else {
+    & $board get 'stt/full150/firmware/*' $fw | Out-Null
+  }
 }
-$rel=@('tools/product_release.sh',$fw); if($Tag){$rel+=$Tag}
-$tar=(& wsl -d FedoraLinux-44 -- bash @rel | Select-Object -Last 1).Trim()
+# The release builder needs only the Python standard library.
+if(Test-Path "$root/.venv/Scripts/python.exe"){ $python=@("$root/.venv/Scripts/python.exe") }
+elseif(Get-Command py -ErrorAction SilentlyContinue){ $python=@('py','-3') }
+else { $python=@('python') }
+$rel=@($python | Select-Object -Skip 1) + @('tools/product_release.py',$fw); if($Tag){$rel+=$Tag}
+$tar=(& $python[0] @rel | Select-Object -Last 1).Trim()
 if($LASTEXITCODE -or -not (Test-Path $tar)){throw 'release build failed'}
 $name=[IO.Path]::GetFileNameWithoutExtension([IO.Path]::GetFileNameWithoutExtension($tar))
 & $board run 'mkdir -p ~/stt/release'

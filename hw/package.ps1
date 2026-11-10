@@ -6,11 +6,10 @@ $out="$PSScriptRoot/../build/hw/$Design"
 Push-Location $out
 try { & 'C:/AMDDesignTools/2026.1/Vitis/bin/bootgen.bat' -arch zynqmp -image image.bif -process_bitstream bin -w on; if($LASTEXITCODE){throw 'bootgen failed'} } finally { Pop-Location }
 Copy-Item "$PSScriptRoot/$Design.dtso" "$out/stt-$Design.dtso"
-$linuxOut=(& wsl -d FedoraLinux-44 -- wslpath -u $out.Replace('\','/')).Trim()
-$linuxSource=(& wsl -d FedoraLinux-44 -- wslpath -u "$PSScriptRoot/$Design.dtso".Replace('\','/')).Trim()
-# One UIO node per DMA interrupt shares the AXI DMA register block, so silence
-# dtc's unique_unit_address warning (stderr would abort under ErrorAction Stop).
-& wsl -d FedoraLinux-44 -- dtc -@ -W no-unique_unit_address -I dts -O dtb -o "$linuxOut/stt-$Design.dtbo" $linuxSource
+# Vivado ships dtc; its overlay is byte-identical to the validated one. One UIO
+# node per DMA interrupt shares the AXI DMA register block, so silence dtc's
+# unique_unit_address warning.
+& 'C:/AMDDesignTools/2026.1/Vivado/bin/dtc.exe' -@ -W no-unique_unit_address -I dts -O dtb -o "$out/stt-$Design.dtbo" "$PSScriptRoot/$Design.dtso"
 if($LASTEXITCODE){throw 'dtc failed'}
 Copy-Item "$PSScriptRoot/shell.json" $out
 

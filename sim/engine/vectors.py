@@ -7,7 +7,7 @@ from golden_int8 import requant
 
 rng = np.random.default_rng(20261101)
 count = 0
-with open('requant.txt', 'w') as f:
+with open('requant.txt', 'w', newline='\n') as f:
     for n in list(range(1, 65))+[65, 96, 2147483678]:
         for lo, hi in [(-128, 127), (0, 255), (-32768, 32767)]:
             cases = [(a, m) for a in [-2147483648, -2147483647, -3, -1, 0, 1, 3, 2147483647]

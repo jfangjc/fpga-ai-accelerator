@@ -31,7 +31,7 @@ def run(mode):
             return result.stdout,rows
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
         results=list(pool.map(worker,range(workers)))
-    Path(mode+'.log').write_text(''.join(log for log,_ in results))
+    Path(mode+'.log').write_text(''.join(log for log,_ in results), newline='\n')
     with open(csvname,'w',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=['name','cycles']);writer.writeheader()
         for _,rows in results:writer.writerows(rows)

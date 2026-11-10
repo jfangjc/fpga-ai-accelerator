@@ -16,7 +16,7 @@ def records(split):
     if not rows: raise FileNotFoundError(root)
     rows=sorted(rows,key=lambda r:r['id'])
     tmp=cache.with_suffix(f'.{os.getpid()}.tmp')
-    tmp.write_text(json.dumps(rows)); tmp.replace(cache)
+    tmp.write_text(json.dumps(rows), newline='\n'); tmp.replace(cache)
     return rows
 
 def select():
@@ -28,7 +28,7 @@ def select():
             chosen.append(r); used.add(speaker)
         if len(chosen)==40: break
     if len(chosen)!=40: raise ValueError('Need 40 speakers')
-    pathlib.Path('model/testset_40.txt').write_text('\n'.join(r['id'] for r in sorted(chosen,key=lambda r:r['id']))+'\n')
+    pathlib.Path('model/testset_40.txt').write_text('\n'.join(r['id'] for r in sorted(chosen,key=lambda r:r['id']))+'\n', newline='\n')
     return chosen
 
 def testset():
@@ -62,4 +62,4 @@ if __name__=='__main__':
         hyp=greedy(logits); e=distance(r['text'].split(),hyp.split()); errors+=e; words+=len(r['text'].split())
         results.append(dict(**r,hyp=hyp,errors=e)); print(r['id'],hyp,flush=True)
     report=dict(wer=errors/words,errors=errors,words=words,seconds=sum(r['seconds'] for r in rows),clips=results)
-    pathlib.Path(a.out).write_text(json.dumps(report,indent=2)); print(json.dumps({k:v for k,v in report.items() if k!='clips'}))
+    pathlib.Path(a.out).write_text(json.dumps(report,indent=2), newline='\n'); print(json.dumps({k:v for k,v in report.items() if k!='clips'}))

@@ -77,7 +77,7 @@ def main():
     for s in slow[:40]:
         print(json.dumps(s))
     if args.json:
-        args.json.write_text(json.dumps(result, indent=2)+'\n')
+        args.json.write_text(json.dumps(result, indent=2)+'\n', newline='\n')
 
 
 if __name__ == '__main__':

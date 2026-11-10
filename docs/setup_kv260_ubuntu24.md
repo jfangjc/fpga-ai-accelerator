@@ -111,9 +111,10 @@ set `MIC=beam` (see [product.md](product.md#settings-etcdefaultstt-caption)).
 
 ## 6. Prepare the PC
 
-The tools in `tools/` run on Windows and use PuTTY's `plink` and `pscp`;
-both must be on `PATH`. Building the release also needs WSL; this project
-used `FedoraLinux-44`. Create a `.board.env` file in the repository root.
+The tools in `tools/` run natively on Windows. They use PuTTY's `plink` and
+`pscp`, which must both be on `PATH`, and Python 3 for the release build
+(`winget install Python.Python.3.14`; open a new terminal afterwards). No WSL is
+needed. Create a `.board.env` file in the repository root.
 It is gitignored; never commit it.
 
 ```
@@ -136,21 +137,23 @@ Check the connection with `./tools/board.ps1 run 'uname -r'`.
 A release is a tarball `stt-caption-<date>-<git>.tar.gz`. It holds the
 `stt-full150` overlay, the INT8 weights, the engine program, the source of
 the board programs, the installer and the PC caption clients.
-`tools/product_release.sh` builds one and checks every asset against the
+`tools/product_release.py` builds one and checks every asset against the
 hashes validated on the board. The model assets are not stored in git; the
 steps in [model/README.md](../model/README.md) write them to `data/export/`:
 `quartznet_int8.bin` and `running_prior.json` (from `model/export.py`) and
-the engine program `quartznet_qnc2.bin` (from `model/qnc2_export.py`). A rebuilt overlay or re-exported weights with different hashes are
-rejected. Validate them on the board first, then update the hashes in
-`tools/product_release.sh`.
+the engine program `quartznet_qnc2.bin` (from `model/qnc2_export.py`).
+Both flows are deterministic. On a fresh clone (2026-11-10), the model steps
+and `./hw/build.ps1 full150` (86 minutes) reproduced all six validated hashes
+byte for byte. An asset with a different hash is rejected: validate it on the
+board first, then update the hashes in `tools/product_release.py`.
 
 ### Option A: from the Windows PC
 
 `product_install.ps1` takes the overlay from `build/release/firmware/stt-full150/`.
-If that folder is empty, it downloads the overlay from the board's
-`~/stt/full150/firmware/`, which a new board does not have. On a new board,
-copy `stt-full150.bit.bin`, `stt-full150.dtbo` and `shell.json` from
-`build/hw/full150/` (made by `./hw/build.ps1 full150`) into that folder first.
+If that folder is empty, it copies the overlay from `build/hw/full150/` (made by
+`./hw/build.ps1 full150`). If there is no local build either, it downloads the
+validated copy from the board's `~/stt/full150/firmware/`, which only a board
+used for development has.
 
 ```powershell
 tools/product_install.ps1            # build the release, install, enable at boot, start

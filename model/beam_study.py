@@ -221,7 +221,7 @@ def main():
     config_path = out/'config.json'
     if config_path.exists() and json.loads(config_path.read_text()) != config:
         raise ValueError('configuration changed: use a new --out directory')
-    config_path.write_text(json.dumps(config, indent=2)+'\n')
+    config_path.write_text(json.dumps(config, indent=2)+'\n', newline='\n')
     checkpoint = out/'clips.jsonl'
     done = [json.loads(line) for line in checkpoint.read_text().splitlines()] if checkpoint.exists() else []
     completed = {(r['id'], r['kind'], r['snr']) for r in done}
@@ -231,7 +231,7 @@ def main():
              if (r['id'], kind, snr) not in completed]
     with concurrent.futures.ProcessPoolExecutor(args.workers, initializer=init_worker) as pool:
         futures = [pool.submit(evaluate, task) for task in tasks]
-        with checkpoint.open('a') as f:
+        with checkpoint.open('a', newline='\n') as f:
             for future in concurrent.futures.as_completed(futures):
                 batch = future.result()
                 for r in batch:
@@ -242,7 +242,7 @@ def main():
                 print(f'{len(done)} captures: {batch[0]["id"]} {batch[0]["kind"]} '
                       f'{batch[0]["snr"]} dB; {sum(r["seconds"] for r in batch):.1f} worker s', flush=True)
     summary = dict(config=config, conditions=summarize(done), complete=True)
-    (out/'summary.json').write_text(json.dumps(summary, indent=2)+'\n')
+    (out/'summary.json').write_text(json.dumps(summary, indent=2)+'\n', newline='\n')
     print(json.dumps(summary['conditions'], indent=2))
 
 

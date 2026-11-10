@@ -226,6 +226,6 @@ if __name__ == '__main__':
     args = p.parse_args()
     report = render(args.root, require_40=not args.allow_partial)
     if args.out:
-        args.out.write_text(report)
+        args.out.write_text(report, newline='\n')
     else:
         print(report)

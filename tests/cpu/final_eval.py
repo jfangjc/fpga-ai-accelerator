@@ -83,7 +83,7 @@ def main():
                 commands=[], weights_sha256=hashlib.sha256(
                     Path('quartznet_int8.bin').read_bytes()).hexdigest())
     def save():
-        Path('cpu_final.json').write_text(json.dumps(data, indent=2))
+        Path('cpu_final.json').write_text(json.dumps(data, indent=2), newline='\n')
     def measured(cmd):
         for attempt in range(10):
             try:

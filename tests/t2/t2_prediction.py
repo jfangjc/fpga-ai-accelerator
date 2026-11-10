@@ -51,5 +51,5 @@ if board:
     result.update(board_errors=sum(r['board_errors'] for r in rows),
         board_updates=sum(r['board_updates'] for r in rows),
         differing_preview_clips=sum(r['board_preview']!=r['prediction_preview'] for r in rows))
-output.write_text(json.dumps(result,indent=2)+'\n')
+output.write_text(json.dumps(result,indent=2)+'\n', newline='\n')
 print(json.dumps({k:v for k,v in result.items() if k!='per_clip'},indent=2))

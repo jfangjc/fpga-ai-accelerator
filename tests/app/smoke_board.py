@@ -9,7 +9,7 @@ from pathlib import Path
 command=['../build/sw/app/sttcap','--source','cpu-wav','../cpu/clips/1089-134691-0023.wav',
          '--blob','../cpu/quartznet_int8.bin','--prior','../cpu/running_prior.json',
          '--threads','3','--port','8765','--log','tcp-smoke.jsonl']
-with open('tcp-smoke.stdout','w') as out:
+with open('tcp-smoke.stdout','w', newline='\n') as out:
     process=subprocess.Popen(command,stdout=out)
     try:
         for _ in range(100):

@@ -137,7 +137,7 @@ def main():
               f"python_feature_bytes_differing={r['feature_bytes_differing']}", flush=True)
         print('  ', r['pl_final'], flush=True)
     if args.json:
-        args.json.write_text(json.dumps(report, indent=2)+'\n')
+        args.json.write_text(json.dumps(report, indent=2)+'\n', newline='\n')
     return 0 if ok else 1
 
 

@@ -65,16 +65,23 @@ Each top-level folder has one job:
 
 ## Building and running
 
-Development used Windows with Vivado/Vitis 2026.1, plus WSL (Fedora) for
-Verilator, gcc, `dtc` and Python. The board runs Ubuntu 24.04 for the KV260.
+Everything except simulation runs natively on Windows. You need:
+- Python 3.14 (`winget install Python.Python.3.14`, then open a new terminal);
+- Vivado/Vitis 2026.1, which also provides `bootgen` and `dtc`;
+- PuTTY's `plink` and `pscp` on `PATH`, for board access.
+
+Linux works for the Python and simulation steps; there, use `.venv/bin/python`
+where Windows uses `.venv\Scripts\python`. The board runs Ubuntu 24.04 for
+the KV260 and compiles all of its C code itself during the install.
 
 1. **Model and golden vectors.** Follow [model/README.md](model/README.md).
    Datasets, weights and generated vectors go into the ignored `data/`
    directory and are not part of this repository.
-2. **Simulation.** Run `python sim/frontend/extract_speech.py` once to take
-   three speech clips from the downloaded dev-clean archive. Then run
-   `make -C sim/frontend check` and `make -C sim/engine check`. Both use
-   the `.venv` from step 1.
+2. **Simulation (Linux or WSL only; optional).** It needs Verilator, gcc and
+   make. Run `python sim/frontend/extract_speech.py` once to take three speech
+   clips from the downloaded dev-clean archive. Then run `make -C sim/frontend
+   check` and `make -C sim/engine check`. Both use the `.venv` from step 1,
+   created on Linux.
 3. **Hardware.** Run `./hw/build.ps1 full150` and
    `./tools/deploy.ps1 full150`; see [docs/platform.md](docs/platform.md).
    Board access uses `tools/board.ps1`, which reads the host, user, password
@@ -83,9 +90,12 @@ Verilator, gcc, `dtc` and Python. The board runs Ubuntu 24.04 for the KV260.
    tarball and installs the `stt-caption` service on the board; see
    [docs/product.md](docs/product.md). To set up a new board from a blank SD
    card, see [docs/setup_kv260_ubuntu24.md](docs/setup_kv260_ubuntu24.md).
-5. **Captions on a PC.** Run `python3 tools/caption_live.py <board-ip>`.
+5. **Captions on a PC.** Run `python tools/caption_live.py <board-ip>`.
    To replay a recorded session without a board, run
-   `python3 tools/caption_live.py --replay results/mic/t40/session.jsonl.gz --speed 2`.
+   `python tools/caption_live.py --replay results/mic/t40/session.jsonl.gz --speed 2`.
+
+The model step (step 1) and the Vivado build (step 3) are independent, so you
+can run them at the same time. The model step needs about 1.5 GB of downloads.
 
 Every build product goes to `build/`, which mirrors the source tree:
 `build/sw/app/sttcap`, `build/sim/engine/obj_engine/`, `build/hw/full150/`

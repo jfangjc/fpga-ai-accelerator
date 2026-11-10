@@ -31,7 +31,7 @@ tools/product_install.ps1            # build release, install, enable at boot, s
 tools/product_install.ps1 -NoEnable  # install without starting at boot
 ```
 
-This runs `tools/product_release.sh`, which builds
+This runs `tools/product_release.py` (Python standard library only), which builds
 `build/release/stt-caption-<date>-<git>.tar.gz` after checking every model, program and
 firmware hash against the versions validated on the board. It then uploads the
 tarball and runs `install.sh` as root. The installer does the following:
@@ -113,8 +113,8 @@ python3 tools/caption_client.py <board-ip> --timestamps      # from the reposito
 python3 pc/caption_client.py <board-ip> --timestamps         # from the release directory
 ```
 
-Both clients use only the Python standard library. On this Windows PC, run
-them through WSL (`wsl python3 tools/caption_live.py 192.168.1.111`).
+Both clients use only the Python standard library and run on Windows, Linux
+and macOS; on Windows use `python` (or `py`) in place of `python3`.
 
 A client can connect at any time. It first receives a snapshot of the current
 caption state, then each event. Every event carries the full caption state

@@ -53,11 +53,11 @@ def beamform_fixed(mic1, mic2, delay1=0, delay2=0, gain=16384):
 if __name__=='__main__':
     h,r,i,f=coefficients()
     for name,arr,width in [('tw_re',r,24),('tw_im',i,24)]:
-        (ROOT/(name+'.mem')).write_text(''.join(f'{int(v)&((1<<width)-1):0{(width+3)//4}x}\n' for v in arr))
+        (ROOT/(name+'.mem')).write_text(''.join(f'{int(v)&((1<<width)-1):0{(width+3)//4}x}\n' for v in arr), newline='\n')
 
 
     # Compact synchronous ROMs: symmetric Hann and at most two bands per bin.
-    (ROOT/'hann_half.mem').write_text(''.join(f'{int(v):05x}\n' for v in h[:160]))
+    (ROOT/'hann_half.mem').write_text(''.join(f'{int(v):05x}\n' for v in h[:160]), newline='\n')
     sparse=[]
     for k in range(257):
         active=np.flatnonzero(f[:,k])
@@ -66,4 +66,4 @@ if __name__=='__main__':
         assert len(active)<2 or active[1]==first+1
         lo=int(f[first,k]); hi=int(f[first+1,k]) if first<63 else 0
         sparse.append((first<<56)|(hi<<28)|lo)
-    (ROOT/'mel_sparse.mem').write_text(''.join(f'{v:016x}\n' for v in sparse))
+    (ROOT/'mel_sparse.mem').write_text(''.join(f'{v:016x}\n' for v in sparse), newline='\n')

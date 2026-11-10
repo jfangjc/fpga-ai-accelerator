@@ -1,4 +1,12 @@
-product/** text eol=lf
-*.ppm binary
+# LF in every checkout: the same files are used from Windows (PowerShell, Vivado)
+# and from WSL/Linux (make, bash, Python, git), which must all see the same bytes.
+* text=auto eol=lf
+# The validated stt-full150 overlay was packaged from a CRLF checkout; keep the
+# exact bytes (SHA-256 4b7eb77b...) that tools/product_release.py checks.
+hw/shell.json text eol=crlf
+*.bin binary
 *.gz binary
-*.sh text eol=lf
+*.zip binary
+*.pdf binary
+*.png binary
+*.ppm binary

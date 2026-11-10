@@ -59,4 +59,4 @@ for count in (2, 3):
     (out / name).write_bytes(np.ascontiguousarray(a).tobytes())
     rows.append(f'/home/ubuntu/stt/i2/{name}\t{t}\t{total_valid}')
     print(name, t, total_valid)
-(out / 'chunks.tsv').write_text('\n'.join(rows) + '\n')
+(out / 'chunks.tsv').write_text('\n'.join(rows) + '\n', newline='\n')

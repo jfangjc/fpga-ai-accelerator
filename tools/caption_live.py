@@ -205,7 +205,7 @@ def main():
     if os.name == 'nt':
         os.system('')  # enable ANSI escape handling in the Windows console
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
-    transcript = open(args.output, 'a', encoding='utf-8') if args.output else None
+    transcript = open(args.output, 'a', encoding='utf-8', newline='\n') if args.output else None
     view = View(sys.stdout, tty and not args.no_color and 'NO_COLOR' not in os.environ, tty, args.times, transcript)
     source = (events_from_file(args.replay, args.speed) if args.replay
               else events_from_socket(args.host, args.port, view, not args.no_wait))

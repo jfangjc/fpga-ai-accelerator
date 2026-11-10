@@ -104,7 +104,7 @@ summary = dict(
     board_events=len(board_events), tcp_events=len(tcp_live),
     tcp_complete=tcp_live == board_events[len(board_events)-len(tcp_live):],
     per_clip=per_clip)
-json.dump(summary, open(d/'summary.json', 'w'), indent=1)
+json.dump(summary, open(d/'summary.json', 'w', newline='\n'), indent=1)
 print(json.dumps({k: v for k, v in summary.items() if k != 'per_clip'}, indent=1))
 for c in per_clip:
     if c['errors']:

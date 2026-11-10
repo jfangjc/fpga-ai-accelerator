@@ -34,7 +34,7 @@ def stats(values):
                 max=max(values) if values else None)
 
 def dump(path, obj):
-    path.write_text(json.dumps(obj, indent=2)+'\n')
+    path.write_text(json.dumps(obj, indent=2)+'\n', newline='\n')
 
 def capture_stats(path):
     matches = re.findall(r'^capture_stats (.*)$', path.read_text(), re.M)

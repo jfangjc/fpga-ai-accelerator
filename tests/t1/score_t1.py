@@ -76,5 +76,5 @@ with (out/'per-clip.csv').open('w', newline='') as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator='\n')
     w.writeheader()
     w.writerows(rows)
-(out/'extra-summary.json').write_text(json.dumps(extra, indent=2)+'\n')
+(out/'extra-summary.json').write_text(json.dumps(extra, indent=2)+'\n', newline='\n')
 print(json.dumps(extra, indent=2))

@@ -15,7 +15,7 @@ B := $(BUILD_ROOT)/sw/engdrv
 RTL ?= ../../rtl/engine
 SOURCES := $(RTL)/stt_engine_pkg.sv $(filter-out $(RTL)/stt_engine_pkg.sv,$(wildcard $(RTL)/*.sv))
 COMMON = $(addprefix $(B)/,engdrv.o board.o plio.o backend_pl.o)
-PY ?= ../../.venv/bin/python
+PY ?= $(abspath $(HERE)/../../.venv/bin/python)
 SHARDS ?= 8
 all: libengdrv.a
 $(B)/libengdrv.a: $(COMMON) $(B)/no_cosim.o

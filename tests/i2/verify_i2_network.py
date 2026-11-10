@@ -43,5 +43,5 @@ with (out / 'windows.csv').open('w', newline='') as f:
 result = dict(windows=len(rows), logit_bytes=sum(r['logit_bytes'] for r in rows),
               network_windows=sum(r['mode'] == 'network' for r in rows),
               layer_windows=sum(r['mode'] == 'layer' for r in rows))
-(out / 'acceptance.json').write_text(json.dumps(result, indent=2) + '\n')
+(out / 'acceptance.json').write_text(json.dumps(result, indent=2) + '\n', newline='\n')
 print(json.dumps(result))

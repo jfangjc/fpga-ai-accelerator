@@ -22,5 +22,5 @@ with wave.open(out, 'wb') as w:
             n = r.getnframes(); w.writeframes(r.readframes(n))
         entries.append(dict(id=i, text=clips[i]['text'], start=pos/16000, end=(pos+n)/16000)); pos += n
         g = int(16000*float(gap)); w.writeframes(bytes(2*g)); pos += g
-json.dump(dict(wav=out, seconds=pos/16000, clips=entries), open(out[:-4]+'.json', 'w'), indent=1)
+json.dump(dict(wav=out, seconds=pos/16000, clips=entries), open(out[:-4]+'.json', 'w', newline='\n'), indent=1)
 print(f'{len(entries)} clips, {pos/16000:.1f} s')

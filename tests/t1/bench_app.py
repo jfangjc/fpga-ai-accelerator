@@ -276,7 +276,7 @@ def main():
         out = dict(result[backends[0]], reference_comparisons=comparisons)
         if idle:
             out['power_idle_w'] = idle
-    (args.output/'summary.json').write_text(json.dumps(out, indent=2)+'\n')
+    (args.output/'summary.json').write_text(json.dumps(out, indent=2)+'\n', newline='\n')
     print(json.dumps(out, indent=2))
 
 

@@ -34,7 +34,7 @@ summary['sum_submit_irq_ns'] = sum(r['submit_irq_ns'] for r in rows)
 summary['sum_irq_ready_ns'] = sum(r['irq_ready_ns'] for r in rows)
 summary['sum_starvation'] = sum(r['starvation'] for r in rows)
 print(json.dumps(summary, indent=2))
-(d / 'timing-summary.json').write_text(json.dumps(summary, indent=2) + '\n')
+(d / 'timing-summary.json').write_text(json.dumps(summary, indent=2) + '\n', newline='\n')
 with (d / 'network-3s.csv').open('w', newline='') as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator='\n')
     w.writeheader()

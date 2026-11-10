@@ -20,5 +20,5 @@ for r in plan:
  b=r['source_banks'];v=r['bank']*64+(b[-1] if len(b)==2 else 0)*8+b[0]
  f+=f"            8'd{r['id']}: return 9'd{v};\n"
 f+='            default: return 0;\n        endcase\n    endfunction\n'
-s=s.replace('endpackage',f+'endpackage');p.write_text(s)
+s=s.replace('endpackage',f+'endpackage');p.write_text(s, newline='\n')
 

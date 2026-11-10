@@ -31,9 +31,9 @@ def export(q,out='data/export'):
         descriptors.append(struct.pack('<32I',*fields))
     header=struct.pack('<4s7If',b'QNW1',1,64,len(ls),128,64,base+len(payload),0,q['input_scale']).ljust(64,b'\0')
     (out/'quartznet_int8.bin').write_bytes(header+b''.join(descriptors)+payload)
-    (out/'layers.json').write_text(json.dumps([dict(id=i+1,name=l['name'],scale=l['scale']) for i,l in enumerate(ls)],indent=2))
+    (out/'layers.json').write_text(json.dumps([dict(id=i+1,name=l['name'],scale=l['scale']) for i,l in enumerate(ls)],indent=2), newline='\n')
     if 'running_prior' in q:
-        (out/'running_prior.json').write_text(json.dumps({k:v.tolist() if hasattr(v,'tolist') else v for k,v in q['running_prior'].items()},indent=2))
+        (out/'running_prior.json').write_text(json.dumps({k:v.tolist() if hasattr(v,'tolist') else v for k,v in q['running_prior'].items()},indent=2), newline='\n')
     return out
 
 def vectors(q,out):
@@ -57,7 +57,7 @@ def vectors(q,out):
                 if suffix=='out': entry['output']=meta
                 else: entry['inputs'].append(meta)
             manifest.append(entry)
-    (dest/'manifest.json').write_text(json.dumps(manifest,indent=2))
+    (dest/'manifest.json').write_text(json.dumps(manifest,indent=2), newline='\n')
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(); p.add_argument('--model',default='data/int8.pkl'); p.add_argument('--vectors',action='store_true'); a=p.parse_args()

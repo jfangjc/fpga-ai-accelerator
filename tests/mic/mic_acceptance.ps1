@@ -56,5 +56,6 @@ try {
   Remove-Job $job -Force
 }
 & $board get "stt/mic/$Tag/*" $evidence | Out-Null
-& wsl -d FedoraLinux-44 -- .venv/bin/python tests/mic/mic_analyze.py $evidence
+$python = if(Test-Path '.venv/Scripts/python.exe'){ @('.venv/Scripts/python.exe') } else { @('wsl','-d','FedoraLinux-44','--','.venv/bin/python') }  # Windows venv, else WSL
+& $python[0] @($python | Select-Object -Skip 1) tests/mic/mic_analyze.py $evidence
 if($LASTEXITCODE){throw 'analysis failed'}

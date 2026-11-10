@@ -58,7 +58,7 @@ def prepare(a):
     q = quant()
     p = q['running_prior']
     np.concatenate([[float(p['count'])], p['mean'], p['m2']]).astype('<f8').tofile(OUT / 'prior.bin')
-    (OUT / 'clips.txt').write_text('\n'.join(ids) + '\n')
+    (OUT / 'clips.txt').write_text('\n'.join(ids) + '\n', newline='\n')
     with Pool(len(jobs)) as pool:
         for name, T in pool.imap_unordered(ref_job, jobs):
             print(name, T, 'frames')
@@ -110,7 +110,7 @@ def compare(a):
         rows.append(r)
         print(json.dumps(r))
     if a.json:
-        Path(a.json).write_text(json.dumps(rows, indent=1) + '\n')
+        Path(a.json).write_text(json.dumps(rows, indent=1) + '\n', newline='\n')
     if not all(r['bitexact'] for r in rows):
         raise SystemExit(1)
 

@@ -15,6 +15,6 @@ x=x[:320+160*199]
 assert len(x)==32160, 'Speech clip too short for 200 frames'
 y,_=mel_power_fixed(x)
 p=out
-(p/'samples.mem').write_text(''.join(f'{int(v)*4&0x3ffff:05x}\n' for v in x))
-(p/'expected.mem').write_text(''.join(f'{int(v):016x}\n' for v in y.ravel()))
+(p/'samples.mem').write_text(''.join(f'{int(v)*4&0x3ffff:05x}\n' for v in x), newline='\n')
+(p/'expected.mem').write_text(''.join(f'{int(v):016x}\n' for v in y.ravel()), newline='\n')
 print('Generated',len(y),'frames')
