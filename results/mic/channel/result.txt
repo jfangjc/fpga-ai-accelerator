@@ -1,0 +1,4 @@
+hw/measurements/mic/channel/mic1L.bin: mean dB= -70.8 std(frame mean)= 2.12 max band mod=17.77 dB at band 20; per-band mean dB lo/mid/hi = -66.6/-68.8/-83.2
+hw/measurements/mic/channel/mic1R.bin: mean dB=-120.0 std(frame mean)= 0.00 max band mod= 0.00 dB at band 0; per-band mean dB lo/mid/hi = -120.0/-120.0/-120.0
+hw/measurements/mic/channel/mic2L.bin: mean dB= -45.5 std(frame mean)= 2.41 max band mod= 1.22 dB at band 56; per-band mean dB lo/mid/hi = -59.5/-42.3/-40.3
+hw/measurements/mic/channel/mic2R.bin: mean dB= -62.3 std(frame mean)=35.33 max band mod= 6.70 dB at band 52; per-band mean dB lo/mid/hi = -73.7/-61.7/-54.4

@@ -1,0 +1,41 @@
+{
+  "pairs": 20,
+  "cpu_threads": 4,
+  "input_frames": 300,
+  "warmup_pairs_excluded": 2,
+  "p90_method": "nearest rank",
+  "cpu_ms": {
+    "median": 218.56572999999997,
+    "p90": 219.78325
+  },
+  "pl_ms": {
+    "median": 69.6084125,
+    "p90": 69.747615
+  },
+  "paired_speedup": {
+    "median": 3.1414530119439816,
+    "p90": 3.153560476584038
+  },
+  "engine_preparation_ms_at_150MHz": {
+    "median": 68.73198,
+    "p90": 68.73249333333334
+  },
+  "sync_ms": {
+    "median": 0.706644,
+    "p90": 0.79346
+  },
+  "i2": {
+    "windows": 12,
+    "logit_bytes": 54694,
+    "ctc_identical": 12,
+    "network_windows": 10,
+    "fallback_windows": 2
+  },
+  "log_sha256": {
+    "frontend.bulk.log": "7e43be3b5c8f24995bcc1e510c260ad49ca590ecd89a42a9b599c47f42dc9be5",
+    "frontend.paced.log": "a7f2109ca9d5118143c36c8ac5a59c89f68195b16eb73f81293f7e4dbd40e8c3",
+    "i2.log": "1b04cc6d2270a9b33b48264e3e6245963f0ea5cdfa96f9d285ab3c88e5eb5ee0",
+    "paired.log": "4f1ff4f795de2c647d5d0deefbe579f63adc9eaedb4b6730a680510491e2388d",
+    "session.log": "fc70395870ffac414c61794f9aa0262aa573e741125bcc18d236eef0c378517a"
+  }
+}

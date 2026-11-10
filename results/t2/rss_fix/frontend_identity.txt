@@ -1,0 +1,15 @@
+# old = git show 3f124f5~1:sw/frontend_c/frontend.c; new = 3f124f5; built -O2 -ffp-contract=off -shared on WSL x86-64
+IDENTICAL n=257 run=0 T=16 scratch=73280
+IDENTICAL n=257 run=1 T=16 scratch=73280
+IDENTICAL n=321 run=0 T=16 scratch=73792
+IDENTICAL n=321 run=1 T=16 scratch=73792
+IDENTICAL n=4803 run=0 T=32 scratch=98880
+IDENTICAL n=4803 run=1 T=32 scratch=98880
+IDENTICAL n=48000 run=0 T=304 scratch=340736
+IDENTICAL n=48000 run=1 T=304 scratch=340736
+IDENTICAL n=160000 run=0 T=1008 scratch=967936
+IDENTICAL n=160000 run=1 T=1008 scratch=967936
+IDENTICAL n=255840 run=0 T=1600 scratch=1504640
+IDENTICAL n=255840 run=1 T=1600 scratch=1504640
+IDENTICAL n=255999 run=0 T=1600 scratch=1505280
+IDENTICAL n=255999 run=1 T=1600 scratch=1505280

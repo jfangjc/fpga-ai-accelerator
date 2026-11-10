@@ -1,0 +1,92 @@
+{
+  "repeats": 20,
+  "cycles": [
+    10308814,
+    10308815,
+    10308817,
+    10308818,
+    10308819,
+    10308821,
+    10308841,
+    10308843
+  ],
+  "sync_calls": [
+    4
+  ],
+  "cpu_ms": {
+    "median": 592.0544685,
+    "p90": 611.5303777,
+    "min": 217.774532,
+    "max": 626.26208
+  },
+  "pl_ms": {
+    "median": 104.0636985,
+    "p90": 104.24702309999999,
+    "min": 103.84224,
+    "max": 104.258746
+  },
+  "sync_ms": {
+    "median": 0.7967124999999999,
+    "p90": 0.917351,
+    "min": 0.588379,
+    "max": 0.929906
+  },
+  "dma_submit_ms": {
+    "median": 0.02024,
+    "p90": 0.023040099999999997,
+    "min": 0.01264,
+    "max": 0.02323
+  },
+  "irq_wait_ms": {
+    "median": 103.111099,
+    "p90": 103.1716691,
+    "min": 103.089098,
+    "max": 103.17318
+  },
+  "host_remaining_ms": {
+    "median": 0.14720699999999998,
+    "p90": 0.17295400000000002,
+    "min": 0.128802,
+    "max": 0.182013
+  },
+  "submit_irq_ms": {
+    "median": 103.55562,
+    "p90": 103.671379,
+    "min": 103.447164,
+    "max": 103.693918
+  },
+  "irq_ready_ms": {
+    "median": 0.443732,
+    "p90": 0.488441,
+    "min": 0.302185,
+    "max": 0.494378
+  },
+  "outside_ms": {
+    "median": 0.019139999999999997,
+    "p90": 0.022632000000000017,
+    "min": 0.015361,
+    "max": 0.03229
+  },
+  "engine_ms": {
+    "median": 103.08815,
+    "p90": 103.08823000000001,
+    "min": 103.08814,
+    "max": 103.08843
+  },
+  "speedup": {
+    "median_of_pairs": 5.686216624274021,
+    "min": 2.0959233411074307,
+    "max": 6.021679377589686,
+    "ratio_of_medians": 5.689346785036666
+  },
+  "pass_lines": [
+    "PASS VERSION=00010002 PING cycles=11",
+    "PASS malformed/recovery 4",
+    "PASS explicit reset/recovery",
+    "PASS RUN_NETWORK capable (resident program)",
+    "PASS 20 paired CPU/PL 3 s windows bit-exact",
+    "PASS explicit reset -> RUN_NETWORK bit-exact",
+    "PASS timeout/reset/PING recovery",
+    "PASS RUN_NETWORK bit-exact after timeout recovery"
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "exit": 0,
+  "wall_seconds": 1809.875552861,
+  "audio_seconds": 1800,
+  "tcp_errors": [],
+  "capture": {
+    "frames": 180079,
+    "irqs": 180078,
+    "sequence_errors": 0,
+    "ring_overruns": 0,
+    "tx_underruns": 0,
+    "mic_overruns": 0,
+    "consumer_dropped": 0,
+    "status": 1,
+    "error": 0
+  },
+  "expected_frames": 180079,
+  "events": 15262,
+  "previews": 14673,
+  "attribution": {
+    "merge_records": 0,
+    "merged": 0,
+    "merge_causes": {},
+    "slow_update_causes": {
+      "ordered_final_wait": 1276,
+      "own_final_compute": 186
+    }
+  },
+  "finals": 196,
+  "merged": 0,
+  "lost_stitch_frames": 0,
+  "latency_ms": {
+    "n": 14673,
+    "p50": 207.906,
+    "p95": 658.3091999999995,
+    "max": 2772.252
+  },
+  "invalid_preview_latencies": 0,
+  "buckets": [
+    {
+      "minutes": "0-5",
+      "latency_ms": {
+        "n": 2441,
+        "p50": 207.86,
+        "p95": 675.356,
+        "max": 2772.252
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2441,
+        "p50": 69.501,
+        "p95": 69.578,
+        "max": 69.989
+      },
+      "merged": 0,
+      "rss_min_kib": 2956,
+      "rss_median_kib": 189516,
+      "power_mean_w": 4.090954924874791,
+      "power_max_w": 5.02,
+      "rss_max_kib": 189516,
+      "ps_cpu_mean_percent_one_core": 47.40864015636208
+    },
+    {
+      "minutes": "5-10",
+      "latency_ms": {
+        "n": 2446,
+        "p50": 207.889,
+        "p95": 688.5292499999999,
+        "max": 2728.86
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2446,
+        "p50": 69.5,
+        "p95": 69.58,
+        "max": 71.379
+      },
+      "merged": 0,
+      "rss_min_kib": 189516,
+      "rss_median_kib": 189516,
+      "power_mean_w": 4.095080321285141,
+      "power_max_w": 5.06,
+      "rss_max_kib": 189516,
+      "ps_cpu_mean_percent_one_core": 45.38635929230321
+    },
+    {
+      "minutes": "10-15",
+      "latency_ms": {
+        "n": 2444,
+        "p50": 207.902,
+        "p95": 653.5702999999996,
+        "max": 1933.242
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2444,
+        "p50": 69.501,
+        "p95": 69.579,
+        "max": 72.432
+      },
+      "merged": 0,
+      "rss_min_kib": 189516,
+      "rss_median_kib": 189824,
+      "power_mean_w": 4.095950385517935,
+      "power_max_w": 5.07,
+      "rss_max_kib": 189824,
+      "ps_cpu_mean_percent_one_core": 44.83834136951026
+    },
+    {
+      "minutes": "15-20",
+      "latency_ms": {
+        "n": 2443,
+        "p50": 207.919,
+        "p95": 631.8076000000003,
+        "max": 1871.572
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2443,
+        "p50": 69.499,
+        "p95": 69.579,
+        "max": 71.742
+      },
+      "merged": 0,
+      "rss_min_kib": 189824,
+      "rss_median_kib": 189824.0,
+      "power_mean_w": 4.095477318889641,
+      "power_max_w": 5.03,
+      "rss_max_kib": 189824,
+      "ps_cpu_mean_percent_one_core": 46.253946738623135
+    },
+    {
+      "minutes": "20-25",
+      "latency_ms": {
+        "n": 2447,
+        "p50": 207.899,
+        "p95": 658.1174999999993,
+        "max": 1834.908
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2447,
+        "p50": 69.499,
+        "p95": 69.5787,
+        "max": 71.781
+      },
+      "merged": 0,
+      "rss_min_kib": 189824,
+      "rss_median_kib": 189824.0,
+      "power_mean_w": 4.0965506858481096,
+      "power_max_w": 5.05,
+      "rss_max_kib": 189824,
+      "ps_cpu_mean_percent_one_core": 45.43771292927271
+    },
+    {
+      "minutes": "25-30",
+      "latency_ms": {
+        "n": 2451,
+        "p50": 207.967,
+        "p95": 637.6975,
+        "max": 1843.669
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2451,
+        "p50": 69.499,
+        "p95": 69.5775,
+        "max": 71.626
+      },
+      "merged": 0,
+      "rss_min_kib": 189824,
+      "rss_median_kib": 189824,
+      "power_mean_w": 4.099142568930733,
+      "power_max_w": 5.06,
+      "rss_max_kib": 189824,
+      "ps_cpu_mean_percent_one_core": 46.51286117018674
+    }
+  ],
+  "rss_after_150s": {
+    "first_kib": 189516,
+    "last_kib": 57556,
+    "min_kib": 57556,
+    "max_kib": 189824,
+    "delta_kib": -131960,
+    "slope_kib_per_minute": -2.3646261174880183
+  },
+  "power": {
+    "samples": 17981,
+    "mean_w": 4.095479672988154,
+    "max_w": 5.07,
+    "first_seconds": 0.003070005999688874,
+    "last_seconds": 1809.810231169
+  },
+  "temperature_c": {
+    "/sys/class/hwmon/hwmon0/temp3_input": {
+      "min": 24.511,
+      "mean": 25.291916341327383,
+      "max": 26.104
+    },
+    "/sys/class/hwmon/hwmon0/temp1_input": {
+      "min": 23.765,
+      "mean": 26.067718906860012,
+      "max": 28.91
+    },
+    "/sys/class/hwmon/hwmon0/temp2_input": {
+      "min": 23.765,
+      "mean": 26.469588399330732,
+      "max": 28.972
+    }
+  },
+  "led_on_samples": 1745,
+  "led_off_samples": 48,
+  "button_sticky_samples": 0,
+  "fifo_overflow_samples": 0,
+  "fifo_underrun_samples": 0,
+  "maximum_fifo_occupancy": 31,
+  "tcp_events": 15262,
+  "tcp_missing_events": 0,
+  "zero_loss_pass": true,
+  "strict_t2_pass": true,
+  "ps_cpu_percent_one_core": {
+    "mean": 46.0702425646238,
+    "n": 1792,
+    "p50": 15.90074918543164,
+    "p95": 231.50360571216314,
+    "max": 300.8420279434052
+  },
+  "ordered_preview_wait_ms": {
+    "n": 14673,
+    "p50": 0.082,
+    "p95": 466.98579999999964,
+    "max": 2575.392
+  },
+  "final_compute_ms": {
+    "n": 196,
+    "p50": 847.1665,
+    "p95": 1681.37175,
+    "max": 2961.322
+  },
+  "speech_end_to_final_display_ms": {
+    "n": 196,
+    "p50": 1651.9157022089958,
+    "p95": 2238.930649970456,
+    "max": 3546.567467640898
+  },
+  "non_cap_speech_end_to_final_display_ms": {
+    "n": 145,
+    "p50": 1627.4820909416974,
+    "p95": 1801.1048303950702,
+    "max": 2748.7303794399622
+  },
+  "phrase_cap_final_display_ms": {
+    "n": 51,
+    "p50": 1879.9894084966127,
+    "p95": 2378.5043327731046,
+    "max": 3546.567467640898
+  }
+}

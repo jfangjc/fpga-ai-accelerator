@@ -1,0 +1,8 @@
+PASS I2 logits+CTC T=152 valid=150 cycles=204705998 wall_ms=2241.935 mode=layer commands=186 exchange_ms=2209.744 outside_ms=32.191 sync_ms=116.046 sync_calls=744
+PASS I2 logits+CTC T=152 valid=150 cycles=204706001 wall_ms=2249.005 mode=layer commands=186 exchange_ms=2216.335 outside_ms=32.670 sync_ms=121.008 sync_calls=744
+PASS I2 logits+CTC T=152 valid=150 cycles=204706025 wall_ms=2245.711 mode=layer commands=186 exchange_ms=2212.949 outside_ms=32.761 sync_ms=115.978 sync_calls=744
+PASS I2 logits+CTC T=152 valid=150 cycles=204706055 wall_ms=2249.263 mode=layer commands=186 exchange_ms=2216.808 outside_ms=32.456 sync_ms=120.006 sync_calls=744
+PASS I2 logits+CTC T=152 valid=150 cycles=204706000 wall_ms=2244.547 mode=layer commands=186 exchange_ms=2212.017 outside_ms=32.529 sync_ms=119.127 sync_calls=744
+PASS I2 logits+CTC T=392 valid=387 cycles=581515650 wall_ms=6105.401 mode=layer commands=186 exchange_ms=6044.949 outside_ms=60.451 sync_ms=129.417 sync_calls=744
+PASS I2 logits+CTC T=24 valid=24 cycles=38079521 wall_ms=531.841 mode=layer commands=186 exchange_ms=515.553 outside_ms=16.288 sync_ms=110.961 sync_calls=744
+PASS I2 logits+CTC T=8 valid=7 cycles=19425056 wall_ms=337.771 mode=layer commands=186 exchange_ms=323.238 outside_ms=14.533 sync_ms=109.814 sync_calls=744

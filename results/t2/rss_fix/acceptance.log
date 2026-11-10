@@ -1,0 +1,18 @@
+15 PL_FLAT     -              -                stt-full150 id_ok PL_FLAT   (0+0+0)            0->0,        stt-full150
+make: Entering directory '/home/ubuntu/stt/t2/rss_fix/src/sw/engdrv'
+rm -f *.o *.a *.so i2
+rm -rf obj
+make: Leaving directory '/home/ubuntu/stt/t2/rss_fix/src/sw/engdrv'
+make: Entering directory '/home/ubuntu/stt/t2/rss_fix/src/sw/engdrv'
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o engdrv.o engdrv.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o board.o board.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -c ../plio/plio.c -o plio.o
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o backend_pl.o backend_pl.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o no_cosim.o no_cosim.c
+ar rcs libengdrv.a engdrv.o board.o plio.o backend_pl.o no_cosim.o
+make: Leaving directory '/home/ubuntu/stt/t2/rss_fix/src/sw/engdrv'
+make: Entering directory '/home/ubuntu/stt/t2/rss_fix/src/sw/app'
+rm -f sttcap test_stream test_clock test_caption test_emit
+make: Leaving directory '/home/ubuntu/stt/t2/rss_fix/src/sw/app'
+SOAK COMPLETE
+RSS FIX ACCEPTANCE COMPLETE; stt-full150 remains loaded

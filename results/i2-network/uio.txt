@@ -1,0 +1,14 @@
+/sys/class/uio/uio0/name: axi-pmon
+/sys/class/uio/uio1/name: axi-pmon
+/sys/class/uio/uio10/name: stt-fe-rx
+/sys/class/uio/uio11/name: stt-engine
+/sys/class/uio/uio12/name: stt-engine-tx
+/sys/class/uio/uio13/name: stt-engine-rx
+/sys/class/uio/uio2/name: axi-pmon
+/sys/class/uio/uio3/name: axi-pmon
+/sys/class/uio/uio4/name: stt-dma-tx
+/sys/class/uio/uio5/name: stt-dma-rx
+/sys/class/uio/uio6/name: stt-fe-reset
+/sys/class/uio/uio7/name: stt-timer
+/sys/class/uio/uio8/name: stt-frontend
+/sys/class/uio/uio9/name: stt-fe-tx

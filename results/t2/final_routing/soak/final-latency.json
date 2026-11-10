@@ -1,0 +1,1377 @@
+{
+  "method": "Last active 10 ms waveform RMS block (0.01), mapped with event sample clock to software framebuffer completion.",
+  "rows": [
+    {
+      "phrase": 0,
+      "speech_end_sample": 114400,
+      "boundary_sample": 125600,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1623.729988000001
+    },
+    {
+      "phrase": 1,
+      "speech_end_sample": 234240,
+      "boundary_sample": 245440,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1580.7110872748246
+    },
+    {
+      "phrase": 2,
+      "speech_end_sample": 357440,
+      "boundary_sample": 368640,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1631.882200908592
+    },
+    {
+      "phrase": 3,
+      "speech_end_sample": 478240,
+      "boundary_sample": 489440,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1593.3582142582773
+    },
+    {
+      "phrase": 4,
+      "speech_end_sample": 723040,
+      "boundary_sample": 729440,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2224.3964550002743
+    },
+    {
+      "phrase": 5,
+      "speech_end_sample": 758720,
+      "boundary_sample": 769920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 794.8923503134822
+    },
+    {
+      "phrase": 6,
+      "speech_end_sample": 845120,
+      "boundary_sample": 856320,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 894.7863427822114
+    },
+    {
+      "phrase": 7,
+      "speech_end_sample": 1096320,
+      "boundary_sample": 1096320,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1846.2776365448549
+    },
+    {
+      "phrase": 8,
+      "speech_end_sample": 1335680,
+      "boundary_sample": 1336320,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1894.4639058726693
+    },
+    {
+      "phrase": 9,
+      "speech_end_sample": 1340960,
+      "boundary_sample": 1352160,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1599.8308000663856
+    },
+    {
+      "phrase": 10,
+      "speech_end_sample": 1593920,
+      "boundary_sample": 1594080,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1894.9432429793944
+    },
+    {
+      "phrase": 11,
+      "speech_end_sample": 1710080,
+      "boundary_sample": 1721280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1684.5187561378907
+    },
+    {
+      "phrase": 12,
+      "speech_end_sample": 1953440,
+      "boundary_sample": 1961280,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2302.857056877599
+    },
+    {
+      "phrase": 13,
+      "speech_end_sample": 2073120,
+      "boundary_sample": 2084320,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1629.7963862077722
+    },
+    {
+      "phrase": 14,
+      "speech_end_sample": 2195040,
+      "boundary_sample": 2206240,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1652.60352122354
+    },
+    {
+      "phrase": 15,
+      "speech_end_sample": 2316480,
+      "boundary_sample": 2327680,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1636.390249851786
+    },
+    {
+      "phrase": 16,
+      "speech_end_sample": 2438240,
+      "boundary_sample": 2449440,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1627.4820909416974
+    },
+    {
+      "phrase": 17,
+      "speech_end_sample": 2557440,
+      "boundary_sample": 2568640,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1762.9309796221833
+    },
+    {
+      "phrase": 18,
+      "speech_end_sample": 2677120,
+      "boundary_sample": 2688320,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1637.8090991632348
+    },
+    {
+      "phrase": 19,
+      "speech_end_sample": 2801760,
+      "boundary_sample": 2812960,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1655.6071504345766
+    },
+    {
+      "phrase": 20,
+      "speech_end_sample": 3052640,
+      "boundary_sample": 3052960,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1810.9018641881391
+    },
+    {
+      "phrase": 21,
+      "speech_end_sample": 3304480,
+      "boundary_sample": 3304480,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1858.5728206087708
+    },
+    {
+      "phrase": 22,
+      "speech_end_sample": 3421760,
+      "boundary_sample": 3432960,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1669.887110007636
+    },
+    {
+      "phrase": 23,
+      "speech_end_sample": 3520800,
+      "boundary_sample": 3532000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 924.1518004280067
+    },
+    {
+      "phrase": 24,
+      "speech_end_sample": 3666080,
+      "boundary_sample": 3677280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1818.2584536331206
+    },
+    {
+      "phrase": 25,
+      "speech_end_sample": 3785600,
+      "boundary_sample": 3796800,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1607.6313157471702
+    },
+    {
+      "phrase": 26,
+      "speech_end_sample": 4032160,
+      "boundary_sample": 4036800,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 3060.5881726844473
+    },
+    {
+      "phrase": 27,
+      "speech_end_sample": 4276800,
+      "boundary_sample": 4276800,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1804.5019900810644
+    },
+    {
+      "phrase": 28,
+      "speech_end_sample": 4408960,
+      "boundary_sample": 4420160,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1795.6583972413682
+    },
+    {
+      "phrase": 29,
+      "speech_end_sample": 4527040,
+      "boundary_sample": 4538240,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1600.6466759925502
+    },
+    {
+      "phrase": 30,
+      "speech_end_sample": 4652800,
+      "boundary_sample": 4664000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1659.242064347211
+    },
+    {
+      "phrase": 31,
+      "speech_end_sample": 4772800,
+      "boundary_sample": 4784000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1607.7301535211745
+    },
+    {
+      "phrase": 32,
+      "speech_end_sample": 4900800,
+      "boundary_sample": 4912000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1685.3416080894021
+    },
+    {
+      "phrase": 33,
+      "speech_end_sample": 5022240,
+      "boundary_sample": 5033440,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1627.8504385228416
+    },
+    {
+      "phrase": 34,
+      "speech_end_sample": 5144640,
+      "boundary_sample": 5155840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1621.8104658789798
+    },
+    {
+      "phrase": 35,
+      "speech_end_sample": 5264320,
+      "boundary_sample": 5275520,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1700.2079188139305
+    },
+    {
+      "phrase": 36,
+      "speech_end_sample": 5384160,
+      "boundary_sample": 5395360,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1595.4166048449565
+    },
+    {
+      "phrase": 37,
+      "speech_end_sample": 5507360,
+      "boundary_sample": 5518560,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1630.4720119164813
+    },
+    {
+      "phrase": 38,
+      "speech_end_sample": 5628160,
+      "boundary_sample": 5639360,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1662.7753340932827
+    },
+    {
+      "phrase": 39,
+      "speech_end_sample": 5872960,
+      "boundary_sample": 5879360,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 3546.567467640898
+    },
+    {
+      "phrase": 40,
+      "speech_end_sample": 5908640,
+      "boundary_sample": 5919840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1396.1834831920896
+    },
+    {
+      "phrase": 41,
+      "speech_end_sample": 5995040,
+      "boundary_sample": 6006240,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 894.9185985791814
+    },
+    {
+      "phrase": 42,
+      "speech_end_sample": 6246240,
+      "boundary_sample": 6246240,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1770.202946129075
+    },
+    {
+      "phrase": 43,
+      "speech_end_sample": 6485600,
+      "boundary_sample": 6486240,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1850.5691669513453
+    },
+    {
+      "phrase": 44,
+      "speech_end_sample": 6490880,
+      "boundary_sample": 6502080,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1554.7829376574782
+    },
+    {
+      "phrase": 45,
+      "speech_end_sample": 6743840,
+      "boundary_sample": 6744000,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1821.2181934466116
+    },
+    {
+      "phrase": 46,
+      "speech_end_sample": 6860000,
+      "boundary_sample": 6871200,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1661.6207536404204
+    },
+    {
+      "phrase": 47,
+      "speech_end_sample": 7103360,
+      "boundary_sample": 7111200,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2314.265992010462
+    },
+    {
+      "phrase": 48,
+      "speech_end_sample": 7223040,
+      "boundary_sample": 7234240,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1615.72651318437
+    },
+    {
+      "phrase": 49,
+      "speech_end_sample": 7344960,
+      "boundary_sample": 7356160,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1622.3051722197397
+    },
+    {
+      "phrase": 50,
+      "speech_end_sample": 7466400,
+      "boundary_sample": 7477600,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1604.3902409638804
+    },
+    {
+      "phrase": 51,
+      "speech_end_sample": 7588160,
+      "boundary_sample": 7599360,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1600.974823375509
+    },
+    {
+      "phrase": 52,
+      "speech_end_sample": 7707360,
+      "boundary_sample": 7718560,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1586.5224591756828
+    },
+    {
+      "phrase": 53,
+      "speech_end_sample": 7827040,
+      "boundary_sample": 7838240,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1676.6068588033818
+    },
+    {
+      "phrase": 54,
+      "speech_end_sample": 7951680,
+      "boundary_sample": 7962880,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1647.053761632776
+    },
+    {
+      "phrase": 55,
+      "speech_end_sample": 8202560,
+      "boundary_sample": 8202880,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1883.7114263823196
+    },
+    {
+      "phrase": 56,
+      "speech_end_sample": 8454400,
+      "boundary_sample": 8454400,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1821.3107882194208
+    },
+    {
+      "phrase": 57,
+      "speech_end_sample": 8571680,
+      "boundary_sample": 8582880,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1668.7791798788112
+    },
+    {
+      "phrase": 58,
+      "speech_end_sample": 8670720,
+      "boundary_sample": 8681920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 926.302427565247
+    },
+    {
+      "phrase": 59,
+      "speech_end_sample": 8816000,
+      "boundary_sample": 8827200,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1796.5216790694285
+    },
+    {
+      "phrase": 60,
+      "speech_end_sample": 8935520,
+      "boundary_sample": 8946720,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1625.0044997298119
+    },
+    {
+      "phrase": 61,
+      "speech_end_sample": 9182080,
+      "boundary_sample": 9186720,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2111.430231870372
+    },
+    {
+      "phrase": 62,
+      "speech_end_sample": 9426720,
+      "boundary_sample": 9426720,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1879.9894084966127
+    },
+    {
+      "phrase": 63,
+      "speech_end_sample": 9558880,
+      "boundary_sample": 9570080,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1813.3049699051753
+    },
+    {
+      "phrase": 64,
+      "speech_end_sample": 9676960,
+      "boundary_sample": 9688160,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1650.4912092956374
+    },
+    {
+      "phrase": 65,
+      "speech_end_sample": 9802720,
+      "boundary_sample": 9813920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1685.6685806603764
+    },
+    {
+      "phrase": 66,
+      "speech_end_sample": 9922720,
+      "boundary_sample": 9933920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1656.5799483712453
+    },
+    {
+      "phrase": 67,
+      "speech_end_sample": 10050720,
+      "boundary_sample": 10061920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1695.6933454567888
+    },
+    {
+      "phrase": 68,
+      "speech_end_sample": 10172160,
+      "boundary_sample": 10183360,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1633.1830018312985
+    },
+    {
+      "phrase": 69,
+      "speech_end_sample": 10294560,
+      "boundary_sample": 10305760,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1623.918516477488
+    },
+    {
+      "phrase": 70,
+      "speech_end_sample": 10414240,
+      "boundary_sample": 10425440,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1637.4574253445644
+    },
+    {
+      "phrase": 71,
+      "speech_end_sample": 10534080,
+      "boundary_sample": 10545280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1570.1833966326149
+    },
+    {
+      "phrase": 72,
+      "speech_end_sample": 10657280,
+      "boundary_sample": 10668480,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1637.9158056907954
+    },
+    {
+      "phrase": 73,
+      "speech_end_sample": 10778080,
+      "boundary_sample": 10789280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1598.4037857178919
+    },
+    {
+      "phrase": 74,
+      "speech_end_sample": 11022880,
+      "boundary_sample": 11029280,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2233.7373463923313
+    },
+    {
+      "phrase": 75,
+      "speech_end_sample": 11058560,
+      "boundary_sample": 11069760,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 794.7310048828058
+    },
+    {
+      "phrase": 76,
+      "speech_end_sample": 11144960,
+      "boundary_sample": 11156160,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 896.297304713471
+    },
+    {
+      "phrase": 77,
+      "speech_end_sample": 11396160,
+      "boundary_sample": 11396160,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1835.2497812549018
+    },
+    {
+      "phrase": 78,
+      "speech_end_sample": 11635520,
+      "boundary_sample": 11636160,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1826.3847024892357
+    },
+    {
+      "phrase": 79,
+      "speech_end_sample": 11640800,
+      "boundary_sample": 11652000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1526.4233926527595
+    },
+    {
+      "phrase": 80,
+      "speech_end_sample": 11893760,
+      "boundary_sample": 11893920,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1840.812466633679
+    },
+    {
+      "phrase": 81,
+      "speech_end_sample": 12009920,
+      "boundary_sample": 12021120,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1668.197848095474
+    },
+    {
+      "phrase": 82,
+      "speech_end_sample": 12253280,
+      "boundary_sample": 12261120,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2299.45335011098
+    },
+    {
+      "phrase": 83,
+      "speech_end_sample": 12372960,
+      "boundary_sample": 12384160,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1626.956906948294
+    },
+    {
+      "phrase": 84,
+      "speech_end_sample": 12494880,
+      "boundary_sample": 12506080,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1620.5075927680355
+    },
+    {
+      "phrase": 85,
+      "speech_end_sample": 12616320,
+      "boundary_sample": 12627520,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1610.9472997125067
+    },
+    {
+      "phrase": 86,
+      "speech_end_sample": 12738080,
+      "boundary_sample": 12749280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1610.1655009955493
+    },
+    {
+      "phrase": 87,
+      "speech_end_sample": 12857280,
+      "boundary_sample": 12868480,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1599.7662964481378
+    },
+    {
+      "phrase": 88,
+      "speech_end_sample": 12976960,
+      "boundary_sample": 12988160,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1677.0637735742184
+    },
+    {
+      "phrase": 89,
+      "speech_end_sample": 13101600,
+      "boundary_sample": 13112800,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1653.8759708525959
+    },
+    {
+      "phrase": 90,
+      "speech_end_sample": 13352480,
+      "boundary_sample": 13352800,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1903.8799012763548
+    },
+    {
+      "phrase": 91,
+      "speech_end_sample": 13604320,
+      "boundary_sample": 13604320,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1830.9114719430681
+    },
+    {
+      "phrase": 92,
+      "speech_end_sample": 13721600,
+      "boundary_sample": 13732800,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1684.5041032561312
+    },
+    {
+      "phrase": 93,
+      "speech_end_sample": 13820640,
+      "boundary_sample": 13831840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 924.961094050218
+    },
+    {
+      "phrase": 94,
+      "speech_end_sample": 13965920,
+      "boundary_sample": 13977120,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 2748.7303794399622
+    },
+    {
+      "phrase": 95,
+      "speech_end_sample": 14085440,
+      "boundary_sample": 14096640,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1662.0781980391257
+    },
+    {
+      "phrase": 96,
+      "speech_end_sample": 14332000,
+      "boundary_sample": 14336640,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2107.074511079304
+    },
+    {
+      "phrase": 97,
+      "speech_end_sample": 14576640,
+      "boundary_sample": 14576640,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1823.317844692724
+    },
+    {
+      "phrase": 98,
+      "speech_end_sample": 14708800,
+      "boundary_sample": 14720000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1808.057000102849
+    },
+    {
+      "phrase": 99,
+      "speech_end_sample": 14826880,
+      "boundary_sample": 14838080,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1611.290300741416
+    },
+    {
+      "phrase": 100,
+      "speech_end_sample": 14952640,
+      "boundary_sample": 14963840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1653.84109253705
+    },
+    {
+      "phrase": 101,
+      "speech_end_sample": 15072640,
+      "boundary_sample": 15083840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1636.1591438922005
+    },
+    {
+      "phrase": 102,
+      "speech_end_sample": 15200640,
+      "boundary_sample": 15211840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1689.1570849287518
+    },
+    {
+      "phrase": 103,
+      "speech_end_sample": 15322080,
+      "boundary_sample": 15333280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1693.1526377262571
+    },
+    {
+      "phrase": 104,
+      "speech_end_sample": 15444480,
+      "boundary_sample": 15455680,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1623.1073753864393
+    },
+    {
+      "phrase": 105,
+      "speech_end_sample": 15564160,
+      "boundary_sample": 15575360,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1790.709652131227
+    },
+    {
+      "phrase": 106,
+      "speech_end_sample": 15684000,
+      "boundary_sample": 15695200,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1533.374928894773
+    },
+    {
+      "phrase": 107,
+      "speech_end_sample": 15807200,
+      "boundary_sample": 15818400,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1625.4076394081949
+    },
+    {
+      "phrase": 108,
+      "speech_end_sample": 15928000,
+      "boundary_sample": 15939200,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1610.1710010944998
+    },
+    {
+      "phrase": 109,
+      "speech_end_sample": 16172800,
+      "boundary_sample": 16179200,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2241.2786815156096
+    },
+    {
+      "phrase": 110,
+      "speech_end_sample": 16208480,
+      "boundary_sample": 16219680,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 795.4811714100742
+    },
+    {
+      "phrase": 111,
+      "speech_end_sample": 16294880,
+      "boundary_sample": 16306080,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 899.6652660090376
+    },
+    {
+      "phrase": 112,
+      "speech_end_sample": 16546080,
+      "boundary_sample": 16546080,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1799.208618828061
+    },
+    {
+      "phrase": 113,
+      "speech_end_sample": 16785440,
+      "boundary_sample": 16786080,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1909.794142691453
+    },
+    {
+      "phrase": 114,
+      "speech_end_sample": 16790720,
+      "boundary_sample": 16801920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1617.6958303321953
+    },
+    {
+      "phrase": 115,
+      "speech_end_sample": 17043680,
+      "boundary_sample": 17043840,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1822.4585747921083
+    },
+    {
+      "phrase": 116,
+      "speech_end_sample": 17159840,
+      "boundary_sample": 17171040,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1678.4933001038098
+    },
+    {
+      "phrase": 117,
+      "speech_end_sample": 17403200,
+      "boundary_sample": 17411040,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2395.7185246842982
+    },
+    {
+      "phrase": 118,
+      "speech_end_sample": 17522880,
+      "boundary_sample": 17534080,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1616.127613984645
+    },
+    {
+      "phrase": 119,
+      "speech_end_sample": 17644800,
+      "boundary_sample": 17656000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1636.6807506467467
+    },
+    {
+      "phrase": 120,
+      "speech_end_sample": 17766240,
+      "boundary_sample": 17777440,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1608.7615546011875
+    },
+    {
+      "phrase": 121,
+      "speech_end_sample": 17888000,
+      "boundary_sample": 17899200,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1620.114586420641
+    },
+    {
+      "phrase": 122,
+      "speech_end_sample": 18007200,
+      "boundary_sample": 18018400,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1628.9318639271642
+    },
+    {
+      "phrase": 123,
+      "speech_end_sample": 18126880,
+      "boundary_sample": 18138080,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1603.4540844539151
+    },
+    {
+      "phrase": 124,
+      "speech_end_sample": 18251520,
+      "boundary_sample": 18262720,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1645.2929593651788
+    },
+    {
+      "phrase": 125,
+      "speech_end_sample": 18502400,
+      "boundary_sample": 18502720,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1949.3299090129312
+    },
+    {
+      "phrase": 126,
+      "speech_end_sample": 18754240,
+      "boundary_sample": 18754240,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1802.8890983807742
+    },
+    {
+      "phrase": 127,
+      "speech_end_sample": 18871520,
+      "boundary_sample": 18882720,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1670.5209106901293
+    },
+    {
+      "phrase": 128,
+      "speech_end_sample": 18970560,
+      "boundary_sample": 18981760,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 925.3108296513801
+    },
+    {
+      "phrase": 129,
+      "speech_end_sample": 19115840,
+      "boundary_sample": 19127040,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1795.6159614977878
+    },
+    {
+      "phrase": 130,
+      "speech_end_sample": 19235360,
+      "boundary_sample": 19246560,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1616.8789336845748
+    },
+    {
+      "phrase": 131,
+      "speech_end_sample": 19481920,
+      "boundary_sample": 19486560,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2099.117360585069
+    },
+    {
+      "phrase": 132,
+      "speech_end_sample": 19726560,
+      "boundary_sample": 19726560,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1831.7388471461982
+    },
+    {
+      "phrase": 133,
+      "speech_end_sample": 19858720,
+      "boundary_sample": 19869920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 2095.70107171362
+    },
+    {
+      "phrase": 134,
+      "speech_end_sample": 19976800,
+      "boundary_sample": 19988000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1596.3421091391865
+    },
+    {
+      "phrase": 135,
+      "speech_end_sample": 20102560,
+      "boundary_sample": 20113760,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1660.1734253893028
+    },
+    {
+      "phrase": 136,
+      "speech_end_sample": 20222560,
+      "boundary_sample": 20233760,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1607.9405341831716
+    },
+    {
+      "phrase": 137,
+      "speech_end_sample": 20350560,
+      "boundary_sample": 20361760,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1692.954544972281
+    },
+    {
+      "phrase": 138,
+      "speech_end_sample": 20472000,
+      "boundary_sample": 20483200,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1618.8808642041295
+    },
+    {
+      "phrase": 139,
+      "speech_end_sample": 20594400,
+      "boundary_sample": 20605600,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1626.600316477834
+    },
+    {
+      "phrase": 140,
+      "speech_end_sample": 20714080,
+      "boundary_sample": 20725280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1593.979589087894
+    },
+    {
+      "phrase": 141,
+      "speech_end_sample": 20833920,
+      "boundary_sample": 20845120,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1628.7759725180422
+    },
+    {
+      "phrase": 142,
+      "speech_end_sample": 20957120,
+      "boundary_sample": 20968320,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1632.7748659612098
+    },
+    {
+      "phrase": 143,
+      "speech_end_sample": 21077920,
+      "boundary_sample": 21089120,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1589.4520290560195
+    },
+    {
+      "phrase": 144,
+      "speech_end_sample": 21322720,
+      "boundary_sample": 21329120,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2195.2640561605676
+    },
+    {
+      "phrase": 145,
+      "speech_end_sample": 21358400,
+      "boundary_sample": 21369600,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 797.9106181260249
+    },
+    {
+      "phrase": 146,
+      "speech_end_sample": 21444800,
+      "boundary_sample": 21456000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 894.6019103043454
+    },
+    {
+      "phrase": 147,
+      "speech_end_sample": 21696000,
+      "boundary_sample": 21696000,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1804.2522566292973
+    },
+    {
+      "phrase": 148,
+      "speech_end_sample": 21935360,
+      "boundary_sample": 21936000,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1854.2425693233326
+    },
+    {
+      "phrase": 149,
+      "speech_end_sample": 21940640,
+      "boundary_sample": 21951840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1568.6444636660326
+    },
+    {
+      "phrase": 150,
+      "speech_end_sample": 22193600,
+      "boundary_sample": 22193760,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1806.9452038819236
+    },
+    {
+      "phrase": 151,
+      "speech_end_sample": 22309760,
+      "boundary_sample": 22320960,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1678.5330268221514
+    },
+    {
+      "phrase": 152,
+      "speech_end_sample": 22553120,
+      "boundary_sample": 22560960,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2361.290140861911
+    },
+    {
+      "phrase": 153,
+      "speech_end_sample": 22672800,
+      "boundary_sample": 22684000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1631.1327113367042
+    },
+    {
+      "phrase": 154,
+      "speech_end_sample": 22794720,
+      "boundary_sample": 22805920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1624.115380400326
+    },
+    {
+      "phrase": 155,
+      "speech_end_sample": 22916160,
+      "boundary_sample": 22927360,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1637.6549068208988
+    },
+    {
+      "phrase": 156,
+      "speech_end_sample": 23037920,
+      "boundary_sample": 23049120,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1616.3625874964964
+    },
+    {
+      "phrase": 157,
+      "speech_end_sample": 23157120,
+      "boundary_sample": 23168320,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1662.8862002194182
+    },
+    {
+      "phrase": 158,
+      "speech_end_sample": 23276800,
+      "boundary_sample": 23288000,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1616.231327480591
+    },
+    {
+      "phrase": 159,
+      "speech_end_sample": 23401440,
+      "boundary_sample": 23412640,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1651.2278831944514
+    },
+    {
+      "phrase": 160,
+      "speech_end_sample": 23652320,
+      "boundary_sample": 23652640,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1801.826919986297
+    },
+    {
+      "phrase": 161,
+      "speech_end_sample": 23904160,
+      "boundary_sample": 23904160,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1804.7824444308844
+    },
+    {
+      "phrase": 162,
+      "speech_end_sample": 24021440,
+      "boundary_sample": 24032640,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1662.7853375027826
+    },
+    {
+      "phrase": 163,
+      "speech_end_sample": 24120480,
+      "boundary_sample": 24131680,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 925.4132712960654
+    },
+    {
+      "phrase": 164,
+      "speech_end_sample": 24265760,
+      "boundary_sample": 24276960,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1802.2506182264806
+    },
+    {
+      "phrase": 165,
+      "speech_end_sample": 24385280,
+      "boundary_sample": 24396480,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1634.1646544910873
+    },
+    {
+      "phrase": 166,
+      "speech_end_sample": 24631840,
+      "boundary_sample": 24636480,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2116.552121016184
+    },
+    {
+      "phrase": 167,
+      "speech_end_sample": 24876480,
+      "boundary_sample": 24876480,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1796.9806477196926
+    },
+    {
+      "phrase": 168,
+      "speech_end_sample": 25008640,
+      "boundary_sample": 25019840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1791.575226284067
+    },
+    {
+      "phrase": 169,
+      "speech_end_sample": 25126720,
+      "boundary_sample": 25137920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1957.082397316526
+    },
+    {
+      "phrase": 170,
+      "speech_end_sample": 25252480,
+      "boundary_sample": 25263680,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1661.5128054045272
+    },
+    {
+      "phrase": 171,
+      "speech_end_sample": 25372480,
+      "boundary_sample": 25383680,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1623.0402410196803
+    },
+    {
+      "phrase": 172,
+      "speech_end_sample": 25500480,
+      "boundary_sample": 25511680,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1682.1705354748246
+    },
+    {
+      "phrase": 173,
+      "speech_end_sample": 25621920,
+      "boundary_sample": 25633120,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1619.43737979027
+    },
+    {
+      "phrase": 174,
+      "speech_end_sample": 25744320,
+      "boundary_sample": 25755520,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1641.080920397826
+    },
+    {
+      "phrase": 175,
+      "speech_end_sample": 25864000,
+      "boundary_sample": 25875200,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1604.3892677259919
+    },
+    {
+      "phrase": 176,
+      "speech_end_sample": 25983840,
+      "boundary_sample": 25995040,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1590.587056287859
+    },
+    {
+      "phrase": 177,
+      "speech_end_sample": 26107040,
+      "boundary_sample": 26118240,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1653.8002302954737
+    },
+    {
+      "phrase": 178,
+      "speech_end_sample": 26227840,
+      "boundary_sample": 26239040,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1599.5603722201395
+    },
+    {
+      "phrase": 179,
+      "speech_end_sample": 26472640,
+      "boundary_sample": 26479040,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2238.147972788738
+    },
+    {
+      "phrase": 180,
+      "speech_end_sample": 26508320,
+      "boundary_sample": 26519520,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 795.4007806192749
+    },
+    {
+      "phrase": 181,
+      "speech_end_sample": 26594720,
+      "boundary_sample": 26605920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 896.8847962721611
+    },
+    {
+      "phrase": 182,
+      "speech_end_sample": 26845920,
+      "boundary_sample": 26845920,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1837.0474343098522
+    },
+    {
+      "phrase": 183,
+      "speech_end_sample": 27085280,
+      "boundary_sample": 27085920,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1880.9392722180291
+    },
+    {
+      "phrase": 184,
+      "speech_end_sample": 27090560,
+      "boundary_sample": 27101760,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1590.7414735477232
+    },
+    {
+      "phrase": 185,
+      "speech_end_sample": 27343520,
+      "boundary_sample": 27343680,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1827.8536869902382
+    },
+    {
+      "phrase": 186,
+      "speech_end_sample": 27459680,
+      "boundary_sample": 27470880,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1706.0321957128508
+    },
+    {
+      "phrase": 187,
+      "speech_end_sample": 27703040,
+      "boundary_sample": 27710880,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 2255.8439744157113
+    },
+    {
+      "phrase": 188,
+      "speech_end_sample": 27822720,
+      "boundary_sample": 27833920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1615.5234899986226
+    },
+    {
+      "phrase": 189,
+      "speech_end_sample": 27944640,
+      "boundary_sample": 27955840,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1650.3918380865343
+    },
+    {
+      "phrase": 190,
+      "speech_end_sample": 28066080,
+      "boundary_sample": 28077280,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1636.51072233597
+    },
+    {
+      "phrase": 191,
+      "speech_end_sample": 28187840,
+      "boundary_sample": 28199040,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1812.83674862334
+    },
+    {
+      "phrase": 192,
+      "speech_end_sample": 28307040,
+      "boundary_sample": 28318240,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1616.5105066395427
+    },
+    {
+      "phrase": 193,
+      "speech_end_sample": 28426720,
+      "boundary_sample": 28437920,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1579.4929366109045
+    },
+    {
+      "phrase": 194,
+      "speech_end_sample": 28551360,
+      "boundary_sample": 28562560,
+      "phrase_cap_boundary": false,
+      "final_display_ms": 1645.8800356374468
+    },
+    {
+      "phrase": 195,
+      "speech_end_sample": 28800000,
+      "boundary_sample": 28802560,
+      "phrase_cap_boundary": true,
+      "final_display_ms": 1892.6716552543894
+    }
+  ]
+}

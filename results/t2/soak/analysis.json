@@ -1,0 +1,182 @@
+{
+  "exit": 0,
+  "wall_seconds": 1803.3391586499965,
+  "audio_seconds": 1800,
+  "tcp_errors": [],
+  "capture": {
+    "frames": 180079,
+    "irqs": 180077,
+    "sequence_errors": 0,
+    "ring_overruns": 0,
+    "tx_underruns": 0,
+    "mic_overruns": 0,
+    "consumer_dropped": 0,
+    "status": 1,
+    "error": 0
+  },
+  "expected_frames": 180079,
+  "events": 14760,
+  "previews": 14171,
+  "finals": 196,
+  "merged": 502,
+  "lost_stitch_frames": 0,
+  "latency_ms": {
+    "n": 14171,
+    "p50": 223.994,
+    "p95": 244.072,
+    "max": 1052.563
+  },
+  "invalid_preview_latencies": 0,
+  "buckets": [
+    {
+      "minutes": "0-5",
+      "latency_ms": {
+        "n": 2358,
+        "p50": 210.22449999999998,
+        "p95": 215.57235,
+        "max": 981.56
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2358,
+        "p50": 69.5035,
+        "p95": 69.584,
+        "max": 71.469
+      },
+      "rss_min_kib": 1720,
+      "rss_max_kib": 193452
+    },
+    {
+      "minutes": "5-10",
+      "latency_ms": {
+        "n": 2362,
+        "p50": 217.9435,
+        "p95": 222.69725,
+        "max": 990.431
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2362,
+        "p50": 69.51,
+        "p95": 69.589,
+        "max": 71.423
+      },
+      "rss_min_kib": 142200,
+      "rss_max_kib": 191420
+    },
+    {
+      "minutes": "10-15",
+      "latency_ms": {
+        "n": 2361,
+        "p50": 224.495,
+        "p95": 229.05,
+        "max": 1052.563
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2361,
+        "p50": 69.504,
+        "p95": 69.588,
+        "max": 71.72
+      },
+      "rss_min_kib": 142416,
+      "rss_max_kib": 190920
+    },
+    {
+      "minutes": "15-20",
+      "latency_ms": {
+        "n": 2362,
+        "p50": 230.6395,
+        "p95": 235.18089999999998,
+        "max": 996.268
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2362,
+        "p50": 69.506,
+        "p95": 69.593,
+        "max": 72.498
+      },
+      "rss_min_kib": 142624,
+      "rss_max_kib": 188120
+    },
+    {
+      "minutes": "20-25",
+      "latency_ms": {
+        "n": 2361,
+        "p50": 236.62,
+        "p95": 240.75,
+        "max": 1008.639
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2361,
+        "p50": 69.509,
+        "p95": 69.591,
+        "max": 72.389
+      },
+      "rss_min_kib": 142944,
+      "rss_max_kib": 200284
+    },
+    {
+      "minutes": "25-30",
+      "latency_ms": {
+        "n": 2366,
+        "p50": 241.84199999999998,
+        "p95": 245.79575,
+        "max": 1008.206
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 2366,
+        "p50": 69.507,
+        "p95": 69.593,
+        "max": 70.869
+      },
+      "rss_min_kib": 143136,
+      "rss_max_kib": 192892
+    }
+  ],
+  "rss_after_150s": {
+    "first_kib": 142096,
+    "last_kib": 164016,
+    "min_kib": 142096,
+    "max_kib": 200284,
+    "delta_kib": 21920,
+    "slope_kib_per_minute": 33.04506070686296
+  },
+  "power": {
+    "samples": 17915,
+    "mean_w": 4.027510466089868,
+    "max_w": 4.98,
+    "first_seconds": 0.0030608909983129706,
+    "last_seconds": 1803.2986791539988
+  },
+  "temperature_c": {
+    "/sys/class/hwmon/hwmon0/temp3_input": {
+      "min": 21.69,
+      "mean": 23.54140011191942,
+      "max": 25.335
+    },
+    "/sys/class/hwmon/hwmon0/temp1_input": {
+      "min": 20.376,
+      "mean": 24.18377895914941,
+      "max": 27.495
+    },
+    "/sys/class/hwmon/hwmon0/temp2_input": {
+      "min": 21.371,
+      "mean": 24.580338556239507,
+      "max": 28.21
+    }
+  },
+  "led_on_samples": 1742,
+  "led_off_samples": 45,
+  "button_sticky_samples": 0,
+  "fifo_overflow_samples": 0,
+  "fifo_underrun_samples": 0,
+  "maximum_fifo_occupancy": 31,
+  "tcp_events": 14760,
+  "tcp_missing_events": 0,
+  "zero_loss_pass": true,
+  "strict_t2_pass": false
+}

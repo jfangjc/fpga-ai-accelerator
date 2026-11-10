@@ -1,0 +1,12 @@
+running gain= 0dB band0fix=False: WER 34/216 = 15.74%
+running gain= 0dB band0fix=True : WER 39/216 = 18.06%
+running gain=10dB band0fix=False: WER 31/216 = 14.35%
+running gain=10dB band0fix=True : WER 34/216 = 15.74%
+running gain=15dB band0fix=False: WER 33/216 = 15.28%
+running gain=15dB band0fix=True : WER 34/216 = 15.74%
+running gain=20dB band0fix=False: WER 29/216 = 13.43%
+running gain=20dB band0fix=True : WER 31/216 = 14.35%
+running gain=25dB band0fix=False: WER 29/216 = 13.43%
+running gain=25dB band0fix=True : WER 30/216 = 13.89%
+running gain=30dB band0fix=False: WER 30/216 = 13.89%
+running gain=30dB band0fix=True : WER 31/216 = 14.35%

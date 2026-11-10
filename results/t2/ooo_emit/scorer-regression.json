@@ -1,0 +1,20 @@
+{
+  "strict_t2_pass": false,
+  "zero_loss_pass": true,
+  "merged": 506,
+  "latency_ms": {
+    "n": 14167,
+    "p50": 207.975,
+    "p95": 209.3957,
+    "max": 1037.159
+  },
+  "rss_after_150s": {
+    "first_kib": 158188,
+    "last_kib": 203044,
+    "min_kib": 158180,
+    "max_kib": 215580,
+    "delta_kib": 44856,
+    "slope_kib_per_minute": 23.10260577896838
+  },
+  "tcp_missing_events": 0
+}

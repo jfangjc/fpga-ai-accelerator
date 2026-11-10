@@ -1,0 +1,2 @@
+buffer=0 phys=0x4e400000 bytes=16777216 write_sync_read_ms=88.318 PASS
+buffer=1 phys=0x4f400000 bytes=16777216 write_sync_read_ms=87.948 PASS

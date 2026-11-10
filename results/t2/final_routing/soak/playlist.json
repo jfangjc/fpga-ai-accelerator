@@ -1,0 +1,1152 @@
+[
+  {
+    "clip": "1089-134691-0023",
+    "begin_sample": 0,
+    "samples": 123760
+  },
+  {
+    "clip": "1188-133604-0025",
+    "begin_sample": 123760,
+    "samples": 119200
+  },
+  {
+    "clip": "121-127105-0003",
+    "begin_sample": 242960,
+    "samples": 123600
+  },
+  {
+    "clip": "1221-135766-0004",
+    "begin_sample": 366560,
+    "samples": 119040
+  },
+  {
+    "clip": "1284-1180-0002",
+    "begin_sample": 485600,
+    "samples": 122880
+  },
+  {
+    "clip": "1320-122617-0009",
+    "begin_sample": 608480,
+    "samples": 123280
+  },
+  {
+    "clip": "1580-141084-0049",
+    "begin_sample": 731760,
+    "samples": 121200
+  },
+  {
+    "clip": "1995-1836-0006",
+    "begin_sample": 852960,
+    "samples": 123440
+  },
+  {
+    "clip": "2094-142345-0034",
+    "begin_sample": 976400,
+    "samples": 127840
+  },
+  {
+    "clip": "2300-131720-0037",
+    "begin_sample": 1104240,
+    "samples": 127440
+  },
+  {
+    "clip": "237-134493-0001",
+    "begin_sample": 1231680,
+    "samples": 118080
+  },
+  {
+    "clip": "260-123286-0030",
+    "begin_sample": 1349760,
+    "samples": 120480
+  },
+  {
+    "clip": "2830-3980-0047",
+    "begin_sample": 1470240,
+    "samples": 125840
+  },
+  {
+    "clip": "2961-960-0007",
+    "begin_sample": 1596080,
+    "samples": 122240
+  },
+  {
+    "clip": "3570-5696-0010",
+    "begin_sample": 1718320,
+    "samples": 121120
+  },
+  {
+    "clip": "3575-170457-0003",
+    "begin_sample": 1839440,
+    "samples": 121520
+  },
+  {
+    "clip": "3729-6852-0011",
+    "begin_sample": 1960960,
+    "samples": 117920
+  },
+  {
+    "clip": "4077-13754-0009",
+    "begin_sample": 2078880,
+    "samples": 122400
+  },
+  {
+    "clip": "4446-2275-0002",
+    "begin_sample": 2201280,
+    "samples": 122800
+  },
+  {
+    "clip": "4507-16021-0035",
+    "begin_sample": 2324080,
+    "samples": 120560
+  },
+  {
+    "clip": "4970-29093-0019",
+    "begin_sample": 2444640,
+    "samples": 119520
+  },
+  {
+    "clip": "4992-41806-0011",
+    "begin_sample": 2564160,
+    "samples": 125440
+  },
+  {
+    "clip": "5105-28241-0006",
+    "begin_sample": 2689600,
+    "samples": 120800
+  },
+  {
+    "clip": "5142-33396-0031",
+    "begin_sample": 2810400,
+    "samples": 125520
+  },
+  {
+    "clip": "5639-40744-0014",
+    "begin_sample": 2935920,
+    "samples": 123520
+  },
+  {
+    "clip": "5683-32879-0010",
+    "begin_sample": 3059440,
+    "samples": 124000
+  },
+  {
+    "clip": "61-70968-0054",
+    "begin_sample": 3183440,
+    "samples": 125760
+  },
+  {
+    "clip": "672-122797-0061",
+    "begin_sample": 3309200,
+    "samples": 121440
+  },
+  {
+    "clip": "6829-68771-0025",
+    "begin_sample": 3430640,
+    "samples": 125280
+  },
+  {
+    "clip": "6930-81414-0014",
+    "begin_sample": 3555920,
+    "samples": 118560
+  },
+  {
+    "clip": "7021-79740-0013",
+    "begin_sample": 3674480,
+    "samples": 117840
+  },
+  {
+    "clip": "7127-75946-0015",
+    "begin_sample": 3792320,
+    "samples": 120240
+  },
+  {
+    "clip": "7176-88083-0003",
+    "begin_sample": 3912560,
+    "samples": 121600
+  },
+  {
+    "clip": "7176-92135-0014",
+    "begin_sample": 4034160,
+    "samples": 256320
+  },
+  {
+    "clip": "7729-102255-0036",
+    "begin_sample": 4290480,
+    "samples": 123280
+  },
+  {
+    "clip": "8224-274384-0000",
+    "begin_sample": 4413760,
+    "samples": 121680
+  },
+  {
+    "clip": "8230-279154-0005",
+    "begin_sample": 4535440,
+    "samples": 123520
+  },
+  {
+    "clip": "8455-210777-0031",
+    "begin_sample": 4658960,
+    "samples": 122720
+  },
+  {
+    "clip": "8463-294825-0005",
+    "begin_sample": 4781680,
+    "samples": 123200
+  },
+  {
+    "clip": "8555-284449-0019",
+    "begin_sample": 4904880,
+    "samples": 121760
+  },
+  {
+    "clip": "908-31957-0009",
+    "begin_sample": 5026640,
+    "samples": 123280
+  },
+  {
+    "clip": "1089-134691-0023",
+    "begin_sample": 5149920,
+    "samples": 123760
+  },
+  {
+    "clip": "1188-133604-0025",
+    "begin_sample": 5273680,
+    "samples": 119200
+  },
+  {
+    "clip": "121-127105-0003",
+    "begin_sample": 5392880,
+    "samples": 123600
+  },
+  {
+    "clip": "1221-135766-0004",
+    "begin_sample": 5516480,
+    "samples": 119040
+  },
+  {
+    "clip": "1284-1180-0002",
+    "begin_sample": 5635520,
+    "samples": 122880
+  },
+  {
+    "clip": "1320-122617-0009",
+    "begin_sample": 5758400,
+    "samples": 123280
+  },
+  {
+    "clip": "1580-141084-0049",
+    "begin_sample": 5881680,
+    "samples": 121200
+  },
+  {
+    "clip": "1995-1836-0006",
+    "begin_sample": 6002880,
+    "samples": 123440
+  },
+  {
+    "clip": "2094-142345-0034",
+    "begin_sample": 6126320,
+    "samples": 127840
+  },
+  {
+    "clip": "2300-131720-0037",
+    "begin_sample": 6254160,
+    "samples": 127440
+  },
+  {
+    "clip": "237-134493-0001",
+    "begin_sample": 6381600,
+    "samples": 118080
+  },
+  {
+    "clip": "260-123286-0030",
+    "begin_sample": 6499680,
+    "samples": 120480
+  },
+  {
+    "clip": "2830-3980-0047",
+    "begin_sample": 6620160,
+    "samples": 125840
+  },
+  {
+    "clip": "2961-960-0007",
+    "begin_sample": 6746000,
+    "samples": 122240
+  },
+  {
+    "clip": "3570-5696-0010",
+    "begin_sample": 6868240,
+    "samples": 121120
+  },
+  {
+    "clip": "3575-170457-0003",
+    "begin_sample": 6989360,
+    "samples": 121520
+  },
+  {
+    "clip": "3729-6852-0011",
+    "begin_sample": 7110880,
+    "samples": 117920
+  },
+  {
+    "clip": "4077-13754-0009",
+    "begin_sample": 7228800,
+    "samples": 122400
+  },
+  {
+    "clip": "4446-2275-0002",
+    "begin_sample": 7351200,
+    "samples": 122800
+  },
+  {
+    "clip": "4507-16021-0035",
+    "begin_sample": 7474000,
+    "samples": 120560
+  },
+  {
+    "clip": "4970-29093-0019",
+    "begin_sample": 7594560,
+    "samples": 119520
+  },
+  {
+    "clip": "4992-41806-0011",
+    "begin_sample": 7714080,
+    "samples": 125440
+  },
+  {
+    "clip": "5105-28241-0006",
+    "begin_sample": 7839520,
+    "samples": 120800
+  },
+  {
+    "clip": "5142-33396-0031",
+    "begin_sample": 7960320,
+    "samples": 125520
+  },
+  {
+    "clip": "5639-40744-0014",
+    "begin_sample": 8085840,
+    "samples": 123520
+  },
+  {
+    "clip": "5683-32879-0010",
+    "begin_sample": 8209360,
+    "samples": 124000
+  },
+  {
+    "clip": "61-70968-0054",
+    "begin_sample": 8333360,
+    "samples": 125760
+  },
+  {
+    "clip": "672-122797-0061",
+    "begin_sample": 8459120,
+    "samples": 121440
+  },
+  {
+    "clip": "6829-68771-0025",
+    "begin_sample": 8580560,
+    "samples": 125280
+  },
+  {
+    "clip": "6930-81414-0014",
+    "begin_sample": 8705840,
+    "samples": 118560
+  },
+  {
+    "clip": "7021-79740-0013",
+    "begin_sample": 8824400,
+    "samples": 117840
+  },
+  {
+    "clip": "7127-75946-0015",
+    "begin_sample": 8942240,
+    "samples": 120240
+  },
+  {
+    "clip": "7176-88083-0003",
+    "begin_sample": 9062480,
+    "samples": 121600
+  },
+  {
+    "clip": "7176-92135-0014",
+    "begin_sample": 9184080,
+    "samples": 256320
+  },
+  {
+    "clip": "7729-102255-0036",
+    "begin_sample": 9440400,
+    "samples": 123280
+  },
+  {
+    "clip": "8224-274384-0000",
+    "begin_sample": 9563680,
+    "samples": 121680
+  },
+  {
+    "clip": "8230-279154-0005",
+    "begin_sample": 9685360,
+    "samples": 123520
+  },
+  {
+    "clip": "8455-210777-0031",
+    "begin_sample": 9808880,
+    "samples": 122720
+  },
+  {
+    "clip": "8463-294825-0005",
+    "begin_sample": 9931600,
+    "samples": 123200
+  },
+  {
+    "clip": "8555-284449-0019",
+    "begin_sample": 10054800,
+    "samples": 121760
+  },
+  {
+    "clip": "908-31957-0009",
+    "begin_sample": 10176560,
+    "samples": 123280
+  },
+  {
+    "clip": "1089-134691-0023",
+    "begin_sample": 10299840,
+    "samples": 123760
+  },
+  {
+    "clip": "1188-133604-0025",
+    "begin_sample": 10423600,
+    "samples": 119200
+  },
+  {
+    "clip": "121-127105-0003",
+    "begin_sample": 10542800,
+    "samples": 123600
+  },
+  {
+    "clip": "1221-135766-0004",
+    "begin_sample": 10666400,
+    "samples": 119040
+  },
+  {
+    "clip": "1284-1180-0002",
+    "begin_sample": 10785440,
+    "samples": 122880
+  },
+  {
+    "clip": "1320-122617-0009",
+    "begin_sample": 10908320,
+    "samples": 123280
+  },
+  {
+    "clip": "1580-141084-0049",
+    "begin_sample": 11031600,
+    "samples": 121200
+  },
+  {
+    "clip": "1995-1836-0006",
+    "begin_sample": 11152800,
+    "samples": 123440
+  },
+  {
+    "clip": "2094-142345-0034",
+    "begin_sample": 11276240,
+    "samples": 127840
+  },
+  {
+    "clip": "2300-131720-0037",
+    "begin_sample": 11404080,
+    "samples": 127440
+  },
+  {
+    "clip": "237-134493-0001",
+    "begin_sample": 11531520,
+    "samples": 118080
+  },
+  {
+    "clip": "260-123286-0030",
+    "begin_sample": 11649600,
+    "samples": 120480
+  },
+  {
+    "clip": "2830-3980-0047",
+    "begin_sample": 11770080,
+    "samples": 125840
+  },
+  {
+    "clip": "2961-960-0007",
+    "begin_sample": 11895920,
+    "samples": 122240
+  },
+  {
+    "clip": "3570-5696-0010",
+    "begin_sample": 12018160,
+    "samples": 121120
+  },
+  {
+    "clip": "3575-170457-0003",
+    "begin_sample": 12139280,
+    "samples": 121520
+  },
+  {
+    "clip": "3729-6852-0011",
+    "begin_sample": 12260800,
+    "samples": 117920
+  },
+  {
+    "clip": "4077-13754-0009",
+    "begin_sample": 12378720,
+    "samples": 122400
+  },
+  {
+    "clip": "4446-2275-0002",
+    "begin_sample": 12501120,
+    "samples": 122800
+  },
+  {
+    "clip": "4507-16021-0035",
+    "begin_sample": 12623920,
+    "samples": 120560
+  },
+  {
+    "clip": "4970-29093-0019",
+    "begin_sample": 12744480,
+    "samples": 119520
+  },
+  {
+    "clip": "4992-41806-0011",
+    "begin_sample": 12864000,
+    "samples": 125440
+  },
+  {
+    "clip": "5105-28241-0006",
+    "begin_sample": 12989440,
+    "samples": 120800
+  },
+  {
+    "clip": "5142-33396-0031",
+    "begin_sample": 13110240,
+    "samples": 125520
+  },
+  {
+    "clip": "5639-40744-0014",
+    "begin_sample": 13235760,
+    "samples": 123520
+  },
+  {
+    "clip": "5683-32879-0010",
+    "begin_sample": 13359280,
+    "samples": 124000
+  },
+  {
+    "clip": "61-70968-0054",
+    "begin_sample": 13483280,
+    "samples": 125760
+  },
+  {
+    "clip": "672-122797-0061",
+    "begin_sample": 13609040,
+    "samples": 121440
+  },
+  {
+    "clip": "6829-68771-0025",
+    "begin_sample": 13730480,
+    "samples": 125280
+  },
+  {
+    "clip": "6930-81414-0014",
+    "begin_sample": 13855760,
+    "samples": 118560
+  },
+  {
+    "clip": "7021-79740-0013",
+    "begin_sample": 13974320,
+    "samples": 117840
+  },
+  {
+    "clip": "7127-75946-0015",
+    "begin_sample": 14092160,
+    "samples": 120240
+  },
+  {
+    "clip": "7176-88083-0003",
+    "begin_sample": 14212400,
+    "samples": 121600
+  },
+  {
+    "clip": "7176-92135-0014",
+    "begin_sample": 14334000,
+    "samples": 256320
+  },
+  {
+    "clip": "7729-102255-0036",
+    "begin_sample": 14590320,
+    "samples": 123280
+  },
+  {
+    "clip": "8224-274384-0000",
+    "begin_sample": 14713600,
+    "samples": 121680
+  },
+  {
+    "clip": "8230-279154-0005",
+    "begin_sample": 14835280,
+    "samples": 123520
+  },
+  {
+    "clip": "8455-210777-0031",
+    "begin_sample": 14958800,
+    "samples": 122720
+  },
+  {
+    "clip": "8463-294825-0005",
+    "begin_sample": 15081520,
+    "samples": 123200
+  },
+  {
+    "clip": "8555-284449-0019",
+    "begin_sample": 15204720,
+    "samples": 121760
+  },
+  {
+    "clip": "908-31957-0009",
+    "begin_sample": 15326480,
+    "samples": 123280
+  },
+  {
+    "clip": "1089-134691-0023",
+    "begin_sample": 15449760,
+    "samples": 123760
+  },
+  {
+    "clip": "1188-133604-0025",
+    "begin_sample": 15573520,
+    "samples": 119200
+  },
+  {
+    "clip": "121-127105-0003",
+    "begin_sample": 15692720,
+    "samples": 123600
+  },
+  {
+    "clip": "1221-135766-0004",
+    "begin_sample": 15816320,
+    "samples": 119040
+  },
+  {
+    "clip": "1284-1180-0002",
+    "begin_sample": 15935360,
+    "samples": 122880
+  },
+  {
+    "clip": "1320-122617-0009",
+    "begin_sample": 16058240,
+    "samples": 123280
+  },
+  {
+    "clip": "1580-141084-0049",
+    "begin_sample": 16181520,
+    "samples": 121200
+  },
+  {
+    "clip": "1995-1836-0006",
+    "begin_sample": 16302720,
+    "samples": 123440
+  },
+  {
+    "clip": "2094-142345-0034",
+    "begin_sample": 16426160,
+    "samples": 127840
+  },
+  {
+    "clip": "2300-131720-0037",
+    "begin_sample": 16554000,
+    "samples": 127440
+  },
+  {
+    "clip": "237-134493-0001",
+    "begin_sample": 16681440,
+    "samples": 118080
+  },
+  {
+    "clip": "260-123286-0030",
+    "begin_sample": 16799520,
+    "samples": 120480
+  },
+  {
+    "clip": "2830-3980-0047",
+    "begin_sample": 16920000,
+    "samples": 125840
+  },
+  {
+    "clip": "2961-960-0007",
+    "begin_sample": 17045840,
+    "samples": 122240
+  },
+  {
+    "clip": "3570-5696-0010",
+    "begin_sample": 17168080,
+    "samples": 121120
+  },
+  {
+    "clip": "3575-170457-0003",
+    "begin_sample": 17289200,
+    "samples": 121520
+  },
+  {
+    "clip": "3729-6852-0011",
+    "begin_sample": 17410720,
+    "samples": 117920
+  },
+  {
+    "clip": "4077-13754-0009",
+    "begin_sample": 17528640,
+    "samples": 122400
+  },
+  {
+    "clip": "4446-2275-0002",
+    "begin_sample": 17651040,
+    "samples": 122800
+  },
+  {
+    "clip": "4507-16021-0035",
+    "begin_sample": 17773840,
+    "samples": 120560
+  },
+  {
+    "clip": "4970-29093-0019",
+    "begin_sample": 17894400,
+    "samples": 119520
+  },
+  {
+    "clip": "4992-41806-0011",
+    "begin_sample": 18013920,
+    "samples": 125440
+  },
+  {
+    "clip": "5105-28241-0006",
+    "begin_sample": 18139360,
+    "samples": 120800
+  },
+  {
+    "clip": "5142-33396-0031",
+    "begin_sample": 18260160,
+    "samples": 125520
+  },
+  {
+    "clip": "5639-40744-0014",
+    "begin_sample": 18385680,
+    "samples": 123520
+  },
+  {
+    "clip": "5683-32879-0010",
+    "begin_sample": 18509200,
+    "samples": 124000
+  },
+  {
+    "clip": "61-70968-0054",
+    "begin_sample": 18633200,
+    "samples": 125760
+  },
+  {
+    "clip": "672-122797-0061",
+    "begin_sample": 18758960,
+    "samples": 121440
+  },
+  {
+    "clip": "6829-68771-0025",
+    "begin_sample": 18880400,
+    "samples": 125280
+  },
+  {
+    "clip": "6930-81414-0014",
+    "begin_sample": 19005680,
+    "samples": 118560
+  },
+  {
+    "clip": "7021-79740-0013",
+    "begin_sample": 19124240,
+    "samples": 117840
+  },
+  {
+    "clip": "7127-75946-0015",
+    "begin_sample": 19242080,
+    "samples": 120240
+  },
+  {
+    "clip": "7176-88083-0003",
+    "begin_sample": 19362320,
+    "samples": 121600
+  },
+  {
+    "clip": "7176-92135-0014",
+    "begin_sample": 19483920,
+    "samples": 256320
+  },
+  {
+    "clip": "7729-102255-0036",
+    "begin_sample": 19740240,
+    "samples": 123280
+  },
+  {
+    "clip": "8224-274384-0000",
+    "begin_sample": 19863520,
+    "samples": 121680
+  },
+  {
+    "clip": "8230-279154-0005",
+    "begin_sample": 19985200,
+    "samples": 123520
+  },
+  {
+    "clip": "8455-210777-0031",
+    "begin_sample": 20108720,
+    "samples": 122720
+  },
+  {
+    "clip": "8463-294825-0005",
+    "begin_sample": 20231440,
+    "samples": 123200
+  },
+  {
+    "clip": "8555-284449-0019",
+    "begin_sample": 20354640,
+    "samples": 121760
+  },
+  {
+    "clip": "908-31957-0009",
+    "begin_sample": 20476400,
+    "samples": 123280
+  },
+  {
+    "clip": "1089-134691-0023",
+    "begin_sample": 20599680,
+    "samples": 123760
+  },
+  {
+    "clip": "1188-133604-0025",
+    "begin_sample": 20723440,
+    "samples": 119200
+  },
+  {
+    "clip": "121-127105-0003",
+    "begin_sample": 20842640,
+    "samples": 123600
+  },
+  {
+    "clip": "1221-135766-0004",
+    "begin_sample": 20966240,
+    "samples": 119040
+  },
+  {
+    "clip": "1284-1180-0002",
+    "begin_sample": 21085280,
+    "samples": 122880
+  },
+  {
+    "clip": "1320-122617-0009",
+    "begin_sample": 21208160,
+    "samples": 123280
+  },
+  {
+    "clip": "1580-141084-0049",
+    "begin_sample": 21331440,
+    "samples": 121200
+  },
+  {
+    "clip": "1995-1836-0006",
+    "begin_sample": 21452640,
+    "samples": 123440
+  },
+  {
+    "clip": "2094-142345-0034",
+    "begin_sample": 21576080,
+    "samples": 127840
+  },
+  {
+    "clip": "2300-131720-0037",
+    "begin_sample": 21703920,
+    "samples": 127440
+  },
+  {
+    "clip": "237-134493-0001",
+    "begin_sample": 21831360,
+    "samples": 118080
+  },
+  {
+    "clip": "260-123286-0030",
+    "begin_sample": 21949440,
+    "samples": 120480
+  },
+  {
+    "clip": "2830-3980-0047",
+    "begin_sample": 22069920,
+    "samples": 125840
+  },
+  {
+    "clip": "2961-960-0007",
+    "begin_sample": 22195760,
+    "samples": 122240
+  },
+  {
+    "clip": "3570-5696-0010",
+    "begin_sample": 22318000,
+    "samples": 121120
+  },
+  {
+    "clip": "3575-170457-0003",
+    "begin_sample": 22439120,
+    "samples": 121520
+  },
+  {
+    "clip": "3729-6852-0011",
+    "begin_sample": 22560640,
+    "samples": 117920
+  },
+  {
+    "clip": "4077-13754-0009",
+    "begin_sample": 22678560,
+    "samples": 122400
+  },
+  {
+    "clip": "4446-2275-0002",
+    "begin_sample": 22800960,
+    "samples": 122800
+  },
+  {
+    "clip": "4507-16021-0035",
+    "begin_sample": 22923760,
+    "samples": 120560
+  },
+  {
+    "clip": "4970-29093-0019",
+    "begin_sample": 23044320,
+    "samples": 119520
+  },
+  {
+    "clip": "4992-41806-0011",
+    "begin_sample": 23163840,
+    "samples": 125440
+  },
+  {
+    "clip": "5105-28241-0006",
+    "begin_sample": 23289280,
+    "samples": 120800
+  },
+  {
+    "clip": "5142-33396-0031",
+    "begin_sample": 23410080,
+    "samples": 125520
+  },
+  {
+    "clip": "5639-40744-0014",
+    "begin_sample": 23535600,
+    "samples": 123520
+  },
+  {
+    "clip": "5683-32879-0010",
+    "begin_sample": 23659120,
+    "samples": 124000
+  },
+  {
+    "clip": "61-70968-0054",
+    "begin_sample": 23783120,
+    "samples": 125760
+  },
+  {
+    "clip": "672-122797-0061",
+    "begin_sample": 23908880,
+    "samples": 121440
+  },
+  {
+    "clip": "6829-68771-0025",
+    "begin_sample": 24030320,
+    "samples": 125280
+  },
+  {
+    "clip": "6930-81414-0014",
+    "begin_sample": 24155600,
+    "samples": 118560
+  },
+  {
+    "clip": "7021-79740-0013",
+    "begin_sample": 24274160,
+    "samples": 117840
+  },
+  {
+    "clip": "7127-75946-0015",
+    "begin_sample": 24392000,
+    "samples": 120240
+  },
+  {
+    "clip": "7176-88083-0003",
+    "begin_sample": 24512240,
+    "samples": 121600
+  },
+  {
+    "clip": "7176-92135-0014",
+    "begin_sample": 24633840,
+    "samples": 256320
+  },
+  {
+    "clip": "7729-102255-0036",
+    "begin_sample": 24890160,
+    "samples": 123280
+  },
+  {
+    "clip": "8224-274384-0000",
+    "begin_sample": 25013440,
+    "samples": 121680
+  },
+  {
+    "clip": "8230-279154-0005",
+    "begin_sample": 25135120,
+    "samples": 123520
+  },
+  {
+    "clip": "8455-210777-0031",
+    "begin_sample": 25258640,
+    "samples": 122720
+  },
+  {
+    "clip": "8463-294825-0005",
+    "begin_sample": 25381360,
+    "samples": 123200
+  },
+  {
+    "clip": "8555-284449-0019",
+    "begin_sample": 25504560,
+    "samples": 121760
+  },
+  {
+    "clip": "908-31957-0009",
+    "begin_sample": 25626320,
+    "samples": 123280
+  },
+  {
+    "clip": "1089-134691-0023",
+    "begin_sample": 25749600,
+    "samples": 123760
+  },
+  {
+    "clip": "1188-133604-0025",
+    "begin_sample": 25873360,
+    "samples": 119200
+  },
+  {
+    "clip": "121-127105-0003",
+    "begin_sample": 25992560,
+    "samples": 123600
+  },
+  {
+    "clip": "1221-135766-0004",
+    "begin_sample": 26116160,
+    "samples": 119040
+  },
+  {
+    "clip": "1284-1180-0002",
+    "begin_sample": 26235200,
+    "samples": 122880
+  },
+  {
+    "clip": "1320-122617-0009",
+    "begin_sample": 26358080,
+    "samples": 123280
+  },
+  {
+    "clip": "1580-141084-0049",
+    "begin_sample": 26481360,
+    "samples": 121200
+  },
+  {
+    "clip": "1995-1836-0006",
+    "begin_sample": 26602560,
+    "samples": 123440
+  },
+  {
+    "clip": "2094-142345-0034",
+    "begin_sample": 26726000,
+    "samples": 127840
+  },
+  {
+    "clip": "2300-131720-0037",
+    "begin_sample": 26853840,
+    "samples": 127440
+  },
+  {
+    "clip": "237-134493-0001",
+    "begin_sample": 26981280,
+    "samples": 118080
+  },
+  {
+    "clip": "260-123286-0030",
+    "begin_sample": 27099360,
+    "samples": 120480
+  },
+  {
+    "clip": "2830-3980-0047",
+    "begin_sample": 27219840,
+    "samples": 125840
+  },
+  {
+    "clip": "2961-960-0007",
+    "begin_sample": 27345680,
+    "samples": 122240
+  },
+  {
+    "clip": "3570-5696-0010",
+    "begin_sample": 27467920,
+    "samples": 121120
+  },
+  {
+    "clip": "3575-170457-0003",
+    "begin_sample": 27589040,
+    "samples": 121520
+  },
+  {
+    "clip": "3729-6852-0011",
+    "begin_sample": 27710560,
+    "samples": 117920
+  },
+  {
+    "clip": "4077-13754-0009",
+    "begin_sample": 27828480,
+    "samples": 122400
+  },
+  {
+    "clip": "4446-2275-0002",
+    "begin_sample": 27950880,
+    "samples": 122800
+  },
+  {
+    "clip": "4507-16021-0035",
+    "begin_sample": 28073680,
+    "samples": 120560
+  },
+  {
+    "clip": "4970-29093-0019",
+    "begin_sample": 28194240,
+    "samples": 119520
+  },
+  {
+    "clip": "4992-41806-0011",
+    "begin_sample": 28313760,
+    "samples": 125440
+  },
+  {
+    "clip": "5105-28241-0006",
+    "begin_sample": 28439200,
+    "samples": 120800
+  },
+  {
+    "clip": "5142-33396-0031",
+    "begin_sample": 28560000,
+    "samples": 125520
+  },
+  {
+    "clip": "5639-40744-0014",
+    "begin_sample": 28685520,
+    "samples": 114480
+  }
+]

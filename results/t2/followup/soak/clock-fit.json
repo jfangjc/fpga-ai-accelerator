@@ -1,0 +1,78 @@
+{
+  "pairs": 1799,
+  "seconds": 1799.035962809001,
+  "sample_rate": 15999.683079985158,
+  "ppm": -19.80750092767103,
+  "ppm_standard_error": 0.05545151787796122,
+  "residual_ms_min": -2.574748449717735,
+  "residual_ms_max": 2.528171011480051,
+  "residual_ms_rms": 1.2214732699765407,
+  "buckets": [
+    {
+      "minutes": "0-5",
+      "pairs": 300,
+      "seconds": 299.0050022599971,
+      "sample_rate": 15999.74059574725,
+      "ppm": -16.212765796885797,
+      "ppm_standard_error": 0.0692566443676691,
+      "residual_ms_min": -0.6325654263910592,
+      "residual_ms_max": 0.4700666415396709,
+      "residual_ms_rms": 0.10354089261065261
+    },
+    {
+      "minutes": "5-10",
+      "pairs": 300,
+      "seconds": 299.00499375199433,
+      "sample_rate": 15999.737984692767,
+      "ppm": -16.37595670200831,
+      "ppm_standard_error": 0.08732592716425691,
+      "residual_ms_min": -0.6200085224967864,
+      "residual_ms_max": 0.5636164378035233,
+      "residual_ms_rms": 0.1305551573119928
+    },
+    {
+      "minutes": "10-15",
+      "pairs": 300,
+      "seconds": 299.00491384400084,
+      "sample_rate": 15999.738693217825,
+      "ppm": -16.3316738859276,
+      "ppm_standard_error": 0.07284606791336579,
+      "residual_ms_min": -0.4047998634711234,
+      "residual_ms_max": 0.7309918159458926,
+      "residual_ms_rms": 0.10890720452173405
+    },
+    {
+      "minutes": "15-20",
+      "pairs": 300,
+      "seconds": 299.0056291169967,
+      "sample_rate": 15999.720298043174,
+      "ppm": -17.481372301619835,
+      "ppm_standard_error": 0.11326852153939762,
+      "residual_ms_min": -0.6886054536318831,
+      "residual_ms_max": 0.5127046269129434,
+      "residual_ms_rms": 0.16934154774402044
+    },
+    {
+      "minutes": "20-25",
+      "pairs": 299,
+      "seconds": 299.0084586649973,
+      "sample_rate": 15999.55260557378,
+      "ppm": -27.96215163880511,
+      "ppm_standard_error": 0.07566737046196576,
+      "residual_ms_min": -0.4935322349573344,
+      "residual_ms_max": 0.626182131437035,
+      "residual_ms_rms": 0.11297907558430134
+    },
+    {
+      "minutes": "25-30",
+      "pairs": 300,
+      "seconds": 299.00712662799924,
+      "sample_rate": 15999.619423848459,
+      "ppm": -23.786009471282732,
+      "ppm_standard_error": 0.08790208680783235,
+      "residual_ms_min": -0.5544628334020224,
+      "residual_ms_max": 0.8031055962563496,
+      "residual_ms_rms": 0.1314249700975586
+    }
+  ]
+}

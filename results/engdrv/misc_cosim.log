@@ -1,0 +1,6 @@
+PING cycles 11
+PASS program validation 9 (prior program retained)
+PASS malformed/recovery 4
+PASS single-channel depthwise geometry
+PASS async submit/EBUSY/poll
+PASS timeout/reset/recovery

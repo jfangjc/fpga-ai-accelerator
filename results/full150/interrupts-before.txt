@@ -1,0 +1,61 @@
+           CPU0       CPU1       CPU2       CPU3       
+  9:          0          0          0          0     GICv2  25 Level     vgic
+ 11:    3456399    3622050    3377543    3471760     GICv2  30 Level     arch_timer
+ 12:          0          0          0          0     GICv2  27 Level     kvm guest vtimer
+ 14:          0          0          0          0     GICv2  67 Level     zynqmp-ipi
+ 15:          0          0          0          0     GICv2  88 Level     ams-irq
+ 16:          0          0          0          0     GICv2 175 Level     arm-pmu
+ 17:          0          0          0          0     GICv2 176 Level     arm-pmu
+ 18:          0          0          0          0     GICv2 177 Level     arm-pmu
+ 19:          0          0          0          0     GICv2 178 Level     arm-pmu
+ 20:          3          0          0          0     GICv2  54 Level     xuartps
+ 22:          0          0          0          0     GICv2 156 Level     zynqmp-dma
+ 23:          0          0          0          0     GICv2 157 Level     zynqmp-dma
+ 24:          0          0          0          0     GICv2 158 Level     zynqmp-dma
+ 25:          0          0          0          0     GICv2 159 Level     zynqmp-dma
+ 26:          0          0          0          0     GICv2 160 Level     zynqmp-dma
+ 27:          0          0          0          0     GICv2 161 Level     zynqmp-dma
+ 28:          0          0          0          0     GICv2 162 Level     zynqmp-dma
+ 29:          0          0          0          0     GICv2 163 Level     zynqmp-dma
+ 30:          0          0          0          0     GICv2 109 Level     zynqmp-dma
+ 31:          0          0          0          0     GICv2 110 Level     zynqmp-dma
+ 32:          0          0          0          0     GICv2 111 Level     zynqmp-dma
+ 33:          0          0          0          0     GICv2 112 Level     zynqmp-dma
+ 34:          0          0          0          0     GICv2 113 Level     zynqmp-dma
+ 35:          0          0          0          0     GICv2 114 Level     zynqmp-dma
+ 36:          0          0          0          0     GICv2 115 Level     zynqmp-dma
+ 37:          0          0          0          0     GICv2 116 Level     zynqmp-dma
+ 38:    2611462          0          0          0     GICv2 154 Level     fd4c0000.dma-controller
+ 39:       1265          0          0          0     GICv2 151 Level     fd4a0000.display
+ 40:      35938          0          0          0     GICv2  52 Level     ff050000.spi
+ 41:    1076111          0          0          0     GICv2  95 Level     eth0, eth0
+ 42:          0          0          0          0     GICv2  57 Level     axi-pmon, axi-pmon
+ 43:          0          0          0          0     GICv2 155 Level     axi-pmon, axi-pmon
+ 44:        103          0          0          0     GICv2  97 Level     xhci-hcd:usb1
+ 46:          0          0          0          0     GICv2  84 Edge      ff150000.watchdog
+ 47:     190903          0          0          0     GICv2  81 Level     mmc1
+ 48:          0          0          0          0  zynq-gpio  12 Edge      fwuen
+ 49:      11787          0          0          0     GICv2  50 Level     cdns-i2c
+ 50:     304064          0          0          0     GICv2  47 Level     ff0f0000.spi
+ 51:          0          0          0          0     GICv2  58 Level     ffa60000.rtc
+ 52:          0          0          0          0     GICv2  59 Level     ffa60000.rtc
+ 53:          0          0          0          0     GICv2 164 Level     Mali_GP_MMU, Mali_GP, Mali_PP0_MMU, Mali_PP0, Mali_PP1_MMU, Mali_PP1
+ 54:          0          0          0          0     GICv2  42 Level     ff960000.memory-controller
+ 55:         77          0          0          0     GICv2 121 Level     stt-dma-tx
+ 56:         77          0          0          0     GICv2 122 Level     stt-dma-rx
+ 57:          0          0          0          0     GICv2 123 Level     stt-timer
+ 58:          1          0          0          0     GICv2 124 Level     stt-frontend
+ 59:         82          0          0          0     GICv2 125 Level     stt-fe-tx
+ 60:      69011          0          0          0     GICv2 126 Level     stt-fe-rx
+ 61:          2          0          0          0     GICv2 127 Level     stt-engine
+ 62:      63531          0          0          0     GICv2 128 Level     stt-engine-tx
+ 63:      62340          0          0          0     GICv2 136 Level     stt-engine-rx
+IPI0:     25303      33960      33424      35187       Rescheduling interrupts
+IPI1:    371196     480094     345857     364655       Function call interrupts
+IPI2:         0          0          0          0       CPU stop interrupts
+IPI3:         0          0          0          0       CPU stop NMIs
+IPI4:     63895     112649     150682     141618       Timer broadcast interrupts
+IPI5:         0          0          0          0       IRQ work interrupts
+IPI6:         0          0          0          0       CPU backtrace interrupts
+IPI7:         0          0          0          0       KGDB roundup interrupts
+Err:          0

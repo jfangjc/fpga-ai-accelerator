@@ -1,0 +1,15 @@
+PASS bytes=16 elapsed_s=0.000024470 per_direction_GBps=0.000654 concurrent_GBps=0.001308
+PASS bytes=17 elapsed_s=0.000038909 per_direction_GBps=0.000437 concurrent_GBps=0.000874
+PASS bytes=31 elapsed_s=0.000027689 per_direction_GBps=0.001120 concurrent_GBps=0.002239
+PASS bytes=127 elapsed_s=0.000027220 per_direction_GBps=0.004666 concurrent_GBps=0.009331
+PASS bytes=4095 elapsed_s=0.000024350 per_direction_GBps=0.168172 concurrent_GBps=0.336345
+PASS bytes=4096 elapsed_s=0.000024259 per_direction_GBps=0.168845 concurrent_GBps=0.337689
+PASS bytes=65537 elapsed_s=0.000082718 per_direction_GBps=0.792294 concurrent_GBps=1.584589
+PASS bytes=1048576 elapsed_s=0.000761543 per_direction_GBps=1.376910 concurrent_GBps=2.753820
+PASS bytes=8388607 elapsed_s=0.005421096 per_direction_GBps=1.547401 concurrent_GBps=3.094801
+PASS bytes=8388608 elapsed_s=0.005400927 per_direction_GBps=1.553179 concurrent_GBps=3.106359
+BENCH MM2S_GBps=1.566968 S2MM_GBps=1.566968 concurrent_GBps=3.133936 target=PASS
+PASS bad address rejected; reset performed
+PASS recovery
+SKIP_SYNC stale_observed=1 (diagnostic; failure is expected)
+PASS cache maintenance

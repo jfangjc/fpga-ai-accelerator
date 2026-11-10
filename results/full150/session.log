@@ -1,0 +1,140 @@
+remove from slot 0 returns: 0 (Ok)
+stt-full150: Loaded with slot_handle 0
+#  Accel_type  user_load_type user_load_region Base        Pid   Base_type #slots(RPU+PL+AIE) slot->handle Accelerator
+-- ----------- -------------- ---------------- ----------- ----- --------- ------------------ ------------ ---------
+ 1 PL_FLAT     -              -                asr-v3-bulk id_ok PL_FLAT   (0+0+0)            -1           asr-v3-bulk
+ 2 PL_FLAT     -              -                asr-v3-a... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-adaptive
+ 3 PL_FLAT     -              -                voice-ca... id_ok PL_FLAT   (0+0+0)            -1           voice-cached
+ 4 PL_FLAT     -              -                voice-dma   id_ok PL_FLAT   (0+0+0)            -1           voice-dma
+ 5 PL_FLAT     -              -                stt-full    id_ok PL_FLAT   (0+0+0)            -1           stt-full
+ 6 PL_FLAT     -              -                asr-v2      id_ok PL_FLAT   (0+0+0)            -1           asr-v2
+ 7 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortcache
+ 8 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortwide
+ 9 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-stream
+10 PL_FLAT     -              -                asr-v3-m... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-mic-select
+11 PL_FLAT     -              -                asr-v3-b... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-branch512-ab166
+12 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain-prefetch
+13 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain
+14 XRT_FLAT    -              -                k24-star... id_ok XRT_FLAT  (0+0+0)            -1           k24-starter-kits
+15 PL_FLAT     -              -                asr-v3-q... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-quant
+16 PL_FLAT     -              -                stt-loop... id_ok PL_FLAT   (0+0+0)            -1           stt-loopback
+17 PL_FLAT     -              -                stt-fe      id_ok PL_FLAT   (0+0+0)            -1           stt-fe
+18 XRT_FLAT    -              -                k26-star... id_ok XRT_FLAT  (0+0+0)            -1           k26-starter-kits
+19 PL_FLAT     -              -                asr-v3-pair id_ok PL_FLAT   (0+0+0)            -1           asr-v3-pair
+20 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-cache
+21 PL_FLAT     -              -                voice-pr... id_ok PL_FLAT   (0+0+0)            -1           voice-prototype
+22 PL_FLAT     -              -                stt-full150 id_ok PL_FLAT   (0+0+0)            0->0,        stt-full150
+/sys/class/uio/uio0/name: axi-pmon
+/sys/class/uio/uio1/name: axi-pmon
+/sys/class/uio/uio10/name: stt-fe-rx
+/sys/class/uio/uio11/name: stt-engine
+/sys/class/uio/uio12/name: stt-engine-tx
+/sys/class/uio/uio13/name: stt-engine-rx
+/sys/class/uio/uio2/name: axi-pmon
+/sys/class/uio/uio3/name: axi-pmon
+/sys/class/uio/uio4/name: stt-dma-tx
+/sys/class/uio/uio5/name: stt-dma-rx
+/sys/class/uio/uio6/name: stt-fe-reset
+/sys/class/uio/uio7/name: stt-timer
+/sys/class/uio/uio8/name: stt-frontend
+/sys/class/uio/uio9/name: stt-fe-tx
+/sys/class/u-dma-buf/udmabuf0 16777216
+/sys/class/u-dma-buf/udmabuf1 16777216
+/sys/class/u-dma-buf/udmabuf2 33554432
+/sys/class/u-dma-buf/udmabuf3 1048576
+make: Entering directory '/home/ubuntu/stt/full150/src/sw/engdrv'
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra   -c -o i2.o i2.c
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra   -c -o engdrv.o engdrv.c
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra   -c -o board.o board.c
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra -c ../plio/plio.c -o plio.o
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra   -c -o backend_pl.o backend_pl.c
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra   -c -o no_cosim.o no_cosim.c
+ar rcs libengdrv.a engdrv.o board.o plio.o backend_pl.o no_cosim.o
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra -o i2 i2.o libengdrv.a ../qnrt/qnrt.c -pthread -lm
+make: Leaving directory '/home/ubuntu/stt/full150/src/sw/engdrv'
+PASS I2 logits+CTC T=392 valid=387 cycles=27395515 wall_ms=455.605 mode=layer commands=186 exchange_ms=396.421 outside_ms=59.183 sync_ms=127.019 sync_calls=744
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=784/774 logits=11368 ctc=identical mode=layer commands=186 cpu_ms=554.776731 pl_ms=459.415590 cycles=27395454 sync_ms=130.335344
+PASS I2 logits+CTC T=152 valid=150 cycles=10309834 wall_ms=69.707 mode=network commands=1 exchange_ms=69.632 outside_ms=0.075 sync_ms=0.750 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=304/300 logits=4408 ctc=identical mode=network commands=1 cpu_ms=222.185789 pl_ms=69.812702 cycles=10309882 sync_ms=0.774929
+PASS I2 logits+CTC T=152 valid=150 cycles=10309871 wall_ms=69.707 mode=network commands=1 exchange_ms=69.635 outside_ms=0.072 sync_ms=0.754 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=304/300 logits=4408 ctc=identical mode=network commands=1 cpu_ms=221.635003 pl_ms=69.786341 cycles=10309713 sync_ms=0.756189
+PASS I2 logits+CTC T=152 valid=150 cycles=10309889 wall_ms=69.726 mode=network commands=1 exchange_ms=69.650 outside_ms=0.076 sync_ms=0.789 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=304/300 logits=4408 ctc=identical mode=network commands=1 cpu_ms=219.216083 pl_ms=69.832613 cycles=10309855 sync_ms=0.770910
+PASS I2 logits+CTC T=24 valid=24 cycles=2310096 wall_ms=16.323 mode=network commands=1 exchange_ms=16.289 outside_ms=0.034 sync_ms=0.768 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=48/48 logits=696 ctc=identical mode=network commands=1 cpu_ms=37.905860 pl_ms=16.428523 cycles=2310061 sync_ms=0.724229
+PASS I2 logits+CTC T=8 valid=7 cycles=1803717 wall_ms=12.921 mode=network commands=1 exchange_ms=12.892 outside_ms=0.029 sync_ms=0.712 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=16/14 logits=232 ctc=identical mode=network commands=1 cpu_ms=14.610199 pl_ms=12.992198 cycles=1803272 sync_ms=0.751989
+PASS I2 logits+CTC T=24 valid=24 cycles=2310090 wall_ms=16.339 mode=network commands=1 exchange_ms=16.305 outside_ms=0.034 sync_ms=0.777 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=48/48 logits=696 ctc=identical mode=network commands=1 cpu_ms=38.009372 pl_ms=16.461333 cycles=2310104 sync_ms=0.770810
+PASS I2 logits+CTC T=24 valid=24 cycles=2310043 wall_ms=16.323 mode=network commands=1 exchange_ms=16.286 outside_ms=0.038 sync_ms=0.750 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=48/48 logits=696 ctc=identical mode=network commands=1 cpu_ms=37.910980 pl_ms=16.457903 cycles=2309790 sync_ms=0.745590
+PASS I2 logits+CTC T=8 valid=1 cycles=1803921 wall_ms=12.927 mode=network commands=1 exchange_ms=12.891 outside_ms=0.036 sync_ms=0.726 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=16/2 logits=232 ctc=identical mode=network commands=1 cpu_ms=9.748266 pl_ms=13.045359 cycles=1803469 sync_ms=0.747270
+PASS I2 logits+CTC T=24 valid=24 cycles=2310053 wall_ms=16.294 mode=network commands=1 exchange_ms=16.255 outside_ms=0.039 sync_ms=0.716 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=48/48 logits=696 ctc=identical mode=network commands=1 cpu_ms=38.163144 pl_ms=16.473863 cycles=2309773 sync_ms=0.787911
+PASS I2 logits+CTC T=150 valid=150 cycles=10309815 wall_ms=69.676 mode=network commands=1 exchange_ms=69.598 outside_ms=0.079 sync_ms=0.755 sync_calls=4
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.844823 pl_ms=69.810903 cycles=10309630 sync_ms=0.781760
+PASS I2 logits+CTC T=776 valid=776 cycles=53460395 wall_ms=772.663 mode=layer commands=188 exchange_ms=677.394 outside_ms=95.269 sync_ms=147.759 sync_calls=752
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=1552/1552 logits=22504 ctc=identical mode=layer commands=188 cpu_ms=1116.767001 pl_ms=788.534219 cycles=53460099 sync_ms=150.711300
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.317360 pl_ms=69.780985 cycles=10309692 sync_ms=0.805031
+PASS pair=1 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.252999 pl_ms=69.459281 cycles=10309790 sync_ms=0.597907
+PASS pair=2 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.720265 pl_ms=69.681583 cycles=10309907 sync_ms=0.763870
+PASS pair=3 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.466612 pl_ms=69.530352 cycles=10309774 sync_ms=0.656158
+PASS pair=4 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.207899 pl_ms=69.689123 cycles=10309815 sync_ms=0.765240
+PASS pair=5 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.169998 pl_ms=69.481381 cycles=10309810 sync_ms=0.607698
+PASS pair=6 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.974990 pl_ms=69.687073 cycles=10309667 sync_ms=0.757130
+PASS pair=7 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.469183 pl_ms=69.532312 cycles=10309891 sync_ms=0.625599
+PASS pair=8 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=222.967731 pl_ms=69.678133 cycles=10309855 sync_ms=0.759790
+PASS pair=9 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=219.783250 pl_ms=69.538692 cycles=10309747 sync_ms=0.635818
+PASS pair=10 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=219.953322 pl_ms=69.747615 cycles=10309869 sync_ms=0.842742
+PASS pair=11 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.303471 pl_ms=69.519711 cycles=10309840 sync_ms=0.617988
+PASS pair=12 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.228020 pl_ms=69.761905 cycles=10309804 sync_ms=0.788861
+PASS pair=13 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=219.062101 pl_ms=69.472241 cycles=10309749 sync_ms=0.604188
+PASS pair=14 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=219.051131 pl_ms=69.740955 cycles=10309727 sync_ms=0.758890
+PASS pair=15 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.578625 pl_ms=69.520802 cycles=10309809 sync_ms=0.654419
+PASS pair=16 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.684157 pl_ms=69.722694 cycles=10309686 sync_ms=0.793460
+PASS pair=17 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.723167 pl_ms=69.486101 cycles=10309874 sync_ms=0.603668
+PASS pair=18 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.552835 pl_ms=69.697084 cycles=10309671 sync_ms=0.775641
+PASS pair=19 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=217.925977 pl_ms=69.452231 cycles=10309784 sync_ms=0.600608
+PASS full150 acceptance and paired timing
+Restoring stt-full; test exit=0
+remove from slot 0 returns: 0 (Ok)
+stt-full: Loaded with slot_handle 0
+#  Accel_type  user_load_type user_load_region Base        Pid   Base_type #slots(RPU+PL+AIE) slot->handle Accelerator
+-- ----------- -------------- ---------------- ----------- ----- --------- ------------------ ------------ ---------
+ 1 PL_FLAT     -              -                asr-v3-bulk id_ok PL_FLAT   (0+0+0)            -1           asr-v3-bulk
+ 2 PL_FLAT     -              -                asr-v3-a... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-adaptive
+ 3 PL_FLAT     -              -                voice-ca... id_ok PL_FLAT   (0+0+0)            -1           voice-cached
+ 4 PL_FLAT     -              -                voice-dma   id_ok PL_FLAT   (0+0+0)            -1           voice-dma
+ 5 PL_FLAT     -              -                stt-full    id_ok PL_FLAT   (0+0+0)            0->0,        stt-full
+ 6 PL_FLAT     -              -                asr-v2      id_ok PL_FLAT   (0+0+0)            -1           asr-v2
+ 7 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortcache
+ 8 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortwide
+ 9 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-stream
+10 PL_FLAT     -              -                asr-v3-m... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-mic-select
+11 PL_FLAT     -              -                asr-v3-b... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-branch512-ab166
+12 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain-prefetch
+13 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain
+14 XRT_FLAT    -              -                k24-star... id_ok XRT_FLAT  (0+0+0)            -1           k24-starter-kits
+15 PL_FLAT     -              -                asr-v3-q... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-quant
+16 PL_FLAT     -              -                stt-loop... id_ok PL_FLAT   (0+0+0)            -1           stt-loopback
+17 PL_FLAT     -              -                stt-fe      id_ok PL_FLAT   (0+0+0)            -1           stt-fe
+18 XRT_FLAT    -              -                k26-star... id_ok XRT_FLAT  (0+0+0)            -1           k26-starter-kits
+19 PL_FLAT     -              -                asr-v3-pair id_ok PL_FLAT   (0+0+0)            -1           asr-v3-pair
+20 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-cache
+21 PL_FLAT     -              -                voice-pr... id_ok PL_FLAT   (0+0+0)            -1           voice-prototype
+22 PL_FLAT     -              -                stt-full150 id_ok PL_FLAT   (0+0+0)            -1           stt-full150
+RESTORED stt-full

@@ -1,0 +1,43 @@
+{
+  "network": {
+    "wall_ns": 2284378074,
+    "sync_ns": 117032446,
+    "cycles": 204706005,
+    "output": 152
+  },
+  "transport": {
+    "dma_submit_ns": 2240397,
+    "irq_wait_ns": 2066130607,
+    "sync_calls": 744,
+    "dma_calls": 186,
+    "irq_calls": 357
+  },
+  "groups": {
+    "depthwise": {
+      "commands": 77,
+      "cycles": 196096419,
+      "command_ns": 2027883370
+    },
+    "pointwise": {
+      "commands": 94,
+      "cycles": 5838252,
+      "command_ns": 147613376
+    },
+    "add": {
+      "commands": 15,
+      "cycles": 2771334,
+      "command_ns": 40340202
+    }
+  },
+  "host_remaining_ns": 98974624,
+  "sum_command_ns": 2215836948,
+  "outside_exchange_ns": 68541126,
+  "command_ns": {
+    "min": 871267,
+    "median": 2022548.0,
+    "max": 48692245
+  },
+  "sum_submit_irq_ns": 2139560251,
+  "sum_irq_ready_ns": 76276697,
+  "sum_starvation": 27
+}

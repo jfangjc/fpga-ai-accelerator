@@ -1,0 +1,13 @@
+make: Entering directory '/home/ubuntu/stt/engdrv/sw/engdrv'
+make: 'i2' is up to date.
+make: Leaving directory '/home/ubuntu/stt/engdrv/sw/engdrv'
+PASS I2 logits+CTC T=392 valid=387 cycles=581515597 wall_ms=6144.697
+PASS I2 logits+CTC T=152 valid=150 cycles=204706007 wall_ms=2298.605
+PASS I2 logits+CTC T=152 valid=150 cycles=204705985 wall_ms=2294.060
+PASS I2 logits+CTC T=152 valid=150 cycles=204706048 wall_ms=2297.895
+PASS I2 logits+CTC T=24 valid=24 cycles=38079552 wall_ms=571.393
+PASS I2 logits+CTC T=8 valid=7 cycles=19424963 wall_ms=370.701
+PASS I2 logits+CTC T=24 valid=24 cycles=38079505 wall_ms=562.251
+PASS I2 logits+CTC T=24 valid=24 cycles=38079567 wall_ms=565.601
+PASS I2 logits+CTC T=8 valid=1 cycles=19424975 wall_ms=372.555
+PASS I2 logits+CTC T=24 valid=24 cycles=38079505 wall_ms=567.921

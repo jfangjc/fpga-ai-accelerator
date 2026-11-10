@@ -1,0 +1,43 @@
+{
+  "cpu_ms_median": 218.43359,
+  "pl_ms_median": 69.606469,
+  "speedup": 3.1381219754158196,
+  "runs": [
+    {
+      "tag": "pl-final-1",
+      "wall_seconds": 26.27974677900056,
+      "events": 194,
+      "tcp_events": 192,
+      "merged": 0
+    },
+    {
+      "tag": "pl-final-2",
+      "wall_seconds": 26.26955346199975,
+      "events": 194,
+      "tcp_events": 194,
+      "merged": 0
+    },
+    {
+      "tag": "pl-final-3",
+      "wall_seconds": 26.277142900995386,
+      "events": 194,
+      "tcp_events": 194,
+      "merged": 0
+    },
+    {
+      "tag": "cpu-final-1",
+      "wall_seconds": 26.72330855399923,
+      "events": 105,
+      "tcp_events": 105,
+      "merged": 89
+    },
+    {
+      "tag": "cpu-final-2",
+      "wall_seconds": 26.72622352399776,
+      "events": 105,
+      "tcp_events": 105,
+      "merged": 89
+    }
+  ],
+  "soak_analysis_sha256": "b9623786108c8369d9517fddf5a2cf67e4010dee6c00284e06c6ca9caf9ffa31"
+}

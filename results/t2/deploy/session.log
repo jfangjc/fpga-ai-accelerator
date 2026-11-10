@@ -1,0 +1,72 @@
+2026-11-04T17:31:40+00:00
+remove from slot 0 returns: 0 (Ok)
+stt-full150: Loaded with slot_handle 0
+#  Accel_type  user_load_type user_load_region Base        Pid   Base_type #slots(RPU+PL+AIE) slot->handle Accelerator
+-- ----------- -------------- ---------------- ----------- ----- --------- ------------------ ------------ ---------
+ 1 PL_FLAT     -              -                asr-v3-bulk id_ok PL_FLAT   (0+0+0)            -1           asr-v3-bulk
+ 2 PL_FLAT     -              -                asr-v3-a... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-adaptive
+ 3 PL_FLAT     -              -                voice-ca... id_ok PL_FLAT   (0+0+0)            -1           voice-cached
+ 4 PL_FLAT     -              -                voice-dma   id_ok PL_FLAT   (0+0+0)            -1           voice-dma
+ 5 PL_FLAT     -              -                stt-full    id_ok PL_FLAT   (0+0+0)            -1           stt-full
+ 6 PL_FLAT     -              -                asr-v2      id_ok PL_FLAT   (0+0+0)            -1           asr-v2
+ 7 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortcache
+ 8 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortwide
+ 9 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-stream
+10 PL_FLAT     -              -                asr-v3-m... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-mic-select
+11 PL_FLAT     -              -                asr-v3-b... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-branch512-ab166
+12 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain-prefetch
+13 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain
+14 XRT_FLAT    -              -                k24-star... id_ok XRT_FLAT  (0+0+0)            -1           k24-starter-kits
+15 PL_FLAT     -              -                asr-v3-q... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-quant
+16 PL_FLAT     -              -                stt-loop... id_ok PL_FLAT   (0+0+0)            -1           stt-loopback
+17 PL_FLAT     -              -                stt-fe      id_ok PL_FLAT   (0+0+0)            -1           stt-fe
+18 XRT_FLAT    -              -                k26-star... id_ok XRT_FLAT  (0+0+0)            -1           k26-starter-kits
+19 PL_FLAT     -              -                asr-v3-pair id_ok PL_FLAT   (0+0+0)            -1           asr-v3-pair
+20 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-cache
+21 PL_FLAT     -              -                voice-pr... id_ok PL_FLAT   (0+0+0)            -1           voice-prototype
+22 PL_FLAT     -              -                stt-full150 id_ok PL_FLAT   (0+0+0)            0->0,        stt-full150
+4b7eb77be43fea924276958c69fd918d6b1cabf7f225d6e703c9dd17c19ad8c0  /lib/firmware/xilinx/stt-full150/shell.json
+4cd65023c6c2933fd7704fb373b7428450c8ec37dfd90b690e12a66245adc1d2  /lib/firmware/xilinx/stt-full150/stt-full150.bit.bin
+eae42493bb781e4c9b8a65d8ca6556f6d36c16ec35a74c7565c8d291a00d3081  /lib/firmware/xilinx/stt-full150/stt-full150.dtbo
+make: Entering directory '/home/ubuntu/stt/t2/src/sw/engdrv'
+rm -f *.o *.a *.so i2
+rm -rf obj
+make: Leaving directory '/home/ubuntu/stt/t2/src/sw/engdrv'
+make: Entering directory '/home/ubuntu/stt/t2/src/sw/engdrv'
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o engdrv.o engdrv.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o board.o board.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -c ../plio/plio.c -o plio.o
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o backend_pl.o backend_pl.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o no_cosim.o no_cosim.c
+ar rcs libengdrv.a engdrv.o board.o plio.o backend_pl.o no_cosim.o
+make: Leaving directory '/home/ubuntu/stt/t2/src/sw/engdrv'
+make: Entering directory '/home/ubuntu/stt/t2/src/sw/app'
+rm -f sttcap test_stream
+make: Leaving directory '/home/ubuntu/stt/t2/src/sw/app'
+make: Entering directory '/home/ubuntu/stt/t2/src/sw/app'
+python3 gen_policy.py
+make -C ../engdrv CC='cc' libengdrv.a
+make[1]: Entering directory '/home/ubuntu/stt/t2/src/sw/engdrv'
+make[1]: 'libengdrv.a' is up to date.
+make[1]: Leaving directory '/home/ubuntu/stt/t2/src/sw/engdrv'
+cc -O2 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -DHAVE_ENGDRV main.c backend.c stream.c display.c ../qnrt/qnrt.c ../qnrt/wav.c ../frontend_c/frontend.c ../fedrv/fedrv.c ../fedrv/stream.c ../fedrv/features.c ../plio/plio.c ../engdrv/backend_pl.c ../engdrv/libengdrv.a -pthread -lm -o sttcap
+cc -O2 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -ffp-contract=off test_stream.c stream.c -o test_stream
+./test_stream
+PASS CTC, cross-window stitching, VAD silence and phrase boundary
+make: Leaving directory '/home/ubuntu/stt/t2/src/sw/app'
+make: Entering directory '/home/ubuntu/stt/t2/src/sw/fedrv'
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -ffunction-sections tools/test_ui.c -Wl,--gc-sections -o /tmp/stt-test-ui
+/tmp/stt-test-ui
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -ffunction-sections tools/test_tail.c -Wl,--gc-sections -o tools/test_tail
+./tools/test_tail
+make: Leaving directory '/home/ubuntu/stt/t2/src/sw/fedrv'
+4ff3e3520ecf302ad5985971e6531f2cc5546eccf74eb4c2fa976e96ee28eaba  sw/app/sttcap
+ee07f475801fddca55fd93c2a1fe61f18557626ffc11cee6991f41d78ae9f583  /home/ubuntu/stt/i2/program.qnp2
+HEAD is now at 2cdfd21 Merge branch 'develop'
+make -C /lib/modules/6.8.0-1036-xilinx/build ARCH=arm64 CROSS_COMPILE= M=/home/ubuntu/stt/u-dma-buf CONFIG_U_DMA_BUF=m U_DMA_BUF_CONFIG=1 U_DMA_BUF_DEBUG=1 U_DMA_BUF_QUIRK_MMAP=1 U_DMA_BUF_IN_KERNEL_FUNCTIONS=1 U_DMA_BUF_IOCTL=3 U_DMA_BUF_EXPORT=1 modules
+make[1]: Entering directory '/usr/src/linux-headers-6.8.0-1036-xilinx'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: aarch64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+make[1]: Leaving directory '/usr/src/linux-headers-6.8.0-1036-xilinx'
+PASS deployment and quick I2; stt-full150 remains loaded

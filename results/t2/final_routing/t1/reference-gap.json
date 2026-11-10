@@ -1,0 +1,53 @@
+{
+  "1089-134691-0023.pl": {
+    "actual_updates": 62,
+    "reference_updates": 62,
+    "matching_ticks": 62,
+    "differences": {
+      "feature_count": 62,
+      "window_start": 38,
+      "emitted": 0,
+      "preview": 36,
+      "tentative": 38
+    },
+    "feature_count_deltas": [
+      1
+    ],
+    "board_last_preview": "it was a pain to see them and a sword like pain to ee the signs of adolescence that made repellent their pitiable nakedness",
+    "reference_last_preview": "it was a pain to see them and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness"
+  },
+  "1188-133604-0025.pl": {
+    "actual_updates": 59,
+    "reference_updates": 59,
+    "matching_ticks": 59,
+    "differences": {
+      "feature_count": 59,
+      "window_start": 35,
+      "emitted": 0,
+      "preview": 32,
+      "tentative": 41
+    },
+    "feature_count_deltas": [
+      1
+    ],
+    "board_last_preview": "you know i've just been telling you how this school of materialis and clay involved itself at last in cloud ind fire",
+    "reference_last_preview": "you know i've just been telling you how this school of materialism and clay involved itself at last in cloud an fire"
+  },
+  "121-127105-0003.pl": {
+    "actual_updates": 63,
+    "reference_updates": 63,
+    "matching_ticks": 63,
+    "differences": {
+      "feature_count": 63,
+      "window_start": 39,
+      "emitted": 0,
+      "preview": 6,
+      "tentative": 8
+    },
+    "feature_count_deltas": [
+      1
+    ],
+    "board_last_preview": "there was a unanimous groan at this and much reproach after which in his preoccupied way he explained",
+    "reference_last_preview": "there was a unanimous groan at this and much reproach after which in his preoccupied way he explained"
+  }
+}

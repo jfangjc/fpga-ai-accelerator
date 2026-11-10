@@ -1,0 +1,60 @@
+{
+ "clips": 3,
+ "words": 65,
+ "final_errors": 5,
+ "final_wer": 7.69,
+ "preview_errors": 13,
+ "preview_wer": 20.0,
+ "phrases": 4,
+ "empty_phrases": 0,
+ "final_latency_ms": {
+  "p50": 1465.8,
+  "p95": 1467.8,
+  "max": 1468.1,
+  "n": 3
+ },
+ "final_latency_note": "PC speaker start to TCP receipt on this PC, from clip audio end",
+ "clips_without_final": [],
+ "merges": 0,
+ "capture_stats": {
+  "frames": "3892",
+  "irqs": "3892",
+  "sequence_errors": "0",
+  "ring_overruns": "0",
+  "tx_underruns": "0",
+  "mic_overruns": "0",
+  "consumer_dropped": "0",
+  "status": "0",
+  "error": "0"
+ },
+ "capture_ok": true,
+ "board_events": 195,
+ "tcp_events": 194,
+ "tcp_complete": true,
+ "per_clip": [
+  {
+   "id": "1089-134691-0023",
+   "errors": 1,
+   "words": 24,
+   "phrases": 1,
+   "final_latency_ms": 1465.8,
+   "hyp": "it was a pain to see him and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness"
+  },
+  {
+   "id": "1188-133604-0025",
+   "errors": 4,
+   "words": 23,
+   "phrases": 1,
+   "final_latency_ms": 1468.1,
+   "hyp": "you know i've just been telling you how this school materialism and clay involved itself at last in cloud ind fire"
+  },
+  {
+   "id": "121-127105-0003",
+   "errors": 0,
+   "words": 18,
+   "phrases": 2,
+   "final_latency_ms": 911.4,
+   "hyp": "there was a unanimous groan at this and much reproach after which in his preoccupied way he explained"
+  }
+ ]
+}

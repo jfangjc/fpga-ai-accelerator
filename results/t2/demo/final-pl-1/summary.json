@@ -1,0 +1,38 @@
+{
+  "exit": 0,
+  "backend": "pl",
+  "clips": [
+    "1089-134691-0023",
+    "1188-133604-0025",
+    "121-127105-0003"
+  ],
+  "wall_seconds": 28.57912173400109,
+  "source": "pl-inject",
+  "lock": "board.lock held by parent demo_board.sh",
+  "stop": "natural replay EOF and thread joins",
+  "events": 194,
+  "tcp_events": 194,
+  "tcp_missing_captions": 0,
+  "startup_state_events_before_connection": 0,
+  "finals": [
+    "it was a pain to see them and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness",
+    "you know iave just been telling you how this school of materialism and clay involved itself at last and cloud in fire",
+    "there was a unanimous groan at this and much reproach after which in his preoccupied way he explained"
+  ],
+  "display": "fb",
+  "capture": {
+    "frames": 2610,
+    "irqs": 2610,
+    "sequence_errors": 0,
+    "ring_overruns": 0,
+    "tx_underruns": 0,
+    "mic_overruns": 0,
+    "consumer_dropped": 0,
+    "status": 1,
+    "error": 0
+  },
+  "merged": 0,
+  "lost_frames": 0,
+  "ppm_sha256": "51617bd2455d52d960f2adf88afb5e4db20c2bfcbaeb2eba02374723ca4453e8",
+  "pass_rehearsal": true
+}

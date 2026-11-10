@@ -1,0 +1,330 @@
+{
+  "auto2": {
+    "latency_ms": {
+      "n": 194,
+      "p50": 204.6925,
+      "p95": 603.2308999999997,
+      "max": 1056.817
+    },
+    "merged": 0,
+    "zero_loss_pass": true,
+    "rss_after_150s": {
+      "first_kib": 76292,
+      "last_kib": 77416,
+      "min_kib": 76292,
+      "max_kib": 77416,
+      "delta_kib": 1124,
+      "slope_kib_per_minute": 2188.430050081023
+    },
+    "power": {
+      "samples": 291,
+      "mean_w": 4.080893470790378,
+      "max_w": 4.85,
+      "first_seconds": 0.0029390290001174435,
+      "last_seconds": 29.728986232999887
+    },
+    "command": [
+      "/home/ubuntu/stt/t2/final_routing/src/sw/app/sttcap",
+      "--source",
+      "pl-inject",
+      "soak.wav",
+      "--backend",
+      "pl",
+      "--program",
+      "/home/ubuntu/stt/i2/program.qnp2",
+      "--blob",
+      "/home/ubuntu/stt/cpu/quartznet_int8.bin",
+      "--prior",
+      "/home/ubuntu/stt/cpu/running_prior.json",
+      "--threads",
+      "3",
+      "--port",
+      "8765",
+      "--log",
+      "soak.jsonl",
+      "--stages",
+      "soak.stages.csv",
+      "--ppm",
+      "caption.ppm",
+      "--final-backend",
+      "auto",
+      "--final-threads",
+      "2",
+      "--dump",
+      "dump"
+    ],
+    "finals": [
+      {
+        "phrase": 0,
+        "feature_count": 765,
+        "compute_ms": 1132.829,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 1,
+        "feature_count": 726,
+        "compute_ms": 1075.703,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 2,
+        "feature_count": 771,
+        "compute_ms": 1147.472,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 3,
+        "feature_count": 145,
+        "compute_ms": 36.132,
+        "backend": "pl-network"
+      }
+    ],
+    "log_sha256": "cd8a109a61543bd0041907923941e77d6f114f68a1a20d0e00d8e7c15c97dc8a"
+  },
+  "auto3": {
+    "latency_ms": {
+      "n": 194,
+      "p50": 204.723,
+      "p95": 331.06549999999993,
+      "max": 811.6
+    },
+    "merged": 0,
+    "zero_loss_pass": true,
+    "rss_after_150s": {
+      "first_kib": 77188,
+      "last_kib": 77456,
+      "min_kib": 77188,
+      "max_kib": 77456,
+      "delta_kib": 268,
+      "slope_kib_per_minute": 1234.6593111121824
+    },
+    "power": {
+      "samples": 273,
+      "mean_w": 4.102307692307693,
+      "max_w": 4.93,
+      "first_seconds": 0.0031876840002951212,
+      "last_seconds": 27.428195604000393
+    },
+    "command": [
+      "/home/ubuntu/stt/t2/final_routing/src/sw/app/sttcap",
+      "--source",
+      "pl-inject",
+      "soak.wav",
+      "--backend",
+      "pl",
+      "--program",
+      "/home/ubuntu/stt/i2/program.qnp2",
+      "--blob",
+      "/home/ubuntu/stt/cpu/quartznet_int8.bin",
+      "--prior",
+      "/home/ubuntu/stt/cpu/running_prior.json",
+      "--threads",
+      "3",
+      "--port",
+      "8765",
+      "--log",
+      "soak.jsonl",
+      "--stages",
+      "soak.stages.csv",
+      "--ppm",
+      "caption.ppm",
+      "--final-backend",
+      "auto",
+      "--final-threads",
+      "3",
+      "--dump",
+      "dump"
+    ],
+    "finals": [
+      {
+        "phrase": 0,
+        "feature_count": 765,
+        "compute_ms": 818.755,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 1,
+        "feature_count": 726,
+        "compute_ms": 829.422,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 2,
+        "feature_count": 771,
+        "compute_ms": 886.264,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 3,
+        "feature_count": 145,
+        "compute_ms": 36.204,
+        "backend": "pl-network"
+      }
+    ],
+    "log_sha256": "7d5993e41f2e1da337b62573b8e77e18e522323b03de6e19bfd2a13d8eb9abbc"
+  },
+  "cpu3": {
+    "latency_ms": {
+      "n": 194,
+      "p50": 204.4915,
+      "p95": 334.84839999999974,
+      "max": 789.713
+    },
+    "merged": 0,
+    "zero_loss_pass": true,
+    "rss_after_150s": {
+      "first_kib": 77172,
+      "last_kib": 77452,
+      "min_kib": 77172,
+      "max_kib": 77452,
+      "delta_kib": 280,
+      "slope_kib_per_minute": 1222.3911587659977
+    },
+    "power": {
+      "samples": 282,
+      "mean_w": 4.090957446808511,
+      "max_w": 4.98,
+      "first_seconds": 0.0038234089997786214,
+      "last_seconds": 28.162616577000335
+    },
+    "command": [
+      "/home/ubuntu/stt/t2/final_routing/src/sw/app/sttcap",
+      "--source",
+      "pl-inject",
+      "soak.wav",
+      "--backend",
+      "pl",
+      "--program",
+      "/home/ubuntu/stt/i2/program.qnp2",
+      "--blob",
+      "/home/ubuntu/stt/cpu/quartznet_int8.bin",
+      "--prior",
+      "/home/ubuntu/stt/cpu/running_prior.json",
+      "--threads",
+      "3",
+      "--port",
+      "8765",
+      "--log",
+      "soak.jsonl",
+      "--stages",
+      "soak.stages.csv",
+      "--ppm",
+      "caption.ppm",
+      "--final-backend",
+      "cpu",
+      "--final-threads",
+      "3",
+      "--dump",
+      "dump"
+    ],
+    "finals": [
+      {
+        "phrase": 0,
+        "feature_count": 765,
+        "compute_ms": 859.32,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 1,
+        "feature_count": 726,
+        "compute_ms": 803.939,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 2,
+        "feature_count": 771,
+        "compute_ms": 843.978,
+        "backend": "cpu"
+      },
+      {
+        "phrase": 3,
+        "feature_count": 145,
+        "compute_ms": 169.328,
+        "backend": "cpu"
+      }
+    ],
+    "log_sha256": "bba5a0f5a5317a249e6d227fa028ea84f3d3327c72d077f9587e28e88014a912"
+  },
+  "pl": {
+    "latency_ms": {
+      "n": 193,
+      "p50": 204.532,
+      "p95": 205.6632,
+      "max": 381.6
+    },
+    "merged": 1,
+    "zero_loss_pass": true,
+    "rss_after_150s": {
+      "first_kib": 81492,
+      "last_kib": 82276,
+      "min_kib": 81492,
+      "max_kib": 82312,
+      "delta_kib": 784,
+      "slope_kib_per_minute": 2906.4211506583747
+    },
+    "power": {
+      "samples": 262,
+      "mean_w": 4.01851145038168,
+      "max_w": 4.52,
+      "first_seconds": 0.0031176609991234727,
+      "last_seconds": 26.148568665999846
+    },
+    "command": [
+      "/home/ubuntu/stt/t2/final_routing/src/sw/app/sttcap",
+      "--source",
+      "pl-inject",
+      "soak.wav",
+      "--backend",
+      "pl",
+      "--program",
+      "/home/ubuntu/stt/i2/program.qnp2",
+      "--blob",
+      "/home/ubuntu/stt/cpu/quartznet_int8.bin",
+      "--prior",
+      "/home/ubuntu/stt/cpu/running_prior.json",
+      "--threads",
+      "3",
+      "--port",
+      "8765",
+      "--log",
+      "soak.jsonl",
+      "--stages",
+      "soak.stages.csv",
+      "--ppm",
+      "caption.ppm",
+      "--final-backend",
+      "pl",
+      "--final-threads",
+      "2",
+      "--dump",
+      "dump"
+    ],
+    "finals": [
+      {
+        "phrase": 0,
+        "feature_count": 765,
+        "compute_ms": 453.703,
+        "backend": "pl-layer"
+      },
+      {
+        "phrase": 1,
+        "feature_count": 726,
+        "compute_ms": 391.95,
+        "backend": "pl-layer"
+      },
+      {
+        "phrase": 2,
+        "feature_count": 771,
+        "compute_ms": 415.596,
+        "backend": "pl-layer"
+      },
+      {
+        "phrase": 3,
+        "feature_count": 145,
+        "compute_ms": 36.093,
+        "backend": "pl-network"
+      }
+    ],
+    "log_sha256": "1c334022ca421063a37653ddc303300da9f6cc141691c26c6325717563473b0f"
+  }
+}

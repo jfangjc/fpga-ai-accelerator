@@ -1,0 +1,33 @@
+{
+  "events": 66,
+  "stage_rows": 66,
+  "matching_fields": [
+    "phrase",
+    "state",
+    "event_only",
+    "phrase_begin",
+    "word_ends",
+    "capture",
+    "feature_count",
+    "window_start",
+    "emitted",
+    "preview",
+    "tentative",
+    "final",
+    "lost_frames",
+    "caption"
+  ],
+  "final_texts": [
+    "it was a pain to see them and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness"
+  ],
+  "identical_final_bytes": {
+    "final-0.i8": {
+      "bytes": 49152,
+      "sha256": "c38d5f0efc80a81d24eabf38c55f758311e977f255498e5bbb269b4933dc7077"
+    },
+    "final-0.logits": {
+      "bytes": 11136,
+      "sha256": "334405bfda1029bde8a27c0b963bf71fae4f3cf18e260a39df1de2e1c135914f"
+    }
+  }
+}

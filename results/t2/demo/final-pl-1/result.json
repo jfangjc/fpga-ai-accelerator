@@ -1,0 +1,1 @@
+{"exit": 0, "backend": "pl", "clips": ["1089-134691-0023", "1188-133604-0025", "121-127105-0003"], "wall_seconds": 28.57912173400109, "source": "pl-inject", "lock": "board.lock held by parent demo_board.sh", "stop": "natural replay EOF and thread joins"}

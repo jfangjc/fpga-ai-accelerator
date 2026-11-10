@@ -1,0 +1,55 @@
+{
+  "strict_t2_pass": true,
+  "rss_active_capture_after_150s": {
+    "samples": 1642,
+    "first_kib": 189516,
+    "last_kib": 189824,
+    "min_kib": 189516,
+    "max_kib": 189824,
+    "slope_kib_per_minute": 15.093599750264506,
+    "transitions": [
+      {
+        "seconds": 150.01137709999966,
+        "rss_kib": 189516
+      },
+      {
+        "seconds": 719.548068189999,
+        "rss_kib": 189824
+      }
+    ]
+  },
+  "rss_active_capture_after_600s": {
+    "min_kib": 189516,
+    "max_kib": 189824,
+    "slope_kib_per_minute": 8.18393322495663
+  },
+  "rss_last_active_plateau": {
+    "start_seconds": 719.548068189999,
+    "end_seconds": 1806.8620876530003,
+    "samples": 1077,
+    "min_kib": 189824,
+    "max_kib": 189824,
+    "slope_kib_per_minute": 0.0
+  },
+  "primary_rss_including_drain": {
+    "first_kib": 189516,
+    "last_kib": 57556,
+    "min_kib": 57556,
+    "max_kib": 189824,
+    "delta_kib": -131960,
+    "slope_kib_per_minute": -2.3646261174880183
+  },
+  "identical_playlist": true,
+  "original_speech_end_to_final_display_ms": {
+    "n": 196,
+    "p50": 1254.1014516436917,
+    "p95": 1345.728447014011,
+    "max": 1425.0120339538626
+  },
+  "new_speech_end_to_final_display_ms": {
+    "n": 196,
+    "p50": 1651.9157022089958,
+    "p95": 2238.930649970456,
+    "max": 3546.567467640898
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "events": 63,
+  "sample_rate": 15999.625367592,
+  "anchor": "fifo-measured-rate",
+  "all_captions_equal": true
+}

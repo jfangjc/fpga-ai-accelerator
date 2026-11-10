@@ -1,0 +1,1 @@
+{"control": "0x2", "status_before": "0x1", "sticky_before": false, "frames": 200, "mic_overruns": 0, "mic1": {"peak": 1, "dc": -1, "mean_square": 7339976}, "mic2": {"peak": 131072, "dc": -10, "mean_square": 6935610800}, "clear_button_written": false, "status_after": "0x1", "sticky_after": false}

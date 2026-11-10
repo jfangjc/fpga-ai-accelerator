@@ -1,0 +1,22 @@
+[
+  "/home/ubuntu/stt/t2/src/sw/app/sttcap-cpu",
+  "--source",
+  "cpu-wav",
+  "/home/ubuntu/stt/t2/demo/cpu-final-2/demo.wav",
+  "--backend",
+  "cpu",
+  "--blob",
+  "/home/ubuntu/stt/cpu/quartznet_int8.bin",
+  "--prior",
+  "/home/ubuntu/stt/cpu/running_prior.json",
+  "--threads",
+  "3",
+  "--port",
+  "8765",
+  "--log",
+  "session.jsonl",
+  "--stages",
+  "stages.csv",
+  "--ppm",
+  "caption.ppm"
+]

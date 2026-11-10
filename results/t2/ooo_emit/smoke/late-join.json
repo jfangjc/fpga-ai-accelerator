@@ -1,0 +1,58 @@
+{
+  "latency_ms": 7.289684001079877,
+  "event": {
+    "snapshot": true,
+    "audio_time": 8.378319383,
+    "oldest_sample": 131360,
+    "sample_rate": 16000.0,
+    "clock_fitted": false,
+    "clock_calibrated": false,
+    "inference_start": 8.51122,
+    "inference_finished": 8.530444,
+    "ordered_wait_ms": 0.499,
+    "queue_ms": 0.125,
+    "phrase_begin": 8.09,
+    "word_ends": [],
+    "inference_time": 8.530444,
+    "phrase": 1,
+    "state": "Speaking",
+    "capture": 8.33,
+    "feature_count": 24,
+    "window_start": 0,
+    "emitted": 0,
+    "preview": "",
+    "tentative": "",
+    "final": "",
+    "compute_ms": 18.749,
+    "backend": "pl-network",
+    "commands": 1,
+    "inference_update_ms": 152.125,
+    "queue_depth": 0,
+    "merged": 0,
+    "lost_frames": 0,
+    "bulk": false,
+    "time": 8.535031,
+    "render_ms": 4.587,
+    "update_ms": 156.712,
+    "latency_valid": true,
+    "capture_anchor": "fifo-first-fft",
+    "display": "fb",
+    "caption": "it was a pain to see them and a sword like pain to ee the signs of adolescence that made repellent their pitiable nakedness",
+    "committed_prefix": "",
+    "prefix_before_phrase": 0,
+    "segments": [
+      {
+        "phrase": 0,
+        "state": "Finalising",
+        "text": "it was a pain to see them and a sword like pain to ee the signs of adolescence that made repellent their pitiable nakedness",
+        "tentative": ""
+      },
+      {
+        "phrase": 1,
+        "state": "Speaking",
+        "text": "",
+        "tentative": ""
+      }
+    ]
+  }
+}

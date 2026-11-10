@@ -1,0 +1,35 @@
+2026-11-04T18:24:50+00:00
+Linux kria 6.8.0-1036-xilinx #37-Ubuntu SMP PREEMPT_DYNAMIC Tue Aug 25 06:57:06 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux
+TARGET SOURCE         FSTYPE OPTIONS
+/      /dev/mmcblk1p2 ext4   rw,relatime
+/sys/class/hwmon/hwmon0: ams
+/sys/class/hwmon/hwmon1: pwmfan
+/sys/class/hwmon/hwmon2: ina260_u14
+57a44c43c499db4706783520b89b2b48e3bbbd35db59195d9e5f2184fdf47605  /home/ubuntu/stt/t2/src/sw/app/sttcap
+ee07f475801fddca55fd93c2a1fe61f18557626ffc11cee6991f41d78ae9f583  /home/ubuntu/stt/i2/program.qnp2
+7126b03deb7d3715acd66de69f1c6605461f32c961b53c2fc905137c7142a6ec  /home/ubuntu/stt/cpu/quartznet_int8.bin
+746b4d8bd6b9e2d787b2705a757f56f6284d4ad999e8d8b85e13dc6d4a10726b  /home/ubuntu/stt/full150/src/hw/full150_probe
+da5b0fb45d595e6534c1dd00122a0d610a0ae697be8e73f00da7a7f9ece6ea37  /home/ubuntu/stt/t2/src/sw/app/main.c
+713f9d7de74e2309f1d419023bfae99ed16e792c4c39b63dafca0bfd2ceeb7a2  /home/ubuntu/stt/t2/src/sw/app/stream.c
+ff7a215d22adc369378652d3c02b14b803b7ff6ba16f8dd5d073d910e976f056  /home/ubuntu/stt/t2/src/sw/app/stream.h
+make: Entering directory '/home/ubuntu/stt/t2/src/sw/fedrv'
+rm -f *.o *.a fetool tools/test_tail
+make: Leaving directory '/home/ubuntu/stt/t2/src/sw/fedrv'
+make: Entering directory '/home/ubuntu/stt/t2/src/sw/fedrv'
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -c fetool.c -o fetool.o
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -c fedrv.c -o fedrv.o
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -c stream.c -o stream.o
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -c features.c -o features.o
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -c ../plio/plio.c -o plio.o
+ar rcs libfedrv.a fedrv.o stream.o features.o plio.o
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off fetool.o libfedrv.a -pthread -lm -o fetool
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -ffunction-sections tools/test_ui.c -Wl,--gc-sections -o /tmp/stt-test-ui
+/tmp/stt-test-ui
+cc -O2 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -ffunction-sections tools/test_tail.c -Wl,--gc-sections -o tools/test_tail
+./tools/test_tail
+make: Leaving directory '/home/ubuntu/stt/t2/src/sw/fedrv'
+PASS sticky flag set/consume/clear register simulation
+led on (status 0x0)
+led off (status 0x0)
+button timeout exit=1 (1 expected without physical press)
+PASS extras; stt-full150 remains loaded

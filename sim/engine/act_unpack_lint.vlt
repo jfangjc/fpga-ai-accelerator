@@ -1,0 +1,6 @@
+`verilator_config
+// Unit test uses only the activation subset of the shared engine package.
+// Other constants are consumed by the engine top, outside this unit test.
+lint_off -rule UNUSEDPARAM -file "*stt_engine_pkg.sv" -match "*Parameter is not used*"
+// Activation unpacking uses only Ci/T/valid/tile geometry from layer_cfg_t.
+lint_off -rule UNUSEDSIGNAL -file "*stt_act_unpack.sv" -match "*Bits of signal are not used: 'cfg'*"

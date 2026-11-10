@@ -1,0 +1,5 @@
+mic source=2 right=0 frames=199 frame_rate_hz=99.9989 (I2S WS clock error -0.001%) err=0
+stats frames=200 irqs=200 sequence_errors=0 ring_overruns=0 consumer_drops=0 tx_underruns=0 mic_overruns=0 status=0x1
+mic1 peak=0 dc=0 mean_square=0
+mic2 peak=131072 dc=-8 mean_square=6572362084
+MIC CLOCK PASS (within 1%)

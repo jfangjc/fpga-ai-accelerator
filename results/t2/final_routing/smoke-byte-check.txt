@@ -1,0 +1,6 @@
+backend pl: engine 0x00010002, RUN_NETWORK available, mode auto
+PASS phrase=0 input_frames=768 logit_bytes=11136 saved=cpu reference=pl-layer
+PASS phrase=1 input_frames=736 logit_bytes=10672 saved=cpu reference=pl-layer
+PASS phrase=2 input_frames=784 logit_bytes=11368 saved=cpu reference=pl-layer
+PASS phrase=3 input_frames=160 logit_bytes=2320 saved=pl-network reference=pl-network
+PASS 4 finals, 35496 byte-identical logit bytes

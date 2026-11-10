@@ -1,0 +1,26 @@
+{
+  "cpu": {
+    "power_mean_w": 3.9722393435784853,
+    "power_max_w": 4.52,
+    "ps_process_cpu_mean_pct": 273.20356948228886,
+    "ps_process_cpu_max_pct": 316.0,
+    "service_ms": {
+      "p50": 285.59299999999996,
+      "p95": 324.13094999999953,
+      "max": 851.3189999999997
+    },
+    "lost_frames": 0
+  },
+  "pl": {
+    "power_mean_w": 3.533476018294914,
+    "power_max_w": 4.3,
+    "ps_process_cpu_mean_pct": 10.666196319018404,
+    "ps_process_cpu_max_pct": 38.0,
+    "service_ms": {
+      "p50": 104.85999999999989,
+      "p95": 105.26310000000014,
+      "max": 107.5649999999998
+    },
+    "lost_frames": 0
+  }
+}

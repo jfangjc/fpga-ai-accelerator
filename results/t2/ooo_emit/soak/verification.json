@@ -1,0 +1,25 @@
+{
+  "caption_events_verified": 15262,
+  "previews_before_earlier_final": 1389,
+  "finals_identical": 196,
+  "matching_final_fields": [
+    "phrase",
+    "phrase_begin",
+    "capture",
+    "feature_count",
+    "final",
+    "word_ends"
+  ],
+  "canonical_original_sha256": "df3fd0a7e987ae7c354363a776d7e8174f1ec5a2dc13b51986120af0db576942",
+  "canonical_new_sha256": "df3fd0a7e987ae7c354363a776d7e8174f1ec5a2dc13b51986120af0db576942",
+  "intentional_changes": [
+    "backend",
+    "commands",
+    "caption (contains later live phrases)"
+  ],
+  "events": 15262,
+  "stage_rows": 15262,
+  "ordered_caption_tcp_payloads": true,
+  "ordered_phrase_updates": true,
+  "final_dumps": {}
+}

@@ -1,0 +1,1 @@
+/home/ubuntu/stt/mic/src/sw/app/sttcap --source pl-mic --mic 1 --backend pl --program /home/ubuntu/stt/i2/program.qnp2 --blob /home/ubuntu/stt/cpu/quartznet_int8.bin --prior /home/ubuntu/stt/cpu/running_prior.json --threads 3 --log session.jsonl --vad-log vad.csv --stages stages.csv --no-ppm 

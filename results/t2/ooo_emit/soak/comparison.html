@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{margin:0;color:var(--foreground);font-family:var(--font-sans)}.plots{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}section{height:190px}h3{font-size:14px;font-weight:600;margin:0 0 14px}.row{display:grid;grid-template-columns:90px 1fr 64px;gap:8px;align-items:center;height:38px;font-size:12px}.track{height:18px;position:relative;background:var(--secondary);border-radius:3px}.bar{height:18px;border-radius:3px;background:var(--chart-1)}.ordered{background:var(--chart-2)}.new{background:var(--chart-3)}.target{position:absolute;left:35.714%;top:-8px;height:34px;border-left:1px dashed var(--muted-foreground)}.value{font-variant-numeric:tabular-nums;text-align:right}.note{font-size:11px;color:var(--muted-foreground);margin:10px 0 0}p{font-size:12px;color:var(--muted-foreground);margin:8px 0 0}
+</style></head><body><div class="plots">
+<section aria-label="Preview p95 comparison"><h3>Preview p95 · ms</h3>
+<div class="row"><span>PL serial</span><div class="track"><div class="bar" style="width:29.914%"></div><i class="target"></i></div><span class="value">209.396</span></div>
+<div class="row"><span>Ordered auto</span><div class="track"><div class="bar ordered" style="width:94.044%"></div><i class="target"></i></div><span class="value">658.309</span></div>
+<div class="row"><span>New auto</span><div class="track"><div class="bar new" style="width:29.824%"></div><i class="target"></i></div><span class="value">208.768</span></div>
+<p class="note">Dashed line: 250 ms stretch target. New auto: zero merges.</p></section>
+<section aria-label="Final latency median comparison"><h3>Final latency p50 · ms</h3>
+<div class="row"><span>PL serial</span><div class="track"><div class="bar" style="width:62.705%"></div></div><span class="value">1254.101</span></div>
+<div class="row"><span>Ordered auto</span><div class="track"><div class="bar ordered" style="width:82.596%"></div></div><span class="value">1651.916</span></div>
+<div class="row"><span>New auto</span><div class="track"><div class="bar new" style="width:82.892%"></div></div><span class="value">1657.830</span></div>
+<p class="note">Long finals remain slower on CPU: 173 of 196 phrases.</p></section>
+</div><p>Matched 30-minute playlist. New run: zero sample loss; strict T2 fails the unchanged RSS endpoint (+308 KiB).</p></body></html>

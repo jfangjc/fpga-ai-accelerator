@@ -1,0 +1,89 @@
+#!/bin/bash
+# STT caption appliance control (installed as /opt/stt-caption/bin/stt-caption).
+#   stt-caption prepare   load stt-full150, DMA buffers, release the console
+#   stt-caption run       one captioning session from the live microphone
+#   stt-caption cleanup   give the framebuffer back to the text console
+#   stt-caption status    show firmware, buffers and the latest session
+set -euo pipefail
+prefix=/opt/stt-caption
+conf=/etc/default/stt-caption
+# Defaults; /etc/default/stt-caption overrides them.
+MIC=1 MIC_GAIN_DB=20 VAD_SNR_DB=8 PORT=8765 BACKEND=pl FINAL_BACKEND=auto THREADS=3
+KEEP_SESSIONS=20 SESSIONS=/var/lib/stt-caption/sessions EXTRA_ARGS=
+# Share the development board lock when present, so test tools and the
+# appliance never drive the PL at the same time.
+LOCK=/run/lock/stt-board.lock; [ -d /home/ubuntu/stt ] && LOCK=/home/ubuntu/stt/board.lock
+test -r "$conf" && . "$conf"
+firmware=stt-full150
+
+active_app() { xmutil listapps | awk '/0->/ {print $NF}'; }
+
+fbcon() {  # 0 = release framebuffer, 1 = give it back to the console
+  for v in /sys/class/vtconsole/vtcon*; do
+    grep -q 'frame buffer' "$v/name" 2>/dev/null && echo "$1" > "$v/bind" || true
+  done
+}
+
+prepare() {
+  local app; app=$(active_app || true)
+  if [ "$app" != "$firmware" ]; then
+    # Never displace another project's firmware; the boot default is fine.
+    case "$app" in
+      ''|k26-starter-kits|stt-*) ;;
+      *) echo "stt-caption: '$app' firmware is loaded; refusing to replace it" >&2; exit 75 ;;
+    esac
+    [ -n "$app" ] && xmutil unloadapp
+    xmutil loadapp "$firmware"
+    [ "$(active_app)" = "$firmware" ] || { echo "stt-caption: failed to load $firmware" >&2; exit 1; }
+  fi
+  if [ ! -d /sys/class/u-dma-buf/udmabuf0 ]; then
+    insmod "$prefix/lib/u-dma-buf.ko" udmabuf0=16777216 udmabuf1=16777216 udmabuf2=33554432 udmabuf3=1048576
+  fi
+  # Cacheable mappings with explicit synchronisation (see tools/setup-buffers.sh).
+  for b in 0 1 2 3; do
+    d=/sys/class/u-dma-buf/udmabuf$b
+    [ -d "$d" ] || { echo "stt-caption: missing udmabuf$b; reboot to reload u-dma-buf" >&2; exit 1; }
+    echo 1 > "$d/sync_mode"; echo 0 > "$d/sync_offset"; cat "$d/size" > "$d/sync_size"; echo 0 > "$d/sync_direction"
+  done
+  fbcon 0
+}
+
+run() {
+  local dir; dir="$SESSIONS/$(date +%Y%m%d-%H%M%S)"
+  mkdir -p "$dir"
+  # Retain the newest KEEP_SESSIONS session directories on the SD card.
+  find "$SESSIONS" -mindepth 1 -maxdepth 1 -type d -name '20??????-??????' | sort |
+    head -n -"$KEEP_SESSIONS" | xargs -r rm -rf --
+  ln -sfn "$dir" "$SESSIONS/latest"
+  cd "$dir"
+  local share=$prefix/share
+  # shellcheck disable=SC2086
+  local cmd=("$prefix/bin/sttcap" --source pl-mic --mic "$MIC" --mic-gain "$MIC_GAIN_DB" --vad-snr "$VAD_SNR_DB"
+             --backend "$BACKEND" --final-backend "$FINAL_BACKEND" --threads "$THREADS"
+             --blob "$share/quartznet_int8.bin" --prior "$share/running_prior.json"
+             --port "$PORT" --log session.jsonl --ppm caption.ppm --ppm-every 5 $EXTRA_ARGS)
+  [ "$BACKEND" = pl ] && cmd+=(--program "$share/program.qnp2")
+  printf '%q ' "${cmd[@]}" > command.txt; echo >> command.txt
+  # The lock serialises the appliance with development tools on the board.
+  # tee ignores SIGINT so sttcap's shutdown statistics reach stderr.txt.
+  exec flock "$LOCK" "${cmd[@]}" 2> >(trap '' INT; exec tee stderr.txt >&2)
+}
+
+status() {
+  echo "firmware: $(active_app || echo none)"
+  ls -d /sys/class/u-dma-buf/udmabuf* 2>/dev/null | xargs -r -n1 basename | tr '\n' ' '; echo
+  systemctl --no-pager --lines=0 status stt-caption 2>/dev/null | head -3 || true
+  local l=$SESSIONS/latest
+  if [ -e "$l/session.jsonl" ]; then
+    echo "latest session: $(readlink -f "$l")"
+    tail -n 1 "$l/session.jsonl" | python3 -c 'import json,sys; e=json.loads(sys.stdin.read()); print("caption:", e.get("caption",""))' || true
+  fi
+}
+
+case "${1:-}" in
+  prepare) prepare ;;
+  run) run ;;
+  cleanup) fbcon 1 ;;
+  status) status ;;
+  *) echo "usage: stt-caption prepare|run|cleanup|status" >&2; exit 2 ;;
+esac

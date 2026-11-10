@@ -1,0 +1,356 @@
+{
+ "clips": 40,
+ "words": 848,
+ "final_errors": 95,
+ "final_wer": 11.2,
+ "preview_errors": 191,
+ "preview_wer": 22.52,
+ "phrases": 64,
+ "empty_phrases": 0,
+ "final_latency_ms": {
+  "p50": 1415.0,
+  "p95": 1806.5,
+  "max": 1957.9,
+  "n": 40
+ },
+ "final_latency_note": "PC speaker start to TCP receipt on this PC, from clip audio end",
+ "clips_without_final": [],
+ "merges": 0,
+ "capture_stats": {
+  "frames": "39592",
+  "irqs": "39592",
+  "sequence_errors": "0",
+  "ring_overruns": "0",
+  "tx_underruns": "0",
+  "mic_overruns": "0",
+  "consumer_dropped": "0",
+  "status": "0",
+  "error": "0"
+ },
+ "capture_ok": true,
+ "board_events": 2596,
+ "tcp_events": 2595,
+ "tcp_complete": true,
+ "per_clip": [
+  {
+   "id": "1089-134691-0023",
+   "errors": 1,
+   "words": 24,
+   "phrases": 1,
+   "final_latency_ms": 1181.2,
+   "hyp": "it was a pain to see him and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness"
+  },
+  {
+   "id": "1188-133604-0025",
+   "errors": 4,
+   "words": 23,
+   "phrases": 1,
+   "final_latency_ms": 1472.2,
+   "hyp": "you know i've just been telling you how the school materialism and clay involved itself at last in cloud and fire"
+  },
+  {
+   "id": "121-127105-0003",
+   "errors": 2,
+   "words": 18,
+   "phrases": 1,
+   "final_latency_ms": 1629.3,
+   "hyp": "there was a unanimous groan at this had much reproach after which an his preoccupied way he explained"
+  },
+  {
+   "id": "1221-135766-0004",
+   "errors": 0,
+   "words": 18,
+   "phrases": 1,
+   "final_latency_ms": 1504.4,
+   "hyp": "this outward mutability indicated and did not more than fairly express the various properties of her inner life"
+  },
+  {
+   "id": "1284-1180-0002",
+   "errors": 1,
+   "words": 21,
+   "phrases": 1,
+   "final_latency_ms": 1490.4,
+   "hyp": "instead of shoes the old man wore boots with turnover tops and hits blue coat had wide cuffs of gold braid"
+  },
+  {
+   "id": "1320-122617-0009",
+   "errors": 4,
+   "words": 26,
+   "phrases": 1,
+   "final_latency_ms": 1395.1,
+   "hyp": "i greatly woarned that one so well disposed should die in his ignorance and i have sought of gidly him can you lead me to him"
+  },
+  {
+   "id": "1580-141084-0049",
+   "errors": 0,
+   "words": 22,
+   "phrases": 3,
+   "final_latency_ms": 849.9,
+   "hyp": "it was simple enough sir if you only had known but with all your cleverness it was impossible that you could know"
+  },
+  {
+   "id": "1995-1836-0006",
+   "errors": 1,
+   "words": 19,
+   "phrases": 1,
+   "final_latency_ms": 1919.1,
+   "hyp": "she was therefore most agreeably surprised to hear mister creswell express himself so cordially as approving of negro education"
+  },
+  {
+   "id": "2094-142345-0034",
+   "errors": 6,
+   "words": 27,
+   "phrases": 2,
+   "final_latency_ms": 1202.5,
+   "hyp": "and there's linen in the house as i cand well spare you br i got lots of sheeting and table clothing and tawlingss isn't made up"
+  },
+  {
+   "id": "2300-131720-0037",
+   "errors": 2,
+   "words": 18,
+   "phrases": 1,
+   "final_latency_ms": 1659.1,
+   "hyp": "he weighed and rewayed the meter place and pursued every line of investigation imaginable but all in vain"
+  },
+  {
+   "id": "237-134493-0001",
+   "errors": 2,
+   "words": 19,
+   "phrases": 1,
+   "final_latency_ms": 1340.7,
+   "hyp": "his wife now lies beside him and the white shaft that marks their graves gleams across the wheatfields"
+  },
+  {
+   "id": "260-123286-0030",
+   "errors": 4,
+   "words": 15,
+   "phrases": 1,
+   "final_latency_ms": 1665.4,
+   "hyp": "suddenly the icteosaurus and the plesiossaurus disappear below leaving a warpool edding in the water"
+  },
+  {
+   "id": "2830-3980-0047",
+   "errors": 2,
+   "words": 23,
+   "phrases": 1,
+   "final_latency_ms": 1384.0,
+   "hyp": "to do so is to lose god altogether because god becomes intolerable when we seek to measurein to comprehend his infinite majesty"
+  },
+  {
+   "id": "2961-960-0007",
+   "errors": 1,
+   "words": 19,
+   "phrases": 3,
+   "final_latency_ms": 902.4,
+   "hyp": "but they have nothing to do ih the interpretation of plato and in spirit they are opposed to him"
+  },
+  {
+   "id": "3570-5696-0010",
+   "errors": 2,
+   "words": 27,
+   "phrases": 1,
+   "final_latency_ms": 1646.3,
+   "hyp": "an article may be useful and wasteful both and its futility to the consumer may be made up of use and waste in the most baring proportions"
+  },
+  {
+   "id": "3575-170457-0003",
+   "errors": 5,
+   "words": 26,
+   "phrases": 2,
+   "final_latency_ms": 1036.7,
+   "hyp": "truely it must be because you're in danger of loving each other too well of losing sight of the creator an idelatry of the creature"
+  },
+  {
+   "id": "3729-6852-0011",
+   "errors": 3,
+   "words": 21,
+   "phrases": 3,
+   "final_latency_ms": 743.9,
+   "hyp": "i had a name i believe in y young day but i have forgotten in since i have been in service"
+  },
+  {
+   "id": "4077-13754-0009",
+   "errors": 4,
+   "words": 21,
+   "phrases": 1,
+   "final_latency_ms": 1787.8,
+   "hyp": "at the incemption of fhorag marriage among the latter day sites there was no law national or state against its practice"
+  },
+  {
+   "id": "4446-2275-0002",
+   "errors": 2,
+   "words": 23,
+   "phrases": 1,
+   "final_latency_ms": 1434.9,
+   "hyp": "alexander paced up and down the hallway buttoning and unbuttoning his overcoat until she returned and took him up to hild his living room"
+  },
+  {
+   "id": "4507-16021-0035",
+   "errors": 2,
+   "words": 14,
+   "phrases": 4,
+   "final_latency_ms": 445.1,
+   "hyp": "true history bein a mixture of all things a true historian mingles in everything"
+  },
+  {
+   "id": "4970-29093-0019",
+   "errors": 3,
+   "words": 23,
+   "phrases": 1,
+   "final_latency_ms": 1473.2,
+   "hyp": "the night was spent in packing up and writing letters or philip would not take such an important step don anforming his friends"
+  },
+  {
+   "id": "4992-41806-0011",
+   "errors": 8,
+   "words": 18,
+   "phrases": 1,
+   "final_latency_ms": 572.0,
+   "hyp": "mother carrie for coffee nassy chocolate and the other self served the sandwiches and cake dughnuts and to"
+  },
+  {
+   "id": "5105-28241-0006",
+   "errors": 1,
+   "words": 24,
+   "phrases": 1,
+   "final_latency_ms": 1526.1,
+   "hyp": "the log and the compass therefore were able to be called upon to do the work of the sexton which had become utterly useless"
+  },
+  {
+   "id": "5142-33396-0031",
+   "errors": 4,
+   "words": 29,
+   "phrases": 1,
+   "final_latency_ms": 1800.6,
+   "hyp": "they set up a crane over the fire and hung the pot upon him and we sat and wasched the foil while we joked at last the supper began"
+  },
+  {
+   "id": "5639-40744-0014",
+   "errors": 4,
+   "words": 23,
+   "phrases": 3,
+   "final_latency_ms": 193.9,
+   "hyp": "among other things on which he cast her eyes was a slark crucifix of solid siler standing on a cabinet near the i"
+  },
+  {
+   "id": "5683-32879-0010",
+   "errors": 0,
+   "words": 21,
+   "phrases": 1,
+   "final_latency_ms": 1548.5,
+   "hyp": "poor rachel her nature recoiled from deceit and she told at all events as much of the truth as she dared"
+  },
+  {
+   "id": "61-70968-0054",
+   "errors": 2,
+   "words": 30,
+   "phrases": 1,
+   "final_latency_ms": 1643.4,
+   "hyp": "mistress fitzuoh had been carried off by the sheriff's daughter and her maids as soon as they had entered the house so that robin alone had the care of moncichet"
+  },
+  {
+   "id": "672-122797-0061",
+   "errors": 3,
+   "words": 15,
+   "phrases": 1,
+   "final_latency_ms": 1391.1,
+   "hyp": "don't you know one about bacon and callo candles can't yhouot tell any larger stories"
+  },
+  {
+   "id": "6829-68771-0025",
+   "errors": 2,
+   "words": 23,
+   "phrases": 2,
+   "final_latency_ms": 1202.0,
+   "hyp": "she sat out in a rucking chair and clasping her hands in her lap rocked slowly back and forth i'm sorry said beth"
+  },
+  {
+   "id": "6930-81414-0014",
+   "errors": 1,
+   "words": 20,
+   "phrases": 1,
+   "final_latency_ms": 1478.9,
+   "hyp": "in the light of the moon i saw a knife red with blood and my hand too was also discolored"
+  },
+  {
+   "id": "7021-79740-0013",
+   "errors": 6,
+   "words": 22,
+   "phrases": 3,
+   "final_latency_ms": 968.0,
+   "hyp": "put these play things all way quick and carefully and we will not let them know anything about you leaving them out"
+  },
+  {
+   "id": "7127-75946-0015",
+   "errors": 2,
+   "words": 18,
+   "phrases": 3,
+   "final_latency_ms": 403.1,
+   "hyp": "suddenly for the purpose of restoring peace and order spring accompanied by his whull court bad his appearance"
+  },
+  {
+   "id": "7176-88083-0003",
+   "errors": 1,
+   "words": 21,
+   "phrases": 1,
+   "final_latency_ms": 1957.9,
+   "hyp": "but here he was at a terrible disadvantage as compared with the owls hawks and eagles he had no rending clall"
+  },
+  {
+   "id": "7729-102255-0036",
+   "errors": 0,
+   "words": 21,
+   "phrases": 1,
+   "final_latency_ms": 1585.1,
+   "hyp": "he planted a company before the hotel and demanded a surrender of the arms belonging to the free state military companies"
+  },
+  {
+   "id": "8224-274384-0000",
+   "errors": 1,
+   "words": 17,
+   "phrases": 3,
+   "final_latency_ms": 803.7,
+   "hyp": "he passed through henley saint albums and came so near to london as harrow on the hill"
+  },
+  {
+   "id": "8230-279154-0005",
+   "errors": 2,
+   "words": 23,
+   "phrases": 2,
+   "final_latency_ms": 131.6,
+   "hyp": "all that i am doing is to use its logical tenability as a help in the analysis of what occurs when we red tha"
+  },
+  {
+   "id": "8455-210777-0031",
+   "errors": 1,
+   "words": 19,
+   "phrases": 2,
+   "final_latency_ms": 806.9,
+   "hyp": "you have received us with all that courtesy and hospitality for which your character in england staing so high"
+  },
+  {
+   "id": "8463-294825-0005",
+   "errors": 3,
+   "words": 14,
+   "phrases": 1,
+   "final_latency_ms": 1793.7,
+   "hyp": "other subtleties the kir inside each episode the textures sparkling with win information and insight"
+  },
+  {
+   "id": "8555-284449-0019",
+   "errors": 2,
+   "words": 23,
+   "phrases": 2,
+   "final_latency_ms": 1734.8,
+   "hyp": "that evening trock gave a grand fall in the palace to which the most important of the pinkies and the blueskins were invited"
+  },
+  {
+   "id": "908-31957-0009",
+   "errors": 1,
+   "words": 20,
+   "phrases": 2,
+   "final_latency_ms": 744.2,
+   "hyp": "and though i have grown serene and strong since then i think that god is willed a still renewable fear"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+clip /home/ubuntu/stt/i1/1284-1180-0002.pcm samples=122880 frames=767 expected=767 paced=1 irq_frames=1 chunk=4096 gap_ms=0 wall_s=7.686840 rc=0 err=0
+stats frames=767 irqs=767 sequence_errors=0 ring_overruns=0 consumer_drops=0 tx_underruns=0 mic_overruns=0 status=0x1
+sequence_mismatches=0 pl_hz=99999999
+irq_interval_us n=766 mean=10000.060 std=34.847 min=9839.079 p50=10000 p99=10100 p999=10150 max=10151.321
+latency_avail_us n=767 mean=2398.266 std=58.594 min=2273.319 p50=2400 p99=2610 p999=2650 max=2654.934
+latency_consumer_us n=767 mean=2597.959 std=66.260 min=2439.387 p50=2600 p99=2830 p999=2870 max=2867.551
+ps_features_ms=9.569 (utterance+running+quantize, 767 frames)
+CLIP PASS (counts/sequence; bit-exactness is checked on the host)

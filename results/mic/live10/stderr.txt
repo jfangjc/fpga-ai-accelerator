@@ -1,0 +1,9 @@
+backend pl: engine 0x00010002, RUN_NETWORK available, mode auto
+final routing: auto, CPU threads=3, out-of-order result slots=32
+merge_event time=24.391252 phrase=3 capture=23.580000 blocked_final=0 blocked_frames=160
+merge_event time=24.392263 phrase=3 capture=23.700000 blocked_final=0 blocked_frames=160
+merge_event time=24.393034 phrase=3 capture=23.820000 blocked_final=0 blocked_frames=160
+merge_event time=24.393857 phrase=3 capture=23.940000 blocked_final=0 blocked_frames=160
+merge_event time=24.394687 phrase=3 capture=24.060000 blocked_final=0 blocked_frames=160
+merge_event time=24.396071 phrase=3 capture=24.180000 blocked_final=0 blocked_frames=160
+capture_stats frames=11263 irqs=11263 sequence_errors=0 ring_overruns=0 tx_underruns=0 mic_overruns=0 consumer_dropped=0 status=0x1 error=0

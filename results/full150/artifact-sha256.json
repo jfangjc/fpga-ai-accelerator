@@ -1,0 +1,14 @@
+[
+    {
+        "Hash":  "4CD65023C6C2933FD7704FB373B7428450C8EC37DFD90B690E12A66245ADC1D2",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150\\stt-full150.bit.bin"
+    },
+    {
+        "Hash":  "EAE42493BB781E4C9B8A65D8CA6556F6D36C16EC35A74C7565C8D291A00D3081",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150\\stt-full150.dtbo"
+    },
+    {
+        "Hash":  "4B7EB77BE43FEA924276958C69FD918D6B1CABF7F225D6E703C9DD17C19AD8C0",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150\\shell.json"
+    }
+]

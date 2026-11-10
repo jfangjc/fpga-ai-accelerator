@@ -1,0 +1,2 @@
+layer_index,layer,kind,cycles,starvation,terms,sim_submit_irq_ns
+0,RUN_NETWORK,network,4197894,0,2576464,48334296571

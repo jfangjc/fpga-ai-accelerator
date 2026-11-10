@@ -1,0 +1,137 @@
+{
+  "method": "(inference_finished-inference_start)*1000-compute_ms; includes synchronous final dump, result copy and input-slot release, not a direct I/O timer",
+  "largest_noncompute_final_overheads": [
+    {
+      "phrase": 187,
+      "capture": 1731.93,
+      "backend": "cpu",
+      "compute_ms": 1690.362,
+      "inference_start": 1732.296609,
+      "inference_finished": 1737.729247,
+      "time": 1737.73992,
+      "ordered_wait_ms": 0.238,
+      "submit_to_ready_noncompute_ms": 3742.275999999997
+    },
+    {
+      "phrase": 156,
+      "capture": 1440.57,
+      "backend": "cpu",
+      "compute_ms": 755.751,
+      "inference_start": 1440.848064,
+      "inference_finished": 1444.922768,
+      "time": 1444.935432,
+      "ordered_wait_ms": 0.336,
+      "submit_to_ready_noncompute_ms": 3318.952999999883
+    },
+    {
+      "phrase": 163,
+      "capture": 1508.23,
+      "backend": "pl-network",
+      "compute_ms": 136.425,
+      "inference_start": 1508.494571,
+      "inference_finished": 1510.450989,
+      "time": 1510.465801,
+      "ordered_wait_ms": 0.127,
+      "submit_to_ready_noncompute_ms": 1819.9929999999852
+    },
+    {
+      "phrase": 174,
+      "capture": 1609.72,
+      "backend": "cpu",
+      "compute_ms": 755.665,
+      "inference_start": 1610.001435,
+      "inference_finished": 1612.435612,
+      "time": 1612.45578,
+      "ordered_wait_ms": 1.531,
+      "submit_to_ready_noncompute_ms": 1678.5120000000907
+    },
+    {
+      "phrase": 36,
+      "capture": 337.21,
+      "backend": "cpu",
+      "compute_ms": 812.915,
+      "inference_start": 337.471049,
+      "inference_finished": 338.597023,
+      "time": 338.606258,
+      "ordered_wait_ms": 0.713,
+      "submit_to_ready_noncompute_ms": 313.0589999999852
+    },
+    {
+      "phrase": 85,
+      "capture": 789.22,
+      "backend": "cpu",
+      "compute_ms": 809.996,
+      "inference_start": 789.492923,
+      "inference_finished": 790.504207,
+      "time": 790.512758,
+      "ordered_wait_ms": 0.131,
+      "submit_to_ready_noncompute_ms": 201.28799999993237
+    },
+    {
+      "phrase": 143,
+      "capture": 1318.07,
+      "backend": "cpu",
+      "compute_ms": 848.686,
+      "inference_start": 1318.351778,
+      "inference_finished": 1319.20374,
+      "time": 1319.214591,
+      "ordered_wait_ms": 0.672,
+      "submit_to_ready_noncompute_ms": 3.275999999957662
+    },
+    {
+      "phrase": 149,
+      "capture": 1371.99,
+      "backend": "pl-network",
+      "compute_ms": 29.565,
+      "inference_start": 1372.217106,
+      "inference_finished": 1372.249799,
+      "time": 1373.024851,
+      "ordered_wait_ms": 728.819,
+      "submit_to_ready_noncompute_ms": 3.127999999881066
+    },
+    {
+      "phrase": 141,
+      "capture": 1302.82,
+      "backend": "cpu",
+      "compute_ms": 793.577,
+      "inference_start": 1303.098594,
+      "inference_finished": 1303.895074,
+      "time": 1303.903741,
+      "ordered_wait_ms": 0.124,
+      "submit_to_ready_noncompute_ms": 2.9029999999740994
+    },
+    {
+      "phrase": 117,
+      "capture": 1088.19,
+      "backend": "cpu",
+      "compute_ms": 1893.583,
+      "inference_start": 1088.544145,
+      "inference_finished": 1090.440083,
+      "time": 1090.451113,
+      "ordered_wait_ms": 0.262,
+      "submit_to_ready_noncompute_ms": 2.354999999887241
+    },
+    {
+      "phrase": 112,
+      "capture": 1034.13,
+      "backend": "cpu",
+      "compute_ms": 1655.698,
+      "inference_start": 1034.487062,
+      "inference_finished": 1036.144614,
+      "time": 1036.157042,
+      "ordered_wait_ms": 0.399,
+      "submit_to_ready_noncompute_ms": 1.8540000001232784
+    },
+    {
+      "phrase": 111,
+      "capture": 1019.13,
+      "backend": "pl-network",
+      "compute_ms": 116.409,
+      "inference_start": 1019.381153,
+      "inference_finished": 1019.49899,
+      "time": 1019.509927,
+      "ordered_wait_ms": 0.171,
+      "submit_to_ready_noncompute_ms": 1.4280000000086233
+    }
+  ]
+}

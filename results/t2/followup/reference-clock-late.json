@@ -1,0 +1,902 @@
+[
+  {
+    "monotonic_ns": 39379365865227.0,
+    "raw_ns": 39379084267878,
+    "bracket_ns": 8270
+  },
+  {
+    "monotonic_ns": 39380366074723.5,
+    "raw_ns": 39380084466752,
+    "bracket_ns": 20881
+  },
+  {
+    "monotonic_ns": 39381366221972.0,
+    "raw_ns": 39381084597914,
+    "bracket_ns": 13200
+  },
+  {
+    "monotonic_ns": 39382366356377.5,
+    "raw_ns": 39382084717817,
+    "bracket_ns": 12561
+  },
+  {
+    "monotonic_ns": 39383366493347.0,
+    "raw_ns": 39383084840070,
+    "bracket_ns": 13230
+  },
+  {
+    "monotonic_ns": 39384366631869.0,
+    "raw_ns": 39384084964773,
+    "bracket_ns": 14810
+  },
+  {
+    "monotonic_ns": 39385366784415.0,
+    "raw_ns": 39385085103696,
+    "bracket_ns": 17480
+  },
+  {
+    "monotonic_ns": 39386366924759.0,
+    "raw_ns": 39386085228999,
+    "bracket_ns": 13250
+  },
+  {
+    "monotonic_ns": 39387367113452.5,
+    "raw_ns": 39387085404072,
+    "bracket_ns": 16161
+  },
+  {
+    "monotonic_ns": 39388367255363.0,
+    "raw_ns": 39388085530805,
+    "bracket_ns": 13190
+  },
+  {
+    "monotonic_ns": 39389367388732.0,
+    "raw_ns": 39389085650057,
+    "bracket_ns": 13820
+  },
+  {
+    "monotonic_ns": 39390367562185.0,
+    "raw_ns": 39390085809671,
+    "bracket_ns": 15860
+  },
+  {
+    "monotonic_ns": 39391367716035.5,
+    "raw_ns": 39391085948674,
+    "bracket_ns": 13201
+  },
+  {
+    "monotonic_ns": 39392367864545.0,
+    "raw_ns": 39392086082836,
+    "bracket_ns": 13420
+  },
+  {
+    "monotonic_ns": 39393368036043.0,
+    "raw_ns": 39393086240260,
+    "bracket_ns": 14280
+  },
+  {
+    "monotonic_ns": 39394368185584.0,
+    "raw_ns": 39394086375393,
+    "bracket_ns": 13710
+  },
+  {
+    "monotonic_ns": 39395368332048.0,
+    "raw_ns": 39395086508025,
+    "bracket_ns": 17470
+  },
+  {
+    "monotonic_ns": 39396368488171.0,
+    "raw_ns": 39396086649648,
+    "bracket_ns": 13190
+  },
+  {
+    "monotonic_ns": 39397368649268.0,
+    "raw_ns": 39397086797691,
+    "bracket_ns": 18380
+  },
+  {
+    "monotonic_ns": 39398368791518.0,
+    "raw_ns": 39398086924454,
+    "bracket_ns": 13220
+  },
+  {
+    "monotonic_ns": 39399368936066.0,
+    "raw_ns": 39399087054647,
+    "bracket_ns": 12860
+  },
+  {
+    "monotonic_ns": 39400369084038.0,
+    "raw_ns": 39400087188550,
+    "bracket_ns": 14230
+  },
+  {
+    "monotonic_ns": 39401369233004.0,
+    "raw_ns": 39401087322953,
+    "bracket_ns": 12990
+  },
+  {
+    "monotonic_ns": 39402369409703.5,
+    "raw_ns": 39402087485966,
+    "bracket_ns": 13561
+  },
+  {
+    "monotonic_ns": 39403369552331.0,
+    "raw_ns": 39403087614249,
+    "bracket_ns": 12910
+  },
+  {
+    "monotonic_ns": 39404369699698.0,
+    "raw_ns": 39404087747152,
+    "bracket_ns": 13340
+  },
+  {
+    "monotonic_ns": 39405369875424.0,
+    "raw_ns": 39405087909265,
+    "bracket_ns": 13370
+  },
+  {
+    "monotonic_ns": 39406370038908.0,
+    "raw_ns": 39406088059178,
+    "bracket_ns": 13560
+  },
+  {
+    "monotonic_ns": 39407370182105.5,
+    "raw_ns": 39407088187711,
+    "bracket_ns": 12981
+  },
+  {
+    "monotonic_ns": 39408370321311.5,
+    "raw_ns": 39408088313374,
+    "bracket_ns": 14561
+  },
+  {
+    "monotonic_ns": 39409370457201.5,
+    "raw_ns": 39409088435046,
+    "bracket_ns": 15171
+  },
+  {
+    "monotonic_ns": 39410370602035.0,
+    "raw_ns": 39410088565659,
+    "bracket_ns": 14190
+  },
+  {
+    "monotonic_ns": 39411370740058.0,
+    "raw_ns": 39411088689722,
+    "bracket_ns": 14710
+  },
+  {
+    "monotonic_ns": 39412370882939.0,
+    "raw_ns": 39412088818695,
+    "bracket_ns": 16010
+  },
+  {
+    "monotonic_ns": 39413371050340.0,
+    "raw_ns": 39413088971378,
+    "bracket_ns": 13970
+  },
+  {
+    "monotonic_ns": 39414371184884.0,
+    "raw_ns": 39414089092361,
+    "bracket_ns": 13500
+  },
+  {
+    "monotonic_ns": 39415371326442.0,
+    "raw_ns": 39415089220844,
+    "bracket_ns": 18040
+  },
+  {
+    "monotonic_ns": 39416371470694.0,
+    "raw_ns": 39416089350187,
+    "bracket_ns": 15430
+  },
+  {
+    "monotonic_ns": 39417371607735.0,
+    "raw_ns": 39417089473089,
+    "bracket_ns": 13980
+  },
+  {
+    "monotonic_ns": 39418371738389.0,
+    "raw_ns": 39418089589532,
+    "bracket_ns": 13320
+  },
+  {
+    "monotonic_ns": 39419371872313.0,
+    "raw_ns": 39419089709805,
+    "bracket_ns": 15060
+  },
+  {
+    "monotonic_ns": 39420372041391.5,
+    "raw_ns": 39420089864838,
+    "bracket_ns": 13051
+  },
+  {
+    "monotonic_ns": 39421372191328.5,
+    "raw_ns": 39421090000881,
+    "bracket_ns": 13321
+  },
+  {
+    "monotonic_ns": 39422372367995.0,
+    "raw_ns": 39422090163304,
+    "bracket_ns": 13890
+  },
+  {
+    "monotonic_ns": 39423372510485.5,
+    "raw_ns": 39423090292627,
+    "bracket_ns": 18151
+  },
+  {
+    "monotonic_ns": 39424372673720.0,
+    "raw_ns": 39424090440940,
+    "bracket_ns": 12900
+  },
+  {
+    "monotonic_ns": 39425372828143.5,
+    "raw_ns": 39425090581333,
+    "bracket_ns": 12591
+  },
+  {
+    "monotonic_ns": 39426372974531.0,
+    "raw_ns": 39426090714296,
+    "bracket_ns": 13270
+  },
+  {
+    "monotonic_ns": 39427373139928.0,
+    "raw_ns": 39427090865949,
+    "bracket_ns": 12890
+  },
+  {
+    "monotonic_ns": 39428373281798.5,
+    "raw_ns": 39428090993442,
+    "bracket_ns": 13081
+  },
+  {
+    "monotonic_ns": 39429373420448.5,
+    "raw_ns": 39429091118715,
+    "bracket_ns": 13211
+  },
+  {
+    "monotonic_ns": 39430373560762.5,
+    "raw_ns": 39430091245007,
+    "bracket_ns": 12531
+  },
+  {
+    "monotonic_ns": 39431373693250.5,
+    "raw_ns": 39431091365000,
+    "bracket_ns": 16321
+  },
+  {
+    "monotonic_ns": 39432373860603.5,
+    "raw_ns": 39432091529613,
+    "bracket_ns": 41641
+  },
+  {
+    "monotonic_ns": 39433374049302.0,
+    "raw_ns": 39433091693127,
+    "bracket_ns": 18910
+  },
+  {
+    "monotonic_ns": 39434374209268.5,
+    "raw_ns": 39434091839920,
+    "bracket_ns": 20461
+  },
+  {
+    "monotonic_ns": 39435374370269.5,
+    "raw_ns": 39435091993303,
+    "bracket_ns": 32361
+  },
+  {
+    "monotonic_ns": 39436374559480.0,
+    "raw_ns": 39436092162276,
+    "bracket_ns": 19740
+  },
+  {
+    "monotonic_ns": 39437374729315.0,
+    "raw_ns": 39437092318249,
+    "bracket_ns": 18610
+  },
+  {
+    "monotonic_ns": 39438374879874.0,
+    "raw_ns": 39438092454322,
+    "bracket_ns": 18850
+  },
+  {
+    "monotonic_ns": 39439375046327.5,
+    "raw_ns": 39439092607655,
+    "bracket_ns": 18281
+  },
+  {
+    "monotonic_ns": 39440375194530.0,
+    "raw_ns": 39440092742078,
+    "bracket_ns": 18370
+  },
+  {
+    "monotonic_ns": 39441375358307.0,
+    "raw_ns": 39441092891101,
+    "bracket_ns": 14810
+  },
+  {
+    "monotonic_ns": 39442375504734.0,
+    "raw_ns": 39442093023094,
+    "bracket_ns": 13250
+  },
+  {
+    "monotonic_ns": 39443375648874.5,
+    "raw_ns": 39443093155837,
+    "bracket_ns": 20441
+  },
+  {
+    "monotonic_ns": 39444375802490.0,
+    "raw_ns": 39444093295300,
+    "bracket_ns": 18760
+  },
+  {
+    "monotonic_ns": 39445375975246.0,
+    "raw_ns": 39445093452673,
+    "bracket_ns": 13100
+  },
+  {
+    "monotonic_ns": 39446376135970.5,
+    "raw_ns": 39446093600516,
+    "bracket_ns": 13921
+  },
+  {
+    "monotonic_ns": 39447376296690.0,
+    "raw_ns": 39447093746809,
+    "bracket_ns": 13010
+  },
+  {
+    "monotonic_ns": 39448376456419.0,
+    "raw_ns": 39448093894252,
+    "bracket_ns": 17660
+  },
+  {
+    "monotonic_ns": 39449376603657.0,
+    "raw_ns": 39449094027655,
+    "bracket_ns": 18430
+  },
+  {
+    "monotonic_ns": 39450376762980.5,
+    "raw_ns": 39450094173008,
+    "bracket_ns": 16251
+  },
+  {
+    "monotonic_ns": 39451376907933.0,
+    "raw_ns": 39451094304351,
+    "bracket_ns": 17450
+  },
+  {
+    "monotonic_ns": 39452377053980.0,
+    "raw_ns": 39452094436624,
+    "bracket_ns": 16240
+  },
+  {
+    "monotonic_ns": 39453377200322.0,
+    "raw_ns": 39453094569676,
+    "bracket_ns": 17220
+  },
+  {
+    "monotonic_ns": 39454377433996.0,
+    "raw_ns": 39454094789150,
+    "bracket_ns": 14200
+  },
+  {
+    "monotonic_ns": 39455377574912.0,
+    "raw_ns": 39455094916613,
+    "bracket_ns": 15450
+  },
+  {
+    "monotonic_ns": 39456377794395.0,
+    "raw_ns": 39456095122617,
+    "bracket_ns": 16330
+  },
+  {
+    "monotonic_ns": 39457377935481.0,
+    "raw_ns": 39457095249560,
+    "bracket_ns": 13500
+  },
+  {
+    "monotonic_ns": 39458378079366.5,
+    "raw_ns": 39458095380622,
+    "bracket_ns": 16751
+  },
+  {
+    "monotonic_ns": 39459378281458.0,
+    "raw_ns": 39459095569306,
+    "bracket_ns": 16890
+  },
+  {
+    "monotonic_ns": 39460378422308.5,
+    "raw_ns": 39460095696199,
+    "bracket_ns": 14391
+  },
+  {
+    "monotonic_ns": 39461378559773.5,
+    "raw_ns": 39461095820361,
+    "bracket_ns": 15801
+  },
+  {
+    "monotonic_ns": 39462378700863.5,
+    "raw_ns": 39462095947834,
+    "bracket_ns": 15981
+  },
+  {
+    "monotonic_ns": 39463378851373.5,
+    "raw_ns": 39463096085197,
+    "bracket_ns": 17581
+  },
+  {
+    "monotonic_ns": 39464379008083.5,
+    "raw_ns": 39464096238090,
+    "bracket_ns": 37141
+  },
+  {
+    "monotonic_ns": 39465379171034.0,
+    "raw_ns": 39465096376743,
+    "bracket_ns": 13780
+  },
+  {
+    "monotonic_ns": 39466379308788.0,
+    "raw_ns": 39466096501486,
+    "bracket_ns": 13910
+  },
+  {
+    "monotonic_ns": 39467379447703.0,
+    "raw_ns": 39467096627209,
+    "bracket_ns": 15480
+  },
+  {
+    "monotonic_ns": 39468379650619.0,
+    "raw_ns": 39468096816472,
+    "bracket_ns": 13710
+  },
+  {
+    "monotonic_ns": 39469379834284.5,
+    "raw_ns": 39469096987286,
+    "bracket_ns": 16901
+  },
+  {
+    "monotonic_ns": 39470379976624.0,
+    "raw_ns": 39470097115588,
+    "bracket_ns": 14660
+  },
+  {
+    "monotonic_ns": 39471380147974.5,
+    "raw_ns": 39471097273302,
+    "bracket_ns": 13401
+  },
+  {
+    "monotonic_ns": 39472380299629.5,
+    "raw_ns": 39472097411845,
+    "bracket_ns": 13891
+  },
+  {
+    "monotonic_ns": 39473380438294.0,
+    "raw_ns": 39473097537237,
+    "bracket_ns": 15200
+  },
+  {
+    "monotonic_ns": 39474380606249.5,
+    "raw_ns": 39474097706851,
+    "bracket_ns": 44231
+  },
+  {
+    "monotonic_ns": 39475380755780.0,
+    "raw_ns": 39475097827573,
+    "bracket_ns": 13490
+  },
+  {
+    "monotonic_ns": 39476380892125.0,
+    "raw_ns": 39476097950986,
+    "bracket_ns": 14860
+  },
+  {
+    "monotonic_ns": 39477381102037.0,
+    "raw_ns": 39477098148190,
+    "bracket_ns": 20500
+  },
+  {
+    "monotonic_ns": 39478381246368.0,
+    "raw_ns": 39478098278263,
+    "bracket_ns": 14180
+  },
+  {
+    "monotonic_ns": 39479381394669.0,
+    "raw_ns": 39479098413695,
+    "bracket_ns": 16720
+  },
+  {
+    "monotonic_ns": 39480381547740.0,
+    "raw_ns": 39480098552098,
+    "bracket_ns": 12920
+  },
+  {
+    "monotonic_ns": 39481381680506.0,
+    "raw_ns": 39481098672441,
+    "bracket_ns": 14110
+  },
+  {
+    "monotonic_ns": 39482381819282.5,
+    "raw_ns": 39482098797794,
+    "bracket_ns": 14961
+  },
+  {
+    "monotonic_ns": 39483381951809.0,
+    "raw_ns": 39483098916927,
+    "bracket_ns": 13130
+  },
+  {
+    "monotonic_ns": 39484382098691.5,
+    "raw_ns": 39484099051700,
+    "bracket_ns": 18231
+  },
+  {
+    "monotonic_ns": 39485382278834.5,
+    "raw_ns": 39485099217333,
+    "bracket_ns": 13351
+  },
+  {
+    "monotonic_ns": 39486382421582.5,
+    "raw_ns": 39486099346426,
+    "bracket_ns": 12661
+  },
+  {
+    "monotonic_ns": 39487382552225.0,
+    "raw_ns": 39487099464068,
+    "bracket_ns": 12940
+  },
+  {
+    "monotonic_ns": 39488382700749.0,
+    "raw_ns": 39488099599221,
+    "bracket_ns": 12640
+  },
+  {
+    "monotonic_ns": 39489382830807.5,
+    "raw_ns": 39489099716444,
+    "bracket_ns": 13471
+  },
+  {
+    "monotonic_ns": 39490382961786.5,
+    "raw_ns": 39490099833887,
+    "bracket_ns": 12441
+  },
+  {
+    "monotonic_ns": 39491383071560.5,
+    "raw_ns": 39491099930219,
+    "bracket_ns": 12361
+  },
+  {
+    "monotonic_ns": 39492383211466.0,
+    "raw_ns": 39492100057062,
+    "bracket_ns": 12460
+  },
+  {
+    "monotonic_ns": 39493383348906.0,
+    "raw_ns": 39493100182705,
+    "bracket_ns": 17150
+  },
+  {
+    "monotonic_ns": 39494383511758.0,
+    "raw_ns": 39494100332108,
+    "bracket_ns": 18580
+  },
+  {
+    "monotonic_ns": 39495383680980.0,
+    "raw_ns": 39495100488801,
+    "bracket_ns": 19110
+  },
+  {
+    "monotonic_ns": 39496383835122.5,
+    "raw_ns": 39496100628834,
+    "bracket_ns": 19781
+  },
+  {
+    "monotonic_ns": 39497384012936.5,
+    "raw_ns": 39497100804107,
+    "bracket_ns": 39631
+  },
+  {
+    "monotonic_ns": 39498384182935.0,
+    "raw_ns": 39498100950490,
+    "bracket_ns": 18190
+  },
+  {
+    "monotonic_ns": 39499384339689.0,
+    "raw_ns": 39499101094573,
+    "bracket_ns": 20000
+  },
+  {
+    "monotonic_ns": 39500384505504.0,
+    "raw_ns": 39500101246947,
+    "bracket_ns": 17870
+  },
+  {
+    "monotonic_ns": 39501384662589.5,
+    "raw_ns": 39501101391200,
+    "bracket_ns": 20241
+  },
+  {
+    "monotonic_ns": 39502384809970.5,
+    "raw_ns": 39502101525282,
+    "bracket_ns": 19601
+  },
+  {
+    "monotonic_ns": 39503384971747.5,
+    "raw_ns": 39503101673885,
+    "bracket_ns": 19611
+  },
+  {
+    "monotonic_ns": 39504385146875.0,
+    "raw_ns": 39504101835689,
+    "bracket_ns": 18420
+  },
+  {
+    "monotonic_ns": 39505385291118.0,
+    "raw_ns": 39505101966592,
+    "bracket_ns": 17360
+  },
+  {
+    "monotonic_ns": 39506385437171.0,
+    "raw_ns": 39506102098864,
+    "bracket_ns": 15000
+  },
+  {
+    "monotonic_ns": 39507385571240.5,
+    "raw_ns": 39507102219687,
+    "bracket_ns": 14111
+  },
+  {
+    "monotonic_ns": 39508385730175.5,
+    "raw_ns": 39508102366490,
+    "bracket_ns": 18871
+  },
+  {
+    "monotonic_ns": 39509385871786.0,
+    "raw_ns": 39509102493973,
+    "bracket_ns": 14640
+  },
+  {
+    "monotonic_ns": 39510386045123.5,
+    "raw_ns": 39510102654486,
+    "bracket_ns": 13481
+  },
+  {
+    "monotonic_ns": 39511386192676.0,
+    "raw_ns": 39511102789149,
+    "bracket_ns": 13830
+  },
+  {
+    "monotonic_ns": 39512386329954.0,
+    "raw_ns": 39512102913142,
+    "bracket_ns": 15330
+  },
+  {
+    "monotonic_ns": 39513386475763.0,
+    "raw_ns": 39513103045575,
+    "bracket_ns": 13350
+  },
+  {
+    "monotonic_ns": 39514386629713.0,
+    "raw_ns": 39514103186588,
+    "bracket_ns": 12770
+  },
+  {
+    "monotonic_ns": 39515386770133.0,
+    "raw_ns": 39515103314661,
+    "bracket_ns": 17150
+  },
+  {
+    "monotonic_ns": 39516386904454.5,
+    "raw_ns": 39516103435233,
+    "bracket_ns": 12471
+  },
+  {
+    "monotonic_ns": 39517387068097.5,
+    "raw_ns": 39517103586086,
+    "bracket_ns": 12631
+  },
+  {
+    "monotonic_ns": 39518387210935.5,
+    "raw_ns": 39518103716309,
+    "bracket_ns": 16221
+  },
+  {
+    "monotonic_ns": 39519387363870.0,
+    "raw_ns": 39519103856112,
+    "bracket_ns": 12860
+  },
+  {
+    "monotonic_ns": 39520387494150.0,
+    "raw_ns": 39520103973215,
+    "bracket_ns": 12830
+  },
+  {
+    "monotonic_ns": 39521387632131.0,
+    "raw_ns": 39521104098528,
+    "bracket_ns": 15100
+  },
+  {
+    "monotonic_ns": 39522387775013.5,
+    "raw_ns": 39522104228051,
+    "bracket_ns": 12211
+  },
+  {
+    "monotonic_ns": 39523387919041.5,
+    "raw_ns": 39523104360834,
+    "bracket_ns": 18731
+  },
+  {
+    "monotonic_ns": 39524388082896.5,
+    "raw_ns": 39524104512467,
+    "bracket_ns": 21561
+  },
+  {
+    "monotonic_ns": 39525388257202.5,
+    "raw_ns": 39525104673360,
+    "bracket_ns": 19151
+  },
+  {
+    "monotonic_ns": 39526388410144.0,
+    "raw_ns": 39526104812993,
+    "bracket_ns": 19410
+  },
+  {
+    "monotonic_ns": 39527388570932.0,
+    "raw_ns": 39527104961256,
+    "bracket_ns": 19640
+  },
+  {
+    "monotonic_ns": 39528388723250.5,
+    "raw_ns": 39528105100419,
+    "bracket_ns": 19751
+  },
+  {
+    "monotonic_ns": 39529388891881.0,
+    "raw_ns": 39529105256492,
+    "bracket_ns": 19220
+  },
+  {
+    "monotonic_ns": 39530389108328.0,
+    "raw_ns": 39530105459605,
+    "bracket_ns": 18620
+  },
+  {
+    "monotonic_ns": 39531389256255.0,
+    "raw_ns": 39531105594638,
+    "bracket_ns": 17680
+  },
+  {
+    "monotonic_ns": 39532389403033.5,
+    "raw_ns": 39532105728721,
+    "bracket_ns": 18701
+  },
+  {
+    "monotonic_ns": 39533389571143.0,
+    "raw_ns": 39533105884074,
+    "bracket_ns": 18900
+  },
+  {
+    "monotonic_ns": 39534389719354.0,
+    "raw_ns": 39534106019447,
+    "bracket_ns": 18400
+  },
+  {
+    "monotonic_ns": 39535389866580.5,
+    "raw_ns": 39535106153820,
+    "bracket_ns": 18251
+  },
+  {
+    "monotonic_ns": 39536390049244.5,
+    "raw_ns": 39536106363444,
+    "bracket_ns": 99653
+  },
+  {
+    "monotonic_ns": 39537390230869.5,
+    "raw_ns": 39537106492397,
+    "bracket_ns": 17471
+  },
+  {
+    "monotonic_ns": 39538390370255.0,
+    "raw_ns": 39538106618470,
+    "bracket_ns": 15250
+  },
+  {
+    "monotonic_ns": 39539390505086.5,
+    "raw_ns": 39539106739772,
+    "bracket_ns": 13161
+  },
+  {
+    "monotonic_ns": 39540390641424.5,
+    "raw_ns": 39540106864275,
+    "bracket_ns": 16701
+  },
+  {
+    "monotonic_ns": 39541390789699.0,
+    "raw_ns": 39541106998758,
+    "bracket_ns": 13590
+  },
+  {
+    "monotonic_ns": 39542390927904.5,
+    "raw_ns": 39542107124851,
+    "bracket_ns": 16681
+  },
+  {
+    "monotonic_ns": 39543391070911.5,
+    "raw_ns": 39543107255144,
+    "bracket_ns": 16891
+  },
+  {
+    "monotonic_ns": 39544391217420.0,
+    "raw_ns": 39544107388207,
+    "bracket_ns": 14720
+  },
+  {
+    "monotonic_ns": 39545391361885.0,
+    "raw_ns": 39545107520339,
+    "bracket_ns": 16380
+  },
+  {
+    "monotonic_ns": 39546391501476.0,
+    "raw_ns": 39546107647242,
+    "bracket_ns": 14230
+  },
+  {
+    "monotonic_ns": 39547391644138.5,
+    "raw_ns": 39547107776925,
+    "bracket_ns": 15381
+  },
+  {
+    "monotonic_ns": 39548391797668.0,
+    "raw_ns": 39548107917978,
+    "bracket_ns": 15640
+  },
+  {
+    "monotonic_ns": 39549391976569.5,
+    "raw_ns": 39549108083781,
+    "bracket_ns": 14941
+  },
+  {
+    "monotonic_ns": 39550392146642.0,
+    "raw_ns": 39550108241554,
+    "bracket_ns": 17420
+  },
+  {
+    "monotonic_ns": 39551392290430.5,
+    "raw_ns": 39551108372697,
+    "bracket_ns": 17051
+  },
+  {
+    "monotonic_ns": 39552392436380.5,
+    "raw_ns": 39552108505750,
+    "bracket_ns": 14101
+  },
+  {
+    "monotonic_ns": 39553392589312.5,
+    "raw_ns": 39553108646833,
+    "bracket_ns": 17491
+  },
+  {
+    "monotonic_ns": 39554392727045.0,
+    "raw_ns": 39554108770956,
+    "bracket_ns": 13600
+  },
+  {
+    "monotonic_ns": 39555392863295.0,
+    "raw_ns": 39555108894299,
+    "bracket_ns": 14180
+  },
+  {
+    "monotonic_ns": 39556393036452.0,
+    "raw_ns": 39556109055562,
+    "bracket_ns": 15990
+  },
+  {
+    "monotonic_ns": 39557393195110.0,
+    "raw_ns": 39557109200795,
+    "bracket_ns": 13700
+  },
+  {
+    "monotonic_ns": 39558393334029.0,
+    "raw_ns": 39558109327188,
+    "bracket_ns": 13830
+  }
+]

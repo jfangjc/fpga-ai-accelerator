@@ -1,0 +1,19 @@
+{
+  "finals_identical": 196,
+  "matching_final_fields": [
+    "phrase",
+    "phrase_begin",
+    "capture",
+    "feature_count",
+    "final",
+    "word_ends"
+  ],
+  "intentional_changes": [
+    "backend",
+    "commands"
+  ],
+  "events": 15237,
+  "stage_rows": 15237,
+  "ordered_caption_tcp_payloads": true,
+  "ordered_phrase_updates": true
+}

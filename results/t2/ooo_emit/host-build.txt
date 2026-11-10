@@ -1,0 +1,11 @@
+make: Entering directory '/mnt/c/Users/jfang/Documents/stt-accelerator/sw/app'
+make: Nothing to be done for 'all'.
+./test_stream
+PASS CTC, cross-window stitching, VAD silence and phrase boundary
+./test_clock
+PASS clock drift, bounded fit, preserved consumer backlog
+./test_caption
+PASS late final replacement, phrase order, snapshot and lifecycle isolation
+./test_emit
+PASS emitter bypasses pending final and preserves independent phrase stitching
+make: Leaving directory '/mnt/c/Users/jfang/Documents/stt-accelerator/sw/app'

@@ -1,0 +1,11 @@
+make: Entering directory '/home/ubuntu/stt/t2/final_routing/src/sw/app'
+make -C ../engdrv CC='cc' libengdrv.a
+make[1]: Entering directory '/home/ubuntu/stt/t2/final_routing/src/sw/engdrv'
+make[1]: 'libengdrv.a' is up to date.
+make[1]: Leaving directory '/home/ubuntu/stt/t2/final_routing/src/sw/engdrv'
+cc -O2 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -DHAVE_ENGDRV main.c backend.c stream.c display.c ../qnrt/qnrt.c ../qnrt/wav.c ../frontend_c/frontend.c ../fedrv/fedrv.c ../fedrv/stream.c ../fedrv/features.c ../plio/plio.c ../engdrv/backend_pl.c ../engdrv/libengdrv.a -pthread -lm -o sttcap
+./test_stream
+PASS CTC, cross-window stitching, VAD silence and phrase boundary
+./test_clock
+PASS clock drift, bounded fit, preserved consumer backlog
+make: Leaving directory '/home/ubuntu/stt/t2/final_routing/src/sw/app'

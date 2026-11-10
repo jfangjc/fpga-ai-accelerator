@@ -1,0 +1,32 @@
+progress count=6000 elapsed_s=60.001
+progress count=12000 elapsed_s=120.002
+progress count=18000 elapsed_s=180.003
+progress count=24000 elapsed_s=240.004
+progress count=30000 elapsed_s=300.005
+progress count=36000 elapsed_s=360.006
+progress count=42000 elapsed_s=420.007
+progress count=48000 elapsed_s=480.008
+progress count=54000 elapsed_s=540.009
+progress count=60000 elapsed_s=600.009
+progress count=66000 elapsed_s=660.010
+progress count=72000 elapsed_s=720.011
+progress count=78000 elapsed_s=780.012
+progress count=84000 elapsed_s=840.013
+progress count=90000 elapsed_s=900.013
+progress count=96000 elapsed_s=960.014
+progress count=102000 elapsed_s=1020.015
+progress count=108000 elapsed_s=1080.016
+progress count=114000 elapsed_s=1140.017
+progress count=120000 elapsed_s=1200.017
+progress count=126000 elapsed_s=1260.018
+progress count=132000 elapsed_s=1320.019
+progress count=138000 elapsed_s=1380.020
+progress count=144000 elapsed_s=1440.020
+progress count=150000 elapsed_s=1500.021
+progress count=156000 elapsed_s=1560.022
+progress count=162000 elapsed_s=1620.022
+progress count=168000 elapsed_s=1680.023
+progress count=174000 elapsed_s=1740.024
+elapsed=1800.004622 count=179998 expected=180000.46 uio_gaps=0 deficit=2.46
+max_interval_ms=10.737014 intervals_over_15ms=0
+missing_hardware_periods=0

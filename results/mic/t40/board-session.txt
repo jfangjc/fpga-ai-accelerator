@@ -1,0 +1,6 @@
+﻿{"inference_time":0,"phrase":0,"state":"Listening","event_only":true,"preview":"","tentative":"","final":"","compute_ms":0,"merged":0,"lost_frames":0,"bulk":false,"time":0.003435,"render_ms":3.435,"update_ms":3.435,"latency_valid":false,"capture_anchor":"fifo-first-fft","display":"tcp","caption":"","committed_prefix":"","prefix_before_phrase":0,"segments":[]}
+READY 2026-11-06T20:03:32.882712674Z
+sttcap rc=0
+backend pl: engine 0x00010002, RUN_NETWORK available, mode auto
+final routing: auto, CPU threads=3, out-of-order result slots=32
+capture_stats frames=39592 irqs=39592 sequence_errors=0 ring_overruns=0 tx_underruns=0 mic_overruns=0 consumer_dropped=0 status=0x1 error=0

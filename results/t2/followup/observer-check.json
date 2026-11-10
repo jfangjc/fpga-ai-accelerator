@@ -1,0 +1,217 @@
+{
+  "exit": 0,
+  "wall_seconds": 25.174502257999848,
+  "audio_seconds": 24,
+  "tcp_errors": [],
+  "capture": {
+    "frames": 2479,
+    "irqs": 2479,
+    "sequence_errors": 0,
+    "ring_overruns": 0,
+    "tx_underruns": 0,
+    "mic_overruns": 0,
+    "consumer_dropped": 0,
+    "status": 1,
+    "error": 0
+  },
+  "expected_frames": 2479,
+  "events": 205,
+  "previews": 192,
+  "attribution": {
+    "merge_records": 2,
+    "merged": 2,
+    "merge_causes": {
+      "final_in_flight": 2
+    },
+    "slow_update_causes": {
+      "final_in_flight": 1,
+      "own_final_layer_fallback": 3
+    }
+  },
+  "finals": 4,
+  "merged": 2,
+  "lost_stitch_frames": 0,
+  "latency_ms": {
+    "n": 192,
+    "p50": 204.506,
+    "p95": 205.9741,
+    "max": 442.087
+  },
+  "invalid_preview_latencies": 0,
+  "buckets": [
+    {
+      "minutes": "0-5",
+      "latency_ms": {
+        "n": 192,
+        "p50": 204.506,
+        "p95": 205.9741,
+        "max": 442.087
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 192,
+        "p50": 69.489,
+        "p95": 69.5757,
+        "max": 71.802
+      },
+      "merged": 2,
+      "rss_min_kib": 1672,
+      "rss_median_kib": 44780,
+      "power_mean_w": 4.039206349206349,
+      "power_max_w": 4.64,
+      "rss_max_kib": 45852
+    },
+    {
+      "minutes": "5-10",
+      "latency_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "merged": 0,
+      "rss_min_kib": null,
+      "rss_median_kib": null,
+      "power_mean_w": null,
+      "power_max_w": null,
+      "rss_max_kib": null
+    },
+    {
+      "minutes": "10-15",
+      "latency_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "merged": 0,
+      "rss_min_kib": null,
+      "rss_median_kib": null,
+      "power_mean_w": null,
+      "power_max_w": null,
+      "rss_max_kib": null
+    },
+    {
+      "minutes": "15-20",
+      "latency_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "merged": 0,
+      "rss_min_kib": null,
+      "rss_median_kib": null,
+      "power_mean_w": null,
+      "power_max_w": null,
+      "rss_max_kib": null
+    },
+    {
+      "minutes": "20-25",
+      "latency_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "merged": 0,
+      "rss_min_kib": null,
+      "rss_median_kib": null,
+      "power_mean_w": null,
+      "power_max_w": null,
+      "rss_max_kib": null
+    },
+    {
+      "minutes": "25-30",
+      "latency_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "invalid": 0,
+      "compute_ms": {
+        "n": 0,
+        "p50": null,
+        "p95": null,
+        "max": null
+      },
+      "merged": 0,
+      "rss_min_kib": null,
+      "rss_median_kib": null,
+      "power_mean_w": null,
+      "power_max_w": null,
+      "rss_max_kib": null
+    }
+  ],
+  "rss_after_150s": {
+    "first_kib": 44756,
+    "last_kib": 45852,
+    "min_kib": 44756,
+    "max_kib": 45852,
+    "delta_kib": 1096,
+    "slope_kib_per_minute": 6115.2666706655145
+  },
+  "power": {
+    "samples": 252,
+    "mean_w": 4.039206349206349,
+    "max_w": 4.64,
+    "first_seconds": 0.0032428109989268705,
+    "last_seconds": 25.147850721994473
+  },
+  "temperature_c": {
+    "/sys/class/hwmon/hwmon0/temp3_input": {
+      "min": 27.114,
+      "mean": 27.62636,
+      "max": 27.938
+    },
+    "/sys/class/hwmon/hwmon0/temp1_input": {
+      "min": 26.594,
+      "mean": 28.0268,
+      "max": 29.112
+    },
+    "/sys/class/hwmon/hwmon0/temp2_input": {
+      "min": 27.619,
+      "mean": 28.63716,
+      "max": 30.277
+    }
+  },
+  "led_on_samples": 23,
+  "led_off_samples": 2,
+  "button_sticky_samples": 0,
+  "fifo_overflow_samples": 0,
+  "fifo_underrun_samples": 0,
+  "maximum_fifo_occupancy": 28,
+  "tcp_events": 205,
+  "tcp_missing_events": 0,
+  "zero_loss_pass": true,
+  "strict_t2_pass": false
+}

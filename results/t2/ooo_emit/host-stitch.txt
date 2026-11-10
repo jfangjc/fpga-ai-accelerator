@@ -1,0 +1,4 @@
+PASS recorded logits network_1.out 1
+PASS recorded logits network_101.out 51
+PASS recorded logits network_17.out 9
+PASS 5800 overlapping-window comparisons against stream_sim CTC/stitch contract

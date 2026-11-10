@@ -1,0 +1,6 @@
+ 5 PL_FLAT     -              -                stt-full    id_ok PL_FLAT   (0+0+0)            0->0,        stt-full
+22 PL_FLAT     -              -                stt-full150 id_ok PL_FLAT   (0+0+0)            -1           stt-full150
+                            pl1_ref  0       0        0        149999999   0          0     50000      N                              deviceless                      no_connection_id         
+                            pl0_ref  1       1        0        99999999    0          0     50000      Y                              stt-clock                       no_connection_id         
+aeaf12b88a5bbd9c5edd66c6da92c344ca24a2f8655787ac3c319ea6644ab3ea  /lib/firmware/xilinx/stt-full/stt-full.bit.bin
+BOARD_LOCK_FREE

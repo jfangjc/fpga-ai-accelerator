@@ -1,0 +1,1 @@
+samples=50 mean_W=3.475000 max_W=3.760000

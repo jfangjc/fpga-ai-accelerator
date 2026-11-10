@@ -1,0 +1,34 @@
+{
+  "before_rss_kib": 189516,
+  "after_rss_kib": 189824,
+  "before_size_kib": 354696,
+  "after_size_kib": 355004,
+  "changes": [
+    {
+      "mapping": {
+        "address": "ca6ac25f0000-ca6ac4852000",
+        "permissions": "rw-p",
+        "name": "[heap]",
+        "Size": 35208,
+        "Rss": 29812,
+        "Private_Dirty": 29812,
+        "Anonymous": 29812
+      },
+      "before": {
+        "address": "ca6ac25f0000-ca6ac4805000",
+        "permissions": "rw-p",
+        "name": "[heap]",
+        "Size": 34900,
+        "Rss": 29504,
+        "Private_Dirty": 29504,
+        "Anonymous": 29504
+      },
+      "delta_kib": {
+        "Size": 308,
+        "Rss": 308,
+        "Private_Dirty": 308,
+        "Anonymous": 308
+      }
+    }
+  ]
+}

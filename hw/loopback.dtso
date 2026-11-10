@@ -1,0 +1,17 @@
+/dts-v1/;
+/plugin/;
+/ {
+ fragment@0 { target = <&fpga_full>; __overlay__ { firmware-name = "stt-loopback.bit.bin"; status = "okay"; }; };
+ fragment@1 { target-path = "/"; __overlay__ {
+ stt-clock { compatible = "xlnx,fclk"; clocks = <&zynqmp_clk 71>; assigned-clocks = <&zynqmp_clk 71>; assigned-clock-rates = <100000000>; status = "okay"; };
+ }; };
+ fragment@2 { target = <&amba>; __overlay__ {
+ #address-cells = <2>; #size-cells = <2>;
+ stt-afi { compatible = "xlnx,afi-fpga"; config-afi = <4 0 5 0 14 0xa00>; resets = <&zynqmp_reset 116>; };
+ dma-tx@a0000000 { compatible = "generic-uio"; linux,uio-name = "stt-dma-tx"; reg = <0 0xa0000000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 89 4>; clocks = <&zynqmp_clk 71>; };
+ // Separate UIO IRQ endpoint, same register aperture: one owner in libplio.
+ dma-rx@a0000000 { compatible = "generic-uio"; linux,uio-name = "stt-dma-rx"; reg = <0 0xa0000000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 90 4>; clocks = <&zynqmp_clk 71>; };
+ gpio@a0010000 { compatible = "generic-uio"; linux,uio-name = "stt-gpio"; reg = <0 0xa0010000 0 0x10000>; clocks = <&zynqmp_clk 71>; };
+ timer@a0020000 { compatible = "generic-uio"; linux,uio-name = "stt-timer"; reg = <0 0xa0020000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 91 4>; clocks = <&zynqmp_clk 71>; };
+ }; };
+};

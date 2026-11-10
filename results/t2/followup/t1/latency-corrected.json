@@ -1,0 +1,20 @@
+{
+  "clips": 40,
+  "previews": 2539,
+  "finals_equal_clips": 40,
+  "raw_update_ms": {
+    "p50": 204.319,
+    "p95": 205.742,
+    "max": 208.018
+  },
+  "corrected_update_ms": {
+    "p50": 204.21008521557206,
+    "p95": 205.650174003696,
+    "max": 207.94119855807747
+  },
+  "startup_sample_rate_hz": 15999.625367591934,
+  "startup_calibrated_previews": 2539,
+  "fitted_previews": 0,
+  "maximum_startup_correction_ms": 0.19949642840852605,
+  "method": "Carry mean of preceding soak final 120 fitted sample rates into each short-clip FIFO anchor; retain each ready rolling fit. Raw logs unchanged."
+}

@@ -1,0 +1,290 @@
+{
+  "1089-134691-0023": {
+    "phrases": 1,
+    "network_exact": 1,
+    "logit_bytes": 11136,
+    "engine": {
+      "pl-layer": 1
+    },
+    "pl_equals_cpu": 1,
+    "python_equals_pl": 1,
+    "segmentation_equal": true,
+    "previews": 7,
+    "merged": 55,
+    "cpu_input_identical": 1,
+    "cpu_logits_identical": 1,
+    "python_phrases": 1,
+    "feature_bytes_differing": 4,
+    "tcp_events": 10,
+    "tcp_finals_equal": 1,
+    "preview_compute_ms": [
+      534.234,
+      733.416,
+      1144.423,
+      2019.341,
+      2245.259,
+      2245.187,
+      2227.051
+    ],
+    "preview_update_ms": [
+      679.403,
+      1293.234,
+      1959.679,
+      3267.984,
+      4311.987,
+      4637.246,
+      4584.851
+    ],
+    "commands": [
+      186
+    ],
+    "pl_final": "it was a pain to see them and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness",
+    "cpu_final": "it was a pain to see them and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness",
+    "python_final": "it was a pain to see them and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness",
+    "final_compute_ms": [
+      5804.837
+    ],
+    "pass": true
+  },
+  "1580-141084-0049": {
+    "phrases": 2,
+    "network_exact": 2,
+    "logit_bytes": 11136,
+    "engine": {
+      "pl-layer": 2
+    },
+    "pl_equals_cpu": 2,
+    "python_equals_pl": 2,
+    "segmentation_equal": true,
+    "previews": 6,
+    "merged": 55,
+    "cpu_input_identical": 2,
+    "cpu_logits_identical": 2,
+    "python_phrases": 2,
+    "feature_bytes_differing": 4,
+    "tcp_events": 12,
+    "tcp_finals_equal": 2,
+    "preview_compute_ms": [
+      532.561,
+      733.831,
+      1145.787,
+      1792.155,
+      2235.92,
+      2235.673
+    ],
+    "preview_update_ms": [
+      691.797,
+      1290.535,
+      1958.172,
+      3032.713,
+      6154.72,
+      4551.094
+    ],
+    "commands": [
+      186,
+      186
+    ],
+    "pl_final": "it was simple enough sir if you only had known but with all your cleverness it was impossible that you could know",
+    "cpu_final": "it was simple enough sir if you only had known but with all your cleverness it was impossible that you could know",
+    "python_final": "it was simple enough sir if you only had known but with all your cleverness it was impossible that you could know",
+    "final_compute_ms": [
+      1572.109,
+      3923.825
+    ],
+    "pass": true
+  },
+  "2094-142345-0034": {
+    "phrases": 1,
+    "network_exact": 1,
+    "logit_bytes": 12760,
+    "engine": {
+      "pl-layer": 1
+    },
+    "pl_equals_cpu": 1,
+    "python_equals_pl": 1,
+    "segmentation_equal": true,
+    "previews": 8,
+    "merged": 64,
+    "cpu_input_identical": 1,
+    "cpu_logits_identical": 1,
+    "python_phrases": 1,
+    "feature_bytes_differing": 5,
+    "tcp_events": 10,
+    "tcp_finals_equal": 1,
+    "preview_compute_ms": [
+      345.198,
+      535.375,
+      933.896,
+      1571.503,
+      2235.072,
+      2236.044,
+      2224.527,
+      2224.197
+    ],
+    "preview_update_ms": [
+      488.785,
+      904.618,
+      1600.001,
+      2586.518,
+      3849.084,
+      4525.81,
+      4590.365,
+      4535.144
+    ],
+    "commands": [
+      187
+    ],
+    "pl_final": "and there's linen in the house as i could well spare you for i got lots of sheeting and table clothing and towelings isn't made up",
+    "cpu_final": "and there's linen in the house as i could well spare you for i got lots of sheeting and table clothing and towelings isn't made up",
+    "python_final": "and there's linen in the house as i could well spare you for i got lots of sheeting and table clothing and towelings isn't made up",
+    "final_compute_ms": [
+      6960.616
+    ],
+    "pass": true
+  },
+  "61-70968-0054": {
+    "phrases": 1,
+    "network_exact": 1,
+    "logit_bytes": 12296,
+    "engine": {
+      "pl-layer": 1
+    },
+    "pl_equals_cpu": 1,
+    "python_equals_pl": 0,
+    "segmentation_equal": true,
+    "previews": 8,
+    "merged": 62,
+    "cpu_input_identical": 1,
+    "cpu_logits_identical": 1,
+    "python_phrases": 1,
+    "feature_bytes_differing": 8,
+    "tcp_events": 10,
+    "tcp_finals_equal": 1,
+    "preview_compute_ms": [
+      345.267,
+      529.632,
+      933.984,
+      1571.487,
+      2235.819,
+      2234.088,
+      2228.111,
+      2227.102
+    ],
+    "preview_update_ms": [
+      488.86,
+      898.885,
+      1594.396,
+      2566.524,
+      3844.345,
+      4519.171,
+      4587.359,
+      4535.105
+    ],
+    "commands": [
+      187
+    ],
+    "pl_final": "mistress fitzuth had been carried off by the sheriff's daughter and her maids as soon as they had entered the house so that robin alone had the care of montfichet",
+    "cpu_final": "mistress fitzuth had been carried off by the sheriff's daughter and her maids as soon as they had entered the house so that robin alone had the care of montfichet",
+    "python_final": "mistress fitzuth had been carried off by the sheriff's daughter and her maids as soon as they had entered the house so that robin alone had the care of montvichet",
+    "final_compute_ms": [
+      6667.03
+    ],
+    "pass": false
+  },
+  "6829-68771-0025": {
+    "phrases": 2,
+    "network_exact": 2,
+    "logit_bytes": 12064,
+    "engine": {
+      "pl-layer": 2
+    },
+    "pl_equals_cpu": 2,
+    "python_equals_pl": 2,
+    "segmentation_equal": true,
+    "previews": 7,
+    "merged": 58,
+    "cpu_input_identical": 2,
+    "cpu_logits_identical": 2,
+    "python_phrases": 2,
+    "feature_bytes_differing": 1,
+    "tcp_events": 13,
+    "tcp_finals_equal": 2,
+    "preview_compute_ms": [
+      533.841,
+      733.467,
+      1143.933,
+      2017.076,
+      2248.128,
+      2245.86,
+      1555.725
+    ],
+    "preview_update_ms": [
+      735.494,
+      1291.471,
+      1957.229,
+      3258.627,
+      4309.525,
+      4635.504,
+      9203.043
+    ],
+    "commands": [
+      186,
+      186
+    ],
+    "pl_final": "she sat down in a rocking chair and clasping her hands in her lap rocked slowly back and forth i'm sorry said beth",
+    "cpu_final": "she sat down in a rocking chair and clasping her hands in her lap rocked slowly back and forth i'm sorry said beth",
+    "python_final": "she sat down in a rocking chair and clasping her hands in her lap rocked slowly back and forth i'm sorry said beth",
+    "final_compute_ms": [
+      4705.83,
+      1559.965
+    ],
+    "pass": true
+  },
+  "7021-79740-0013": {
+    "phrases": 1,
+    "network_exact": 1,
+    "logit_bytes": 11136,
+    "engine": {
+      "pl-layer": 1
+    },
+    "pl_equals_cpu": 1,
+    "python_equals_pl": 1,
+    "segmentation_equal": true,
+    "previews": 7,
+    "merged": 54,
+    "cpu_input_identical": 1,
+    "cpu_logits_identical": 1,
+    "python_phrases": 1,
+    "feature_bytes_differing": 4,
+    "tcp_events": 10,
+    "tcp_finals_equal": 1,
+    "preview_compute_ms": [
+      535.521,
+      733.121,
+      1144.532,
+      2019.805,
+      2246.071,
+      2244.341,
+      2228.115
+    ],
+    "preview_update_ms": [
+      678.233,
+      1292.281,
+      1959.167,
+      3262.663,
+      4312.046,
+      4637.402,
+      4585.58
+    ],
+    "commands": [
+      186
+    ],
+    "pl_final": "put these play things all away quick and carefully and we will not let them know anything about your leaving them out",
+    "cpu_final": "put these play things all away quick and carefully and we will not let them know anything about your leaving them out",
+    "python_final": "put these play things all away quick and carefully and we will not let them know anything about your leaving them out",
+    "final_compute_ms": [
+      5808.503
+    ],
+    "pass": true
+  }
+}

@@ -1,0 +1,6 @@
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=784/774 logits=11368 ctc=identical mode=layer commands=186 cpu_ms=555.416354 pl_ms=460.540350 cycles=27395517 sync_ms=129.654856
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=304/300 logits=4408 ctc=identical mode=network commands=1 cpu_ms=219.490768 pl_ms=69.848042 cycles=10309869 sync_ms=0.770279
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=304/300 logits=4408 ctc=identical mode=network commands=1 cpu_ms=219.689764 pl_ms=69.842336 cycles=10309859 sync_ms=0.755649

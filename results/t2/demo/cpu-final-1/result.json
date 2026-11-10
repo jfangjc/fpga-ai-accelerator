@@ -1,0 +1,1 @@
+{"exit": 0, "backend": "cpu", "clips": ["1089-134691-0023", "1188-133604-0025", "121-127105-0003"], "wall_seconds": 26.72330855399923, "source": "cpu-wav", "lock": "board.lock held by parent demo_board.sh", "stop": "natural replay EOF and thread joins"}

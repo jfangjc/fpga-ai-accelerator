@@ -1,0 +1,29 @@
+backend pl: engine 0x00010002, RUN_NETWORK available, mode auto
+final routing: auto, CPU threads=3, out-of-order result slots=32
+capture_clock mono=20305.268466027 frames=100 bracket_us=866.272 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20306.268468312 frames=200 bracket_us=879.282 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20307.268482196 frames=300 bracket_us=868.982 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20308.268493615 frames=400 bracket_us=877.321 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20309.268513833 frames=500 bracket_us=860.352 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20310.268520465 frames=600 bracket_us=872.061 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20311.268536188 frames=700 bracket_us=878.062 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20312.268637461 frames=800 bracket_us=829.991 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20313.268559780 frames=900 bracket_us=872.591 sample_rate=16000.000000000 ppm=0.000 fitted=0
+capture_clock mono=20314.268607272 frames=1000 bracket_us=890.222 sample_rate=15999.721874004 ppm=-17.383 fitted=1
+capture_clock mono=20315.268678683 frames=1100 bracket_us=759.360 sample_rate=15999.739048357 ppm=-16.309 fitted=1
+capture_clock mono=20316.268614091 frames=1200 bracket_us=882.532 sample_rate=15999.753184985 ppm=-15.426 fitted=1
+capture_clock mono=20317.268633880 frames=1300 bracket_us=872.991 sample_rate=15999.759568958 ppm=-15.027 fitted=1
+capture_clock mono=20318.268642394 frames=1400 bracket_us=874.152 sample_rate=15999.762121869 ppm=-14.867 fitted=1
+capture_clock mono=20319.268660922 frames=1500 bracket_us=875.672 sample_rate=15999.759056996 ppm=-15.059 fitted=1
+capture_clock mono=20320.268673789 frames=1600 bracket_us=872.682 sample_rate=15999.762059579 ppm=-14.871 fitted=1
+capture_clock mono=20321.268684976 frames=1700 bracket_us=870.382 sample_rate=15999.737503108 ppm=-16.406 fitted=1
+capture_clock mono=20322.268722743 frames=1800 bracket_us=868.231 sample_rate=15999.744152048 ppm=-15.990 fitted=1
+capture_clock mono=20323.268719473 frames=1900 bracket_us=860.462 sample_rate=15999.751847359 ppm=-15.510 fitted=1
+capture_clock mono=20324.268733123 frames=2000 bracket_us=856.302 sample_rate=15999.754521135 ppm=-15.342 fitted=1
+capture_clock mono=20325.268760443 frames=2100 bracket_us=867.751 sample_rate=15999.757238871 ppm=-15.173 fitted=1
+capture_clock mono=20326.268745721 frames=2200 bracket_us=878.872 sample_rate=15999.760711728 ppm=-14.956 fitted=1
+capture_clock mono=20327.268768144 frames=2300 bracket_us=872.852 sample_rate=15999.765059877 ppm=-14.684 fitted=1
+capture_clock mono=20328.268778821 frames=2400 bracket_us=870.631 sample_rate=15999.767161677 ppm=-14.552 fitted=1
+capture_clock mono=20329.268933621 frames=2500 bracket_us=835.721 sample_rate=15999.766162067 ppm=-14.615 fitted=1
+capture_clock mono=20330.268801214 frames=2600 bracket_us=880.382 sample_rate=15999.759866821 ppm=-15.008 fitted=1
+capture_stats frames=2610 irqs=2610 sequence_errors=0 ring_overruns=0 tx_underruns=0 mic_overruns=0 consumer_dropped=0 status=0x1 error=0

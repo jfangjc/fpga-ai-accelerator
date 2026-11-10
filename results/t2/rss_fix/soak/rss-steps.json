@@ -1,0 +1,36 @@
+{
+ "steps_after_150s": [
+  {
+   "seconds": 228.5,
+   "before_kib": 190836,
+   "after_kib": 190856
+  },
+  {
+   "seconds": 550.3,
+   "before_kib": 190856,
+   "after_kib": 190860
+  },
+  {
+   "seconds": 705.3,
+   "before_kib": 190860,
+   "after_kib": 190872
+  },
+  {
+   "seconds": 872.7,
+   "before_kib": 190872,
+   "after_kib": 190876
+  },
+  {
+   "seconds": 1026.7,
+   "before_kib": 190876,
+   "after_kib": 190888
+  },
+  {
+   "seconds": 1194.3,
+   "before_kib": 190888,
+   "after_kib": 190892
+  }
+ ],
+ "last_step_seconds": 1194.3,
+ "flat_until_seconds": 1808.6
+}

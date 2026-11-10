@@ -1,0 +1,62 @@
+[
+    {
+        "Hash":  "0DAE993D8569C76BFCD065C7B7A2DFDC06C023959D4E2B6CB03EE018E930A84C",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\chunks.tsv"
+    },
+    {
+        "Hash":  "7126B03DEB7D3715ACD66DE69F1C6605461F32C961B53C2FC905137C7142A6EC",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\cpu.qnw1"
+    },
+    {
+        "Hash":  "EE07F475801FDDCA55FD93C2A1FE61F18557626FFC11CEE6991F41D78AE9F583",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\program.qnp2"
+    },
+    {
+        "Hash":  "581523F80CCE0510AC452341D4F9E69CE814530C6A7DEBAC4A88278396B2AB8D",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window0.i8"
+    },
+    {
+        "Hash":  "20918EEC0899B21356D05DDC544159598C850CB0266F6433B3B9E66E890179EA",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window1.i8"
+    },
+    {
+        "Hash":  "2EB3E6287CFDB65496EF9F404DB5BC01CD1DF84091B1583F32366DA5A2046C15",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window1552.i8"
+    },
+    {
+        "Hash":  "3756720F084EA2ADE60DC808B325C868DA67952F2D17F3E9D5967FD0D199FFFC",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window2.i8"
+    },
+    {
+        "Hash":  "FFB7319BD63E4B7EA5A6240571029555DB1F17C7F198B0C8E631237E1CF447C7",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window3.i8"
+    },
+    {
+        "Hash":  "1D277FD9CC5472EC68727C87495FA53640EE9D4891AA2B5BEA0F9389E3CAA6F7",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window300.i8"
+    },
+    {
+        "Hash":  "9DD30C3D160D980658D27892E1713B8DFA11FF3796CB21E0E3F917638C3A7D92",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window4.i8"
+    },
+    {
+        "Hash":  "5F70BF18A086007016E948B04AED3B82103A36BEA41755B6CDDFAF10ACE3C6EF",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window5.i8"
+    },
+    {
+        "Hash":  "168C882EC43137948EBC095A11ACF0CB944C754A16F0DFCB000736FAC6E78689",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window6.i8"
+    },
+    {
+        "Hash":  "306AE57106737270245118EF6CE27CFE5E38BF7A5B5381583479F3105A0CE06D",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window7.i8"
+    },
+    {
+        "Hash":  "5F70BF18A086007016E948B04AED3B82103A36BEA41755B6CDDFAF10ACE3C6EF",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window8.i8"
+    },
+    {
+        "Hash":  "46BBB14FEE156232FBD23A0D111768A855101133CEFBD44CA8D324890CF9F344",
+        "Path":  "C:\\Users\\jfang\\.t3\\worktrees\\stt-accelerator\\t3-8e315b70\\hw\\out\\full150-assets\\window9.i8"
+    }
+]

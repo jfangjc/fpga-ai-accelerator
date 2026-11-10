@@ -1,0 +1,36 @@
+[
+ {
+  "run": "1089-134691-0023.bulk.bin",
+  "frames": 772,
+  "ref_frames": 772,
+  "received": 772,
+  "sequence_ok": true,
+  "band_values": 49408,
+  "band_mismatches": 0,
+  "frame_mismatches": 0,
+  "utterance_f32_mismatches": 47992,
+  "utterance_int8_mismatches": 1,
+  "utterance_int8_max_abs": 1,
+  "running_f32_mismatches": 10862,
+  "running_int8_mismatches": 0,
+  "running_int8_max_abs": 0,
+  "bitexact": true
+ },
+ {
+  "run": "1089-134691-0023.paced.bin",
+  "frames": 772,
+  "ref_frames": 772,
+  "received": 772,
+  "sequence_ok": true,
+  "band_values": 49408,
+  "band_mismatches": 0,
+  "frame_mismatches": 0,
+  "utterance_f32_mismatches": 47992,
+  "utterance_int8_mismatches": 1,
+  "utterance_int8_max_abs": 1,
+  "running_f32_mismatches": 10862,
+  "running_int8_mismatches": 0,
+  "running_int8_max_abs": 0,
+  "bitexact": true
+ }
+]

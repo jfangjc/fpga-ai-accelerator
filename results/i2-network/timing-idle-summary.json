@@ -1,0 +1,90 @@
+{
+  "repeats": 20,
+  "cycles": [
+    10308814,
+    10308815,
+    10308817,
+    10308818,
+    10308819,
+    10308827
+  ],
+  "sync_calls": [
+    4
+  ],
+  "cpu_ms": {
+    "median": 217.5267605,
+    "p90": 217.9701327,
+    "min": 217.299477,
+    "max": 218.733879
+  },
+  "pl_ms": {
+    "median": 103.976444,
+    "p90": 104.0833921,
+    "min": 103.815016,
+    "max": 104.119621
+  },
+  "sync_ms": {
+    "median": 0.702136,
+    "p90": 0.802821,
+    "min": 0.580839,
+    "max": 0.838303
+  },
+  "dma_submit_ms": {
+    "median": 0.0174905,
+    "p90": 0.0215591,
+    "min": 0.01047,
+    "max": 0.021951
+  },
+  "irq_wait_ms": {
+    "median": 103.1102795,
+    "p90": 103.1231191,
+    "min": 103.072494,
+    "max": 103.193616
+  },
+  "host_remaining_ms": {
+    "median": 0.1443825,
+    "p90": 0.1554432,
+    "min": 0.108612,
+    "max": 0.193403
+  },
+  "submit_irq_ms": {
+    "median": 103.5557725,
+    "p90": 103.619923,
+    "min": 103.43613,
+    "max": 103.634063
+  },
+  "irq_ready_ms": {
+    "median": 0.3337155,
+    "p90": 0.36514800000000003,
+    "min": 0.299685,
+    "max": 0.392407
+  },
+  "outside_ms": {
+    "median": 0.01777,
+    "p90": 0.020377100000000016,
+    "min": 0.01257,
+    "max": 0.031981
+  },
+  "engine_ms": {
+    "median": 103.08815,
+    "p90": 103.08819,
+    "min": 103.08814,
+    "max": 103.08827
+  },
+  "speedup": {
+    "median_of_pairs": 2.093918246480115,
+    "min": 2.0870861314410663,
+    "max": 2.101589120239262,
+    "ratio_of_medians": 2.0920773218595548
+  },
+  "pass_lines": [
+    "PASS VERSION=00010002 PING cycles=11",
+    "PASS malformed/recovery 4",
+    "PASS explicit reset/recovery",
+    "PASS RUN_NETWORK capable (resident program)",
+    "PASS 20 paired CPU/PL 3 s windows bit-exact",
+    "PASS explicit reset -> RUN_NETWORK bit-exact",
+    "PASS timeout/reset/PING recovery",
+    "PASS RUN_NETWORK bit-exact after timeout recovery"
+  ]
+}

@@ -1,0 +1,16 @@
+make: Entering directory '/home/ubuntu/stt/engdrv/sw/engdrv'
+cc -O3 -g -std=c11 -fPIC -Wall -Wextra -o i2 i2.o libengdrv.a ../qnrt/qnrt.c -pthread -lm
+make: Leaving directory '/home/ubuntu/stt/engdrv/sw/engdrv'
+PASS I2 logits+CTC T=392 valid=387 cycles=27389006 wall_ms=557.827 mode=layer commands=186 exchange_ms=498.949 outside_ms=58.878 sync_ms=127.310 sync_calls=744
+PASS I2 logits+CTC T=152 valid=150 cycles=10308815 wall_ms=104.121 mode=network commands=1 exchange_ms=104.004 outside_ms=0.117 sync_ms=0.816 sync_calls=4
+PASS I2 logits+CTC T=152 valid=150 cycles=10308815 wall_ms=104.036 mode=network commands=1 exchange_ms=103.950 outside_ms=0.086 sync_ms=0.753 sync_calls=4
+PASS I2 logits+CTC T=152 valid=150 cycles=10308817 wall_ms=104.054 mode=network commands=1 exchange_ms=103.969 outside_ms=0.086 sync_ms=0.761 sync_calls=4
+PASS I2 logits+CTC T=24 valid=24 cycles=2289391 wall_ms=23.854 mode=network commands=1 exchange_ms=23.811 outside_ms=0.042 sync_ms=0.743 sync_calls=4
+PASS I2 logits+CTC T=8 valid=7 cycles=1781409 wall_ms=18.662 mode=network commands=1 exchange_ms=18.618 outside_ms=0.044 sync_ms=0.715 sync_calls=4
+PASS I2 logits+CTC T=24 valid=24 cycles=2289391 wall_ms=23.817 mode=network commands=1 exchange_ms=23.776 outside_ms=0.040 sync_ms=0.752 sync_calls=4
+PASS I2 logits+CTC T=24 valid=24 cycles=2289394 wall_ms=23.812 mode=network commands=1 exchange_ms=23.770 outside_ms=0.042 sync_ms=0.748 sync_calls=4
+PASS I2 logits+CTC T=8 valid=1 cycles=1781437 wall_ms=18.712 mode=network commands=1 exchange_ms=18.672 outside_ms=0.041 sync_ms=0.721 sync_calls=4
+PASS I2 logits+CTC T=24 valid=24 cycles=2289391 wall_ms=23.859 mode=network commands=1 exchange_ms=23.817 outside_ms=0.041 sync_ms=0.752 sync_calls=4
+PASS I2 logits+CTC T=320 valid=320 cycles=20333222 wall_ms=204.377 mode=network commands=1 exchange_ms=204.232 outside_ms=0.145 sync_ms=0.738 sync_calls=4
+PASS I2 logits+CTC T=328 valid=328 cycles=23052362 wall_ms=508.609 mode=layer commands=186 exchange_ms=450.094 outside_ms=58.515 sync_ms=133.395 sync_calls=744
+PASS I2 logits+CTC T=776 valid=774 cycles=53410428 wall_ms=972.282 mode=layer commands=188 exchange_ms=874.122 outside_ms=98.160 sync_ms=152.936 sync_calls=752

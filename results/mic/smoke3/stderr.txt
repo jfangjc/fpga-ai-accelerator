@@ -1,0 +1,3 @@
+backend pl: engine 0x00010002, RUN_NETWORK available, mode auto
+final routing: auto, CPU threads=3, out-of-order result slots=32
+capture_stats frames=3892 irqs=3892 sequence_errors=0 ring_overruns=0 tx_underruns=0 mic_overruns=0 consumer_dropped=0 status=0x1 error=0

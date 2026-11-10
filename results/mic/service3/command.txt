@@ -1,0 +1,1 @@
+/opt/stt-caption/bin/sttcap --source pl-mic --mic 1 --mic-gain 20 --vad-snr 8 --backend pl --final-backend auto --threads 3 --blob /opt/stt-caption/share/quartznet_int8.bin --prior /opt/stt-caption/share/running_prior.json --port 8765 --log session.jsonl --ppm caption.ppm --ppm-every 5 --program /opt/stt-caption/share/program.qnp2 

@@ -1,0 +1,29 @@
+15 PL_FLAT     -              -                stt-full150 id_ok PL_FLAT   (0+0+0)            0->0,        stt-full150
+make: Entering directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/engdrv'
+rm -f *.o *.a *.so i2
+rm -rf obj
+make: Leaving directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/engdrv'
+make: Entering directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/engdrv'
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o engdrv.o engdrv.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o board.o board.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -c ../plio/plio.c -o plio.o
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o backend_pl.o backend_pl.c
+cc -O3 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror   -c -o no_cosim.o no_cosim.c
+ar rcs libengdrv.a engdrv.o board.o plio.o backend_pl.o no_cosim.o
+make: Leaving directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/engdrv'
+make: Entering directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/app'
+rm -f sttcap test_stream test_clock
+make: Leaving directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/app'
+make: Entering directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/app'
+make -C ../engdrv CC='cc' libengdrv.a
+make[1]: Entering directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/engdrv'
+make[1]: 'libengdrv.a' is up to date.
+make[1]: Leaving directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/engdrv'
+cc -O2 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -ffp-contract=off -DHAVE_ENGDRV main.c backend.c stream.c display.c ../qnrt/qnrt.c ../qnrt/wav.c ../frontend_c/frontend.c ../fedrv/fedrv.c ../fedrv/stream.c ../fedrv/features.c ../plio/plio.c ../engdrv/backend_pl.c ../engdrv/libengdrv.a -pthread -lm -o sttcap
+cc -O2 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -ffp-contract=off test_stream.c stream.c -o test_stream
+cc -O2 -mcpu=cortex-a53 -std=c11 -Wall -Wextra -Werror -ffp-contract=off test_clock.c -lm -o test_clock
+./test_stream
+PASS CTC, cross-window stitching, VAD silence and phrase boundary
+./test_clock
+PASS clock drift, bounded fit, preserved consumer backlog
+make: Leaving directory '/home/ubuntu/stt/t2/ooo_emit/src/sw/app'

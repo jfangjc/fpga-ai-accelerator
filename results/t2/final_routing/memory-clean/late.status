@@ -1,0 +1,59 @@
+Name:	sttcap
+Umask:	0022
+State:	S (sleeping)
+Tgid:	190399
+Ngid:	0
+Pid:	190399
+PPid:	190394
+TracerPid:	0
+Uid:	0	0	0	0
+Gid:	0	0	0	0
+FDSize:	64
+Groups:	0 
+NStgid:	190399
+NSpid:	190399
+NSpgid:	190375
+NSsid:	190375
+Kthread:	0
+VmPeak:	  355004 kB
+VmSize:	  355004 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	  189824 kB
+VmRSS:	  189824 kB
+RssAnon:	  187916 kB
+RssFile:	    1908 kB
+RssShmem:	       0 kB
+VmData:	  284452 kB
+VmStk:	     132 kB
+VmExe:	      96 kB
+VmLib:	    2332 kB
+VmPTE:	     528 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+untag_mask:	0xffffffffffffff
+Threads:	12
+SigQ:	1/12193
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	0000000000000005
+SigCgt:	0000000100004002
+CapInh:	0000000000000000
+CapPrm:	000001ffffffffff
+CapEff:	000001ffffffffff
+CapBnd:	000001ffffffffff
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	0
+Seccomp_filters:	0
+Speculation_Store_Bypass:	not vulnerable
+SpeculationIndirectBranch:	unknown
+Cpus_allowed:	e
+Cpus_allowed_list:	1-3
+Mems_allowed:	00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	33429
+nonvoluntary_ctxt_switches:	156

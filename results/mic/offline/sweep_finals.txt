@@ -1,0 +1,39 @@
+phrases 14
+snr= 6 gain= 0dB band0fix=False: WER 19/216 = 8.80%
+snr= 6 gain= 0dB band0fix=True : WER 20/216 = 9.26%
+snr= 6 gain=10dB band0fix=False: WER 19/216 = 8.80%
+snr= 6 gain=10dB band0fix=True : WER 22/216 = 10.19%
+snr= 6 gain=20dB band0fix=False: WER 23/216 = 10.65%
+snr= 6 gain=20dB band0fix=True : WER 21/216 = 9.72%
+snr= 6 gain=30dB band0fix=False: WER 23/216 = 10.65%
+snr= 6 gain=30dB band0fix=True : WER 21/216 = 9.72%
+snr= 8 gain= 0dB band0fix=False: WER 20/216 = 9.26%
+snr= 8 gain= 0dB band0fix=True : WER 21/216 = 9.72%
+snr= 8 gain=10dB band0fix=False: WER 19/216 = 8.80%
+snr= 8 gain=10dB band0fix=True : WER 21/216 = 9.72%
+snr= 8 gain=20dB band0fix=False: WER 20/216 = 9.26%
+snr= 8 gain=20dB band0fix=True : WER 21/216 = 9.72%
+snr= 8 gain=30dB band0fix=False: WER 21/216 = 9.72%
+snr= 8 gain=30dB band0fix=True : WER 20/216 = 9.26%
+snr=10 gain= 0dB band0fix=False: WER 21/216 = 9.72%
+snr=10 gain= 0dB band0fix=True : WER 24/216 = 11.11%
+snr=10 gain=10dB band0fix=False: WER 23/216 = 10.65%
+snr=10 gain=10dB band0fix=True : WER 22/216 = 10.19%
+snr=10 gain=20dB band0fix=False: WER 23/216 = 10.65%
+snr=10 gain=20dB band0fix=True : WER 24/216 = 11.11%
+snr=10 gain=30dB band0fix=False: WER 22/216 = 10.19%
+snr=10 gain=30dB band0fix=True : WER 25/216 = 11.57%
+  [  0.00-  7.08] pain to see them and a sword like pain to see the signs of adolescence that made repellent their pitiable nakedness
+  [  9.42- 16.60] you know i've just been telling you how the school o materialism and clay involved itself at last in cloud and fire
+  [ 18.56- 21.23] there was a unanimous groan at this
+  [ 21.23- 26.24] and much reproach after rich and his preoccupied way he explained
+  [ 28.58- 35.77] this outward mutability indicated and did not more than fairly express the various properties of her inner life
+  [ 37.74- 45.42] instead of shoes the old man wore boots with turnover tops and hits blue coat had wide cufs of gold bravd
+  [ 47.33- 55.01] i greatly warned that one so well disposed should die in his ignorance and i have sought o goodly him can you lead me to him
+  [ 57.19- 59.22] it was simple enough sir
+  [ 59.22- 61.27] if you only had known
+  [ 61.27- 64.68] but with all your cleverness it was impossible that you could know
+  [ 66.64- 74.78] she was therefore most agreeably surprised to hear mister creswell express himself so cordially as approving of negro education
+  [ 76.68- 80.11] and there's linen in the house as i could well spare you
+  [ 80.11- 84.69] for i got lots of sheeting and table clothing and towelings isn't made up
+  [ 86.47- 94.45] he weighed and rewayed the meter plates and pursued every line of investigation imaginable but all in vain

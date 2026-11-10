@@ -1,0 +1,2 @@
+9b3651045c9f6a618f6078e708b600268fbb82ec94b57add76afe5700057a4af  soak/soak.wav
+9b3651045c9f6a618f6078e708b600268fbb82ec94b57add76afe5700057a4af  /home/ubuntu/stt/t2/followup/soak/soak.wav

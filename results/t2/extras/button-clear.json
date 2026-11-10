@@ -1,0 +1,1 @@
+{"control": "0x86", "status_before": "0x0", "sticky_before": false, "frames": 0, "mic_overruns": 0, "mic1": {"peak": 0, "dc": 0, "mean_square": 0}, "mic2": {"peak": 131072, "dc": -5, "mean_square": 3657459744}, "clear_button_written": true, "status_after": "0x0", "sticky_after": false}

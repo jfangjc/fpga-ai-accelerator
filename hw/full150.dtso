@@ -1,0 +1,26 @@
+/dts-v1/;
+/plugin/;
+/ {
+ fragment@0 { target = <&fpga_full>; __overlay__ { firmware-name = "stt-full150.bit.bin"; status = "okay"; }; };
+ fragment@1 { target-path = "/"; __overlay__ {
+ stt-clock { compatible = "xlnx,fclk"; clocks = <&zynqmp_clk 71>; assigned-clocks = <&zynqmp_clk 71>; assigned-clock-rates = <100000000>; status = "okay"; };
+ }; };
+ fragment@3 { target-path = "/"; __overlay__ { stt-engine-clock { compatible = "xlnx,fclk"; clocks = <&zynqmp_clk 72>; assigned-clocks = <&zynqmp_clk 72>; assigned-clock-rates = <150000000>; status = "okay"; }; }; };
+ fragment@2 { target = <&amba>; __overlay__ {
+ #address-cells = <2>; #size-cells = <2>;
+ stt-afi { compatible = "xlnx,afi-fpga"; config-afi = <4 0 5 0 14 0xa00>; resets = <&zynqmp_reset 116>; };
+ dma-tx@a0000000 { compatible = "generic-uio"; linux,uio-name = "stt-dma-tx"; reg = <0 0xa0000000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 89 4>; clocks = <&zynqmp_clk 71>; };
+ // Separate UIO IRQ endpoint, same register aperture: one owner in libplio.
+ dma-rx@a0000000 { compatible = "generic-uio"; linux,uio-name = "stt-dma-rx"; reg = <0 0xa0000000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 90 4>; clocks = <&zynqmp_clk 71>; };
+ gpio@a0010000 { compatible = "generic-uio"; linux,uio-name = "stt-fe-reset"; reg = <0 0xa0010000 0 0x10000>; clocks = <&zynqmp_clk 71>; };
+ timer@a0020000 { compatible = "generic-uio"; linux,uio-name = "stt-timer"; reg = <0 0xa0020000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 91 4>; clocks = <&zynqmp_clk 71>; };
+ frontend@a0030000 { compatible = "generic-uio"; linux,uio-name = "stt-frontend"; reg = <0 0xa0030000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 92 4>; };
+ frontend-tx@a0040000 { compatible = "generic-uio"; linux,uio-name = "stt-fe-tx"; reg = <0 0xa0040000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 93 4>; };
+ frontend-rx@a0040000 { compatible = "generic-uio"; linux,uio-name = "stt-fe-rx"; reg = <0 0xa0040000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 94 4>; };
+ engine@a0050000 { compatible = "generic-uio"; linux,uio-name = "stt-engine"; reg = <0 0xa0050000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 95 4>; clocks = <&zynqmp_clk 72>; };
+ engine-tx@a0060000 { compatible = "generic-uio"; linux,uio-name = "stt-engine-tx"; reg = <0 0xa0060000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 96 4>; clocks = <&zynqmp_clk 72>; };
+ engine-rx@a0060000 { compatible = "generic-uio"; linux,uio-name = "stt-engine-rx"; reg = <0 0xa0060000 0 0x10000>; interrupt-parent = <&gic>; interrupts = <0 104 4>; clocks = <&zynqmp_clk 72>; };
+ }; };
+};
+
+

@@ -1,0 +1,26 @@
+Wed Nov  4 22:29:38 UTC 2026
+#  Accel_type  user_load_type user_load_region Base        Pid   Base_type #slots(RPU+PL+AIE) slot->handle Accelerator
+-- ----------- -------------- ---------------- ----------- ----- --------- ------------------ ------------ ---------
+ 1 PL_FLAT     -              -                asr-v3-bulk id_ok PL_FLAT   (0+0+0)            -1           asr-v3-bulk
+ 2 PL_FLAT     -              -                asr-v3-a... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-adaptive
+ 3 PL_FLAT     -              -                voice-ca... id_ok PL_FLAT   (0+0+0)            -1           voice-cached
+ 4 PL_FLAT     -              -                voice-dma   id_ok PL_FLAT   (0+0+0)            -1           voice-dma
+ 5 PL_FLAT     -              -                stt-full    id_ok PL_FLAT   (0+0+0)            -1           stt-full
+ 6 PL_FLAT     -              -                asr-v2      id_ok PL_FLAT   (0+0+0)            -1           asr-v2
+ 7 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortcache
+ 8 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-shortwide
+ 9 PL_FLAT     -              -                asr-v3-s... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-stream
+10 PL_FLAT     -              -                asr-v3-m... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-mic-select
+11 PL_FLAT     -              -                asr-v3-b... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-branch512-ab166
+12 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain-prefetch
+13 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-chain
+14 XRT_FLAT    -              -                k24-star... id_ok XRT_FLAT  (0+0+0)            -1           k24-starter-kits
+15 PL_FLAT     -              -                asr-v3-q... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-quant
+16 PL_FLAT     -              -                stt-loop... id_ok PL_FLAT   (0+0+0)            -1           stt-loopback
+17 PL_FLAT     -              -                stt-fe      id_ok PL_FLAT   (0+0+0)            -1           stt-fe
+18 XRT_FLAT    -              -                k26-star... id_ok XRT_FLAT  (0+0+0)            -1           k26-starter-kits
+19 PL_FLAT     -              -                asr-v3-pair id_ok PL_FLAT   (0+0+0)            -1           asr-v3-pair
+20 PL_FLAT     -              -                asr-v3-c... id_ok PL_FLAT   (0+0+0)            -1           asr-v3-cache
+21 PL_FLAT     -              -                voice-pr... id_ok PL_FLAT   (0+0+0)            -1           voice-prototype
+22 PL_FLAT     -              -                stt-full150 id_ok PL_FLAT   (0+0+0)            0->0,        stt-full150
+PASS-idle-lock-free-stt-full150-loaded

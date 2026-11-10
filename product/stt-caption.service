@@ -1,0 +1,23 @@
+[Unit]
+Description=FPGA live speech-to-text captioning (KV260, stt-full150)
+After=dfx-mgr.service dfx-mgr-fw-load.service network-online.target
+Wants=dfx-mgr.service network-online.target
+StartLimitIntervalSec=120
+StartLimitBurst=10
+
+[Service]
+Type=simple
+ExecStartPre=/opt/stt-caption/bin/stt-caption prepare
+ExecStart=/opt/stt-caption/bin/stt-caption run
+ExecStopPost=/opt/stt-caption/bin/stt-caption cleanup
+# SIGINT lets sttcap drain and write its final log lines.
+KillSignal=SIGINT
+TimeoutStopSec=20
+# A button press ends the session cleanly; restarting starts a fresh one.
+Restart=always
+RestartSec=1
+# 75: another project's firmware is loaded; do not fight over the PL.
+RestartPreventExitStatus=75
+
+[Install]
+WantedBy=multi-user.target

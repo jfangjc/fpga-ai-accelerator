@@ -1,0 +1,318 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version      : Vivado v.2026.1 (win64) Build 6511674 Tue Jun 16 11:02:23 MDT 2026
+| Date              : Thu Nov  5 04:16:56 2026
+| Host              : Yoga running 64-bit major release  (build 9200)
+| Command           : report_timing -from clk_pl_1 -to clk_pl_0 -delay_type min_max -max_paths 10 -file C:/Users/jfang/.t3/worktrees/stt-accelerator/t3-8e315b70/hw/out/full150/timing-clk_pl_1-to-clk_pl_0.rpt
+| Design            : system_wrapper
+| Device            : xck26-sfvc784
+| Speed File        : -2LV  PRODUCTION 1.31 12-08-2025
+| Design State      : Routed
+| Temperature Grade : C
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             4.367ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_98_111/RAMF/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[108]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        2.343ns  (logic 0.417ns (17.798%)  route 1.926ns (82.202%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X18Y33                                      0.000     0.000 r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_98_111/RAMF/CLK
+    SLICE_X18Y33         RAMD32 (Prop_F5LUT_SLICEM_CLK_O)
+                                                      0.417     0.417 r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_98_111/RAMF/O
+                         net (fo=1, routed)           1.926     2.343    system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[108]
+    SLICE_X16Y26         FDRE                                         r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[108]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X16Y26         FDRE (Setup_EFF_SLICEL_C_D)
+                                                      0.044     6.710    system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[108]
+  -------------------------------------------------------------------
+                         required time                          6.710    <hidden>
+                         arrival time                          -2.343    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  4.367    <hidden>
+
+Slack (MET) :             5.298ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_154_155/RAMA/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[154]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.414ns  (logic 0.407ns (28.784%)  route 1.007ns (71.216%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X21Y33                                      0.000     0.000 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_154_155/RAMA/CLK
+    SLICE_X21Y33         RAMD32 (Prop_E5LUT_SLICEM_CLK_O)
+                                                      0.407     0.407 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_154_155/RAMA/O
+                         net (fo=1, routed)           1.007     1.414    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[154]
+    SLICE_X27Y34         FDRE                                         r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[154]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X27Y34         FDRE (Setup_FFF2_SLICEL_C_D)
+                                                      0.046     6.712    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[154]
+  -------------------------------------------------------------------
+                         required time                          6.712    <hidden>
+                         arrival time                          -1.414    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.298    <hidden>
+
+Slack (MET) :             5.537ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s04_nodes/s04_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_async_clocks.inst_cdc_addrb_to_wr_clk/src_gray_ff_reg[1]/C
+                            (rising edge-triggered cell FDRE clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s04_nodes/s04_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_async_clocks.inst_cdc_addrb_to_wr_clk/dest_graysync_ff_reg[0][1]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.175ns  (logic 0.115ns (9.787%)  route 1.060ns (90.213%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X46Y34                                      0.000     0.000 r  system_i/mem/inst/s04_nodes/s04_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_async_clocks.inst_cdc_addrb_to_wr_clk/src_gray_ff_reg[1]/C
+    SLICE_X46Y34         FDRE (Prop_HFF2_SLICEL_C_Q)
+                                                      0.115     0.115 r  system_i/mem/inst/s04_nodes/s04_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_async_clocks.inst_cdc_addrb_to_wr_clk/src_gray_ff_reg[1]/Q
+                         net (fo=1, routed)           1.060     1.175    system_i/mem/inst/s04_nodes/s04_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_async_clocks.inst_cdc_addrb_to_wr_clk/async_path[1]
+    SLICE_X50Y34         FDRE                                         r  system_i/mem/inst/s04_nodes/s04_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_async_clocks.inst_cdc_addrb_to_wr_clk/dest_graysync_ff_reg[0][1]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X50Y34         FDRE (Setup_HFF2_SLICEL_C_D)
+                                                      0.046     6.712    system_i/mem/inst/s04_nodes/s04_w_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_async_clocks.inst_cdc_addrb_to_wr_clk/dest_graysync_ff_reg[0][1]
+  -------------------------------------------------------------------
+                         required time                          6.712    <hidden>
+                         arrival time                          -1.175    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.537    <hidden>
+
+Slack (MET) :             5.621ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_154_155/RAMC_D1/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[27]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.089ns  (logic 0.418ns (38.384%)  route 0.671ns (61.616%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X21Y33                                      0.000     0.000 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_154_155/RAMC_D1/CLK
+    SLICE_X21Y33         RAMD32 (Prop_G6LUT_SLICEM_CLK_O)
+                                                      0.418     0.418 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_154_155/RAMC_D1/O
+                         net (fo=1, routed)           0.671     1.089    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[27]
+    SLICE_X23Y29         FDRE                                         r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[27]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X23Y29         FDRE (Setup_EFF_SLICEL_C_D)
+                                                      0.044     6.710    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[27]
+  -------------------------------------------------------------------
+                         required time                          6.710    <hidden>
+                         arrival time                          -1.089    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.621    <hidden>
+
+Slack (MET) :             5.623ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_84_97/RAMA_D1/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[85]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.087ns  (logic 0.430ns (39.558%)  route 0.657ns (60.442%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X28Y32                                      0.000     0.000 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_84_97/RAMA_D1/CLK
+    SLICE_X28Y32         RAMD32 (Prop_A6LUT_SLICEM_CLK_O)
+                                                      0.430     0.430 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_84_97/RAMA_D1/O
+                         net (fo=1, routed)           0.657     1.087    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[85]
+    SLICE_X26Y26         FDRE                                         r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[85]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X26Y26         FDRE (Setup_FFF_SLICEL_C_D)
+                                                      0.044     6.710    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[85]
+  -------------------------------------------------------------------
+                         required time                          6.710    <hidden>
+                         arrival time                          -1.087    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.623    <hidden>
+
+Slack (MET) :             5.629ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/RAMA/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[112]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.081ns  (logic 0.409ns (37.835%)  route 0.672ns (62.165%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X17Y33                                      0.000     0.000 r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/RAMA/CLK
+    SLICE_X17Y33         RAMD32 (Prop_A5LUT_SLICEM_CLK_O)
+                                                      0.409     0.409 r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_112_125/RAMA/O
+                         net (fo=1, routed)           0.672     1.081    system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[112]
+    SLICE_X16Y25         FDRE                                         r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[112]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X16Y25         FDRE (Setup_EFF_SLICEL_C_D)
+                                                      0.044     6.710    system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[112]
+  -------------------------------------------------------------------
+                         required time                          6.710    <hidden>
+                         arrival time                          -1.081    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.629    <hidden>
+
+Slack (MET) :             5.632ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_140_153/RAMF/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[150]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.078ns  (logic 0.417ns (38.683%)  route 0.661ns (61.317%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X28Y31                                      0.000     0.000 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_140_153/RAMF/CLK
+    SLICE_X28Y31         RAMD32 (Prop_F5LUT_SLICEM_CLK_O)
+                                                      0.417     0.417 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_140_153/RAMF/O
+                         net (fo=1, routed)           0.661     1.078    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[150]
+    SLICE_X27Y32         FDRE                                         r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[150]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X27Y32         FDRE (Setup_FFF_SLICEL_C_D)
+                                                      0.044     6.710    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[150]
+  -------------------------------------------------------------------
+                         required time                          6.710    <hidden>
+                         arrival time                          -1.078    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.632    <hidden>
+
+Slack (MET) :             5.636ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_84_97/RAME_D1/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[93]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.076ns  (logic 0.424ns (39.405%)  route 0.652ns (60.595%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X28Y32                                      0.000     0.000 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_84_97/RAME_D1/CLK
+    SLICE_X28Y32         RAMD32 (Prop_E6LUT_SLICEM_CLK_O)
+                                                      0.424     0.424 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_84_97/RAME_D1/O
+                         net (fo=1, routed)           0.652     1.076    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[93]
+    SLICE_X26Y26         FDRE                                         r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[93]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X26Y26         FDRE (Setup_FFF2_SLICEL_C_D)
+                                                      0.046     6.712    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[93]
+  -------------------------------------------------------------------
+                         required time                          6.712    <hidden>
+                         arrival time                          -1.076    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.636    <hidden>
+
+Slack (MET) :             5.654ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_126_139/RAMF/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[136]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.057ns  (logic 0.417ns (39.451%)  route 0.640ns (60.549%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X17Y30                                      0.000     0.000 r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_126_139/RAMF/CLK
+    SLICE_X17Y30         RAMD32 (Prop_F5LUT_SLICEM_CLK_O)
+                                                      0.417     0.417 r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_126_139/RAMF/O
+                         net (fo=1, routed)           0.640     1.057    system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[136]
+    SLICE_X18Y25         FDRE                                         r  system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[136]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X18Y25         FDRE (Setup_EFF2_SLICEM_C_D)
+                                                      0.045     6.711    system_i/mem/inst/s04_nodes/s04_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[136]
+  -------------------------------------------------------------------
+                         required time                          6.711    <hidden>
+                         arrival time                          -1.057    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.654    <hidden>
+
+Slack (MET) :             5.655ns  (required time - arrival time)
+  Source:                 system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_126_139/RAMD/CLK
+                            (rising edge-triggered cell RAMD32 clocked by clk_pl_1  {rise@0.000ns fall@3.333ns period=6.666ns})
+  Destination:            system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[132]/D
+                            (rising edge-triggered cell FDRE clocked by clk_pl_0  {rise@0.000ns fall@5.000ns period=10.000ns})
+  Path Group:             clk_pl_0
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            6.666ns  (MaxDelay Path 6.666ns)
+  Data Path Delay:        1.054ns  (logic 0.406ns (38.520%)  route 0.648ns (61.480%))
+  Logic Levels:           0  
+  Timing Exception:       MaxDelay Path 6.666ns -datapath_only
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X29Y30                                      0.000     0.000 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_126_139/RAMD/CLK
+    SLICE_X29Y30         RAMD32 (Prop_D5LUT_SLICEM_CLK_O)
+                                                      0.406     0.406 r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_wr_a.gen_word_narrow.mem_reg_0_31_126_139/RAMD/O
+                         net (fo=1, routed)           0.648     1.054    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg0[132]
+    SLICE_X31Y31         FDRE                                         r  system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[132]/D
+  -------------------------------------------------------------------    -------------------
+
+                         max delay                    6.666     6.666    <hidden>
+    SLICE_X31Y31         FDRE (Setup_FFF_SLICEM_C_D)
+                                                      0.043     6.709    system_i/mem/inst/s00_nodes/s00_r_node/inst/inst_mi_handler/gen_normal_area.inst_fifo_node_payld/gen_xpm_memory_fifo.inst_fifo/gen_mem_rep[0].inst_xpm_memory/xpm_memory_base_inst/gen_rd_b.gen_rd_b_synth_template.gen_rf_narrow_reg.doutb_reg_reg[132]
+  -------------------------------------------------------------------
+                         required time                          6.709    <hidden>
+                         arrival time                          -1.054    <hidden>
+  -------------------------------------------------------------------
+                         slack                                  5.655    <hidden>
+
+
+
+

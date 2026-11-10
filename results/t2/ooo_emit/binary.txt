@@ -1,0 +1,1 @@
+8b24cf572cf3f8694e000bde5cbbafd8d964cd48d16a17ee18f5a5cebb3536d4  sw/app/sttcap

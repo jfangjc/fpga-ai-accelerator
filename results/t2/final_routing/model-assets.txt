@@ -1,0 +1,2 @@
+7126b03deb7d3715acd66de69f1c6605461f32c961b53c2fc905137c7142a6ec  /home/ubuntu/stt/cpu/quartznet_int8.bin
+66a608be12f041c8cefa175e27df4ffbc6b503efa06289c679260ef355f55a41  /home/ubuntu/stt/cpu/running_prior.json

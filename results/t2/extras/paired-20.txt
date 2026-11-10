@@ -1,0 +1,21 @@
+CAPABILITY version=00010002 network=1 ping_cycles=15
+PASS pair=0 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=217.882289 pl_ms=69.720042 cycles=10309826 sync_ms=0.740113
+PASS pair=1 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.999410 pl_ms=69.515478 cycles=10309665 sync_ms=0.620741
+PASS pair=2 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.659093 pl_ms=69.730122 cycles=10309661 sync_ms=0.762954
+PASS pair=3 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=217.885880 pl_ms=69.507487 cycles=10309842 sync_ms=0.590301
+PASS pair=4 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.261197 pl_ms=69.676640 cycles=10309858 sync_ms=0.758413
+PASS pair=5 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.426060 pl_ms=69.553048 cycles=10309760 sync_ms=0.647422
+PASS pair=6 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=240.344149 pl_ms=69.677561 cycles=10309878 sync_ms=0.756013
+PASS pair=7 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=217.873759 pl_ms=69.467207 cycles=10309673 sync_ms=0.588140
+PASS pair=8 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=219.804254 pl_ms=69.678581 cycles=10309665 sync_ms=0.755613
+PASS pair=9 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.948909 pl_ms=69.456387 cycles=10309694 sync_ms=0.590321
+PASS pair=10 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.766606 pl_ms=69.691511 cycles=10309670 sync_ms=0.770513
+PASS pair=11 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.286687 pl_ms=69.552019 cycles=10309868 sync_ms=0.644860
+PASS pair=12 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=219.097922 pl_ms=69.752892 cycles=10309820 sync_ms=0.792993
+PASS pair=13 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.441120 pl_ms=69.551999 cycles=10309674 sync_ms=0.641352
+PASS pair=14 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=217.891290 pl_ms=69.708272 cycles=10309844 sync_ms=0.781014
+PASS pair=15 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.856848 pl_ms=69.523638 cycles=10309688 sync_ms=0.621431
+PASS pair=16 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.363829 pl_ms=69.783083 cycles=10309871 sync_ms=0.818024
+PASS pair=17 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.153525 pl_ms=69.495898 cycles=10309807 sync_ms=0.593280
+PASS pair=18 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=217.997532 pl_ms=69.659890 cycles=10309749 sync_ms=0.739073
+PASS pair=19 input=300/300 logits=4350 ctc=identical mode=network commands=1 cpu_ms=218.456911 pl_ms=69.478287 cycles=10309662 sync_ms=0.597900

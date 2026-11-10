@@ -1,0 +1,4 @@
+product/** text eol=lf
+*.ppm binary
+*.gz binary
+*.sh text eol=lf
