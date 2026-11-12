@@ -61,7 +61,7 @@ You can run all the simulation using `run.tcl` in `./sim` at the root of the pro
 vivado -mode batch -source sim/run.tcl
 ```
 
-Then build the board programs `caption` and `transcript`:
+Then build the board programs `caption`, `screen` and `transcript`:
 
 ```bash
 cmake -S app -B build/app -G "Unix Makefiles"
@@ -74,7 +74,7 @@ On Windows this cross-compiles with the Vitis aarch64 toolchain. On Linux it use
 Copy the built files to the board:
 
 - `build/hw/kv260/stt-kv260` to `/lib/firmware/xilinx/stt-kv260`
-- `build/app/caption` and `build/app/transcript`
+- `build/app/caption`, `build/app/screen` and `build/app/transcript`
 - `data/export/quartznet_engine.bin`, `data/export/quartznet_int8.bin` and `data/export/running_prior.json`
 
 Load the overlay on the board:
@@ -97,4 +97,18 @@ To turn a 16 kHz mono 16-bit WAV file into text:
 
 ```bash
 sudo ./transcript hybrid quartznet_engine.bin running_prior.json speech.wav transcript.txt
+```
+
+To show the live captions on a monitor plugged into the DisplayPort, run `screen` instead of `caption`, with the same arguments:
+
+```bash
+sudo ./screen hybrid quartznet_engine.bin running_prior.json
+```
+
+A status strip along the bottom shows whether someone is speaking, the microphone level, the runner, the last decode time and the caption delay. After 5s of silence the screen clears. Add `--no-status` to hide the strip, or `--clear-after 0` to keep the captions on screen. The default colours are the pastel yellow `butter` them and add `--theme night` for a dark screen.
+
+To test the display layouts, copy `build/app/test_display` to the board and run:
+
+```bash
+./test_display
 ```

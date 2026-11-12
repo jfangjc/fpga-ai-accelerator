@@ -28,8 +28,15 @@ find_package(Threads REQUIRED)
 add_library(common STATIC kv260.c hybrid.c cpu.c phrase.c live.c)
 target_link_libraries(common PUBLIC m Threads::Threads)
 
-# caption prints live captions, transcript turns a WAV file into text
+# caption prints live captions, screen draws them on the monitor, and transcript turns a WAV file into text
 add_executable(caption caption.c)
 target_link_libraries(caption PRIVATE common)
 add_executable(transcript transcript.c)
 target_link_libraries(transcript PRIVATE common)
+add_executable(screen screen.c display.c)
+target_link_libraries(screen PRIVATE common)
+
+# Display layouts on a file in place of the framebuffer, run on the board or a Linux PC with ctest
+enable_testing()
+add_executable(test_display test_display.c display.c)
+add_test(NAME display COMMAND test_display)

@@ -17,6 +17,7 @@ static double prior_count, prior_mean[FE_BANDS], prior_m2[FE_BANDS], scale;
 static float history[HISTORY][FE_BANDS];
 static long frames;
 static int open, silent;
+static double above; // dB of the last frame over the noise floor
 // Running statistics and INT8 features of the phrase
 static double count, mean[FE_BANDS], m2[FE_BANDS];
 static int8_t phrase[FE_BANDS][PHRASE];
@@ -83,6 +84,7 @@ static int speech(double e, long t) {
     for (int i = 0; i < 10; i++) {
         lowest = fmin(lowest, floors[i]);
     }
+    above = e > 0 && lowest > 0 && isfinite(lowest) ? 10 * log10(e / lowest) : 0;
     return t > 30 && e >= 2e-6 && e >= lowest * 6.31; // the microphone settles in the first 0.3 s
 }
 
@@ -116,6 +118,8 @@ int phrase_push(const uint64_t power[FE_BANDS], double gain) {
 }
 
 unsigned phrase_length(void) { return length; }
+
+double phrase_level(void) { return above; }
 
 // CTC of the first count classes collapses repeats, drops blanks and trims spaces
 static size_t ctc(unsigned count, char text[TEXT]) {
