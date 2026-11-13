@@ -10,6 +10,7 @@ conf=/etc/default/stt-caption
 # Defaults; /etc/default/stt-caption overrides them.
 MIC=1 MIC_GAIN_DB=20 VAD_SNR_DB=8 PORT=8765 BACKEND=pl FINAL_BACKEND=auto THREADS=3
 KEEP_SESSIONS=20 SESSIONS=/var/lib/stt-caption/sessions EXTRA_ARGS=
+DISPLAY_ARGS='--fb-scale auto --status --clear-after 5'
 # Share the development board lock when present, so test tools and the
 # appliance never drive the PL at the same time.
 LOCK=/run/lock/stt-board.lock; [ -d /home/ubuntu/stt ] && LOCK=/home/ubuntu/stt/board.lock
@@ -61,7 +62,7 @@ run() {
   local cmd=("$prefix/bin/sttcap" --source pl-mic --mic "$MIC" --mic-gain "$MIC_GAIN_DB" --vad-snr "$VAD_SNR_DB"
              --backend "$BACKEND" --final-backend "$FINAL_BACKEND" --threads "$THREADS"
              --blob "$share/quartznet_int8.bin" --prior "$share/running_prior.json"
-             --port "$PORT" --log session.jsonl --ppm caption.ppm --ppm-every 5 $EXTRA_ARGS)
+             --port "$PORT" --log session.jsonl --ppm caption.ppm --ppm-every 5 $DISPLAY_ARGS $EXTRA_ARGS)
   [ "$BACKEND" = pl ] && cmd+=(--program "$share/program.qnp2")
   printf '%q ' "${cmd[@]}" > command.txt; echo >> command.txt
   # The lock serialises the appliance with development tools on the board.

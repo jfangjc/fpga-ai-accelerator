@@ -1,5 +1,26 @@
 # sttcap application
 
+## Monitor layout options (2026-11-13)
+
+By default the framebuffer output is unchanged: the 640x240 caption is written
+1:1 at the top left, which is the layout behind every measured result and
+`fb_check.py`. Three options are for demonstrations on a DisplayPort monitor:
+
+- `--fb-scale auto|N` clears the whole screen once, then draws the caption at
+  the largest whole-number scale that fits (or at most N), centred. A 1080p
+  mode gives scale 3; a 640x480 mode gives scale 1.
+- `--status` (implies `--fb-scale auto`) adds a 640x40 strip under the
+  caption: state (listening, speaking, finalising, committed), backend (`pl
+  engine` or `cpu int8`), the last preview's compute time per 3 s window, and
+  the last valid preview delay (replay only; microphone latency is invalid).
+- `--clear-after SEC` blanks the caption after SEC seconds of silence once
+  every phrase is committed. The transcript stays in `session.jsonl`, on TCP
+  and in the PPM history; the next phrase starts on an empty screen.
+
+The PPM evidence stays the 640x240 caption. Scaled writes cost more
+framebuffer bytes, which `update_ms` includes, so rerun T1 before quoting
+latency with these options. `test_display` covers the layouts.
+
 ## Independent final inference and phrase-indexed emission (2026-11-05)
 
 For PL previews, `--final-backend auto|cpu|pl` selects final routing. The default

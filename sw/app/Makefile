@@ -27,7 +27,7 @@ PL_SOURCES += ../engdrv/backend_pl.c
 ENGDRV_LIB = $(BUILD_ROOT)/sw/engdrv/libengdrv.a
 endif
 endif
-TESTS := test_stream test_clock test_caption test_emit
+TESTS := test_stream test_clock test_caption test_emit test_display
 all: sttcap
 policy.h policy.json: gen_policy.py ../../model/stream_policy.py
 	python3 gen_policy.py
@@ -44,11 +44,14 @@ $(B)/test_caption: test_caption.c caption.h | $(B)
 	$(CC) $(CFLAGS) test_caption.c -o $@
 $(B)/test_emit: test_emit.c main.c caption.h stream.c display.c backend.c clock.h | $(B)
 	$(CC) $(CFLAGS) -DCPU_ONLY test_emit.c backend.c stream.c display.c ../qnrt/qnrt.c ../qnrt/wav.c ../frontend_c/frontend.c $(LDLIBS) -o $@
+$(B)/test_display: test_display.c display.c display.h | $(B)
+	$(CC) $(CFLAGS) test_display.c display.c -o $@
 check: $(addprefix $(B)/,$(TESTS))
 	$(B)/test_stream
 	$(B)/test_clock
 	$(B)/test_caption
 	$(B)/test_emit
+	$(B)/test_display
 $(B):
 	mkdir -p $@
 sttcap $(TESTS): %: $(B)/%
