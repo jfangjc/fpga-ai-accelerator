@@ -105,10 +105,11 @@ To show the live captions on a monitor plugged into the DisplayPort, run `screen
 sudo ./screen hybrid quartznet_engine.bin running_prior.json
 ```
 
-A status strip along the bottom shows whether someone is speaking, the microphone level, the runner, the last decode time and the caption delay. After 5s of silence the screen clears. Add `--no-status` to hide the strip, or `--clear-after 0` to keep the captions on screen. The default colours are the pastel yellow `butter` them and add `--theme night` for a dark screen.
+A status strip along the bottom shows whether someone is speaking, the microphone level, the runner, the last decode time and the caption delay. After 5 s of silence the screen clears. Add `--no-status` to hide the strip, or `--clear-after 0` to keep the captions on screen. The default colours are the pastel yellow `butter` theme and add `--theme night` for a dark screen. Add `--settle 3` to only settle a word once 3 previews in a row agree on it.
 
-To test the display layouts, copy `build/app/test_display` to the board and run:
+To test the display layouts and the settle rule, copy `build/app/test_display` and `build/app/test_settle` to the board and run:
 
 ```bash
 ./test_display
+./test_settle
 ```

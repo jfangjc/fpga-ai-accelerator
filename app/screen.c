@@ -1,22 +1,30 @@
-// Live captions on the monitor: screen hybrid|cpu MODEL running_prior.json [--no-status] [--clear-after SEC]
-//                               [--theme night|butter]
-// live.c finds and decodes the phrases as for caption, and each caption, status and frame comes here to be drawn
+/*
+    live captions on the monitor
+    usage -> screen hybrid|cpu MODEL running_prior.json [--no-status] [--clear-after SEC] [--theme night|butter]
+             [--settle N]
+    -> live.c finds and decodes the phrases the same as for caption and calls back here for each one
+    -> emit decides which words are settled and hands the history and the live phrase to the display
+    -> frame runs every 10 ms for the level meter and to clear the screen after a silence
+*/
 #define _GNU_SOURCE
 #include "display.h"
 #include "live.h"
 #include "phrase.h"
+#include "settle.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 static int status = 1, theme = DISPLAY_BUTTER;
-static double clear_after = 5; // seconds of silence before the screen is cleared; 0 never
-static char captions[4096];    // finals before the live phrase, for the screen
-static const char* label;      // the runner, for the status strip
+static double clear_after = 5; // seconds of silence before the screen clears -> 0 means never
+static int settle;             // previews that must agree before a word settles -> 0 means just the previous preview
+_Static_assert(SETTLE_TEXT == TEXT, "settle.h buffers match phrase.h");
+static char captions[4096];    // finals before the live phrase for the history lines
+static const char* label;      // the runner for the status strip
 static long caption_at;        // the frame of the last caption
 
-// Status strip: the speaking dot, then the last decode's time on the engine and the caption delay
+// status strip -> the speaking dot then the last decode's engine time and the caption delay
 static void show_status(int speaking, double decode_ms, long waiting) {
     char line[96];
     if (!status)
@@ -28,38 +36,50 @@ static void show_status(int speaking, double decode_ms, long waiting) {
     display_status(speaking, line);
 }
 
-// A preview's words shared with the previous preview are stable, the rest tentative
+// one caption out to the screen
 static void emit(long t, const char* text, size_t kept, int final) {
-    static char previous[TEXT];
+    static char shown[TEXT], previous[TEXT];
+    const char* heard = text;
     size_t stable = 0;
     (void)kept;
-    for (size_t i = 0; !final && text[i] && text[i] == previous[i]; i++)
-        if (text[i + 1] == ' ' || (!text[i + 1] && !previous[i + 1]))
-            stable = i + 1;
-    // The screen: earlier finals dim, then this phrase large, its stable words settled and the rest tentative. A
-    // final stays on the live line until the next phrase moves it up
+    // -> with --settle N a word settles once N previews in a row agree on it and then stays settled (settle.c)
+    if (!final && settle) {
+        stable = settle_preview(text, settle, shown);
+        text = shown;
+    }
+    // -> with --settle 0 the words this preview shares with the previous one count as stable
+    else
+        for (size_t i = 0; !final && text[i] && text[i] == previous[i]; i++)
+            if (text[i + 1] == ' ' || (!text[i + 1] && !previous[i + 1]))
+                stable = i + 1;
+    // -> the screen gets earlier finals dim then this phrase large with its stable words solid and the rest tentative
+    // -> a final counts as all stable and stays on the live line until the next phrase moves it up
     display_show(captions, text, final ? strlen(text) : stable);
     if (final && *text) {
         size_t n = strlen(captions), m = strlen(text);
-        if (n + m + 2 > sizeof captions) { // keep the newest half
+        if (n + m + 2 > sizeof captions) { // full so keep the newest half
             memmove(captions, captions + n / 2, n - n / 2 + 1);
             n = strlen(captions);
         }
         snprintf(captions + n, sizeof captions - n, "%s%s", n ? " " : "", text);
     }
     caption_at = t;
-    strcpy(previous, final ? "" : text);
+    // -> a final ends the phrase so the next preview starts with nothing settled
+    strcpy(previous, final ? "" : heard);
+    if (final)
+        settle_reset();
 }
 
+// every 10 ms frame -> the level meter and clearing after a silence
 static void frame(long t, int speaking) {
     static double loudest;
-    // The meter: the loudest of every 50 ms, 4 dB a bar; two bars is about the speech threshold
+    // -> the meter shows the loudest of every 50 ms at 4 db a bar so two bars is about the speech threshold
     loudest = fmax(loudest, phrase_level());
     if (t % 5 == 4) {
         display_level(loudest / 28);
         loudest = 0;
     }
-    // After clear_after seconds of silence the next phrase starts on an empty screen
+    // -> after clear_after seconds of silence the next phrase starts on an empty screen
     if (clear_after > 0 && !speaking && *captions && t - caption_at >= clear_after * 100) {
         captions[0] = 0;
         display_show("", "", 0);
@@ -67,6 +87,7 @@ static void frame(long t, int speaking) {
 }
 
 int main(int argc, char** argv) {
+    // -> anything unknown sets argc to 0 so the usage line gets printed
     for (int i = 4; i < argc; i++) {
         if (!strcmp(argv[i], "--no-status"))
             status = 0;
@@ -78,15 +99,18 @@ int main(int argc, char** argv) {
         }
         else if (!strcmp(argv[i], "--theme") && i + 1 < argc && !strcmp(argv[i + 1], "butter"))
             i++;
+        else if (!strcmp(argv[i], "--settle") && i + 1 < argc)
+            settle = atoi(argv[++i]);
         else
             argc = 0;
     }
     const runner* model = argc >= 4 ? runner_find(argv[1]) : NULL;
     if (!model) {
         fprintf(stderr, "usage: screen hybrid|cpu MODEL running_prior.json [--no-status] [--clear-after SEC] "
-                        "[--theme night|butter]\n");
+                        "[--theme night|butter] [--settle N]\n");
         return 2;
     }
+    // -> no monitor means nothing to draw on so there is no point loading the model
     if (display_open(status, theme)) {
         fprintf(stderr, "screen: no framebuffer; captions are not drawn\n");
         return 1;
