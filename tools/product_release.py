@@ -1,4 +1,4 @@
-"""Build the stt-caption release tarball (run from the repository root; Windows or Linux).
+"""Build the stt-caption-cpu (CPU baseline) release tarball (run from the repository root; Windows or Linux).
 
     python tools/product_release.py FIRMWARE_DIR [TAG]
 
@@ -47,7 +47,7 @@ def main():
         sys.exit(__doc__)
     fw = Path(sys.argv[1])
     tag = sys.argv[2] if len(sys.argv) == 3 else f"{time.strftime('%Y%m%d')}-{git('rev-parse', '--short', 'HEAD')}"
-    name = f'stt-caption-{tag}'
+    name = f'stt-caption-cpu-{tag}'
     out = Path('build/release') / name
     shutil.rmtree(out, ignore_errors=True)
     for d in ('assets', 'firmware/stt-full150', 'pc'):

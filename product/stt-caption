@@ -1,15 +1,18 @@
 #!/bin/bash
-# STT caption appliance control (installed as /opt/stt-caption/bin/stt-caption).
+# CPU-baseline caption appliance control (installed as /opt/stt-caption-cpu/bin/stt-caption).
+# Same as the FPGA appliance but inference runs on the A53s (--backend cpu); the microphone and
+# the FFT/mel front end stay in the PL. Installed beside the main stt-caption service; starting
+# one stops the other (Conflicts= in the unit).
 #   stt-caption prepare   load stt-full150, DMA buffers, release the console
 #   stt-caption run       one captioning session from the live microphone
 #   stt-caption cleanup   give the framebuffer back to the text console
 #   stt-caption status    show firmware, buffers and the latest session
 set -euo pipefail
-prefix=/opt/stt-caption
-conf=/etc/default/stt-caption
+prefix=/opt/stt-caption-cpu
+conf=/etc/default/stt-caption-cpu
 # Defaults; /etc/default/stt-caption overrides them.
-MIC=1 MIC_GAIN_DB=20 VAD_SNR_DB=8 PORT=8765 BACKEND=pl FINAL_BACKEND=auto THREADS=3
-KEEP_SESSIONS=20 SESSIONS=/var/lib/stt-caption/sessions EXTRA_ARGS=
+MIC=1 MIC_GAIN_DB=20 VAD_SNR_DB=8 PORT=8765 BACKEND=cpu FINAL_BACKEND=auto THREADS=3
+KEEP_SESSIONS=20 SESSIONS=/var/lib/stt-caption-cpu/sessions EXTRA_ARGS=
 DISPLAY_ARGS='--fb-scale auto --status --clear-after 5'
 # Share the development board lock when present, so test tools and the
 # appliance never drive the PL at the same time.
@@ -73,7 +76,7 @@ run() {
 status() {
   echo "firmware: $(active_app || echo none)"
   ls -d /sys/class/u-dma-buf/udmabuf* 2>/dev/null | xargs -r -n1 basename | tr '\n' ' '; echo
-  systemctl --no-pager --lines=0 status stt-caption 2>/dev/null | head -3 || true
+  systemctl --no-pager --lines=0 status stt-caption-cpu 2>/dev/null | head -3 || true
   local l=$SESSIONS/latest
   if [ -e "$l/session.jsonl" ]; then
     echo "latest session: $(readlink -f "$l")"

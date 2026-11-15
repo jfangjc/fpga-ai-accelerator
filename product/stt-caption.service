@@ -1,5 +1,7 @@
 [Unit]
-Description=FPGA live speech-to-text captioning (KV260, stt-full150)
+Description=CPU-baseline live speech-to-text captioning (KV260, stt-full150, A53 inference)
+# Only one captioner may drive the PL: starting this stops stt-caption, and the reverse
+Conflicts=stt-caption.service
 After=dfx-mgr.service dfx-mgr-fw-load.service network-online.target
 Wants=dfx-mgr.service network-online.target
 StartLimitIntervalSec=120
@@ -7,9 +9,9 @@ StartLimitBurst=10
 
 [Service]
 Type=simple
-ExecStartPre=/opt/stt-caption/bin/stt-caption prepare
-ExecStart=/opt/stt-caption/bin/stt-caption run
-ExecStopPost=/opt/stt-caption/bin/stt-caption cleanup
+ExecStartPre=/opt/stt-caption-cpu/bin/stt-caption prepare
+ExecStart=/opt/stt-caption-cpu/bin/stt-caption run
+ExecStopPost=/opt/stt-caption-cpu/bin/stt-caption cleanup
 # SIGINT lets sttcap drain and write its final log lines.
 KillSignal=SIGINT
 TimeoutStopSec=20

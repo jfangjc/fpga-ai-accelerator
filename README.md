@@ -1,5 +1,24 @@
 # Live FPGA-accelerated speech-to-text on the Kria KV260
 
+> **Branch `baseline/cpu-int8`: the CPU baseline for the demo.** This is the November
+> `quartznet` system that measured the 3.14x speed-up, packaged so the CPU version can run
+> beside the FPGA version from `main`. Its appliance is `stt-caption-cpu`: the microphone and
+> the FFT/mel front end stay in the PL, and the QuartzNet INT8 network runs on the A53s
+> (`--backend cpu`, `sw/qnrt`). It installs to `/opt/stt-caption-cpu` with its own settings
+> (`/etc/default/stt-caption-cpu`) and sessions (`/var/lib/stt-caption-cpu`), is not started
+> at boot, and conflicts with `stt-caption`, so one command swaps the board between them:
+>
+> ```sh
+> sudo systemctl start stt-caption-cpu   # CPU baseline (stops the FPGA captioner)
+> sudo systemctl start stt-caption       # FPGA version from main (stops the CPU baseline)
+> ```
+>
+> Install it with `tools/product_install.ps1` (see [docs/product.md](docs/product.md); the
+> paths there read `stt-caption-cpu` on this branch). The monitor's status strip shows
+> `cpu int8` and the compute time per 3 s window, expected around 220-280 ms against about 70
+> ms on the FPGA. For a fully PS run with no PL at all (WAV files only, since the microphone is
+> wired to the PL), build `make -C sw/app CPU_ONLY=1 all` and use `--source cpu-wav FILE`.
+
 A live captioning device on the AMD Kria KV260. A PMOD I2S MEMS microphone
 feeds a speech front end in the programmable logic (PL). A custom INT8
 accelerator, also in the PL, runs the QuartzNet 15x5 acoustic model. The Arm

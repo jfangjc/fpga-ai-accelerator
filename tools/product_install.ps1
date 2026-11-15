@@ -1,6 +1,6 @@
-# Build the stt-caption release on this PC and install it on the board.
-#   tools/product_install.ps1 [-Tag T] [-NoStart] [-NoEnable]
-param([string]$Tag,[switch]$NoStart,[switch]$NoEnable)
+# Build the stt-caption-cpu (CPU baseline) release on this PC and install it on the board.
+#   tools/product_install.ps1 [-Tag T] [-NoStart] [-Enable]
+param([string]$Tag,[switch]$NoStart,[switch]$Enable)
 $ErrorActionPreference='Stop'
 $root=Split-Path $PSScriptRoot
 $board=Join-Path $PSScriptRoot board.ps1
@@ -27,7 +27,7 @@ if($LASTEXITCODE -or -not (Test-Path $tar)){throw 'release build failed'}
 $name=[IO.Path]::GetFileNameWithoutExtension([IO.Path]::GetFileNameWithoutExtension($tar))
 & $board run 'mkdir -p ~/stt/release'
 & $board put $tar "stt/release/" | Out-Null
-$opts=@(); if($NoStart){$opts+='--no-start'}; if($NoEnable){$opts+='--no-enable'}
+$opts=@(); if($NoStart){$opts+='--no-start'}; if($Enable){$opts+='--enable'}
 $remote=@"
 cd /home/ubuntu/stt/release && rm -rf $name && tar -xzf $name.tar.gz || exit 1
 ./$name/install.sh $($opts -join ' ') > $name.install.log 2>&1; rc=`$?
