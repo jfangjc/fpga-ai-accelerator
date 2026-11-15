@@ -1,5 +1,5 @@
 // Live captions: sttcap quartznet_engine.bin running_prior.json [--wav clip.wav [--paced]] [--gain DB] [--port PORT]
-//                [--display [--status] [--clear-after SEC]]
+//                [--display [--status] [--clear-after SEC] [--theme night|butter]]
 #define _GNU_SOURCE
 #include "display.h"
 #include "kv260.h"
@@ -33,9 +33,9 @@ static struct {
 static volatile sig_atomic_t stopping;
 static double gain = 1;
 static float history[RING][FE_BANDS]; // log mel of recent frames
-static int server = -1, clients[CLIENTS], display, status;
+static int server = -1, clients[CLIENTS], display, status, theme = DISPLAY_NIGHT;
 static double clear_after;  // seconds of silence before the screen is cleared; 0 never
-static char captions[4096]; // finals so far, for the screen
+static char captions[4096]; // finals before the live phrase, for the screen
 
 static double now(void) {
     struct timespec t;
@@ -43,17 +43,17 @@ static double now(void) {
     return t.tv_sec + t.tv_nsec * 1e-9;
 }
 
-// Status strip: listening or speaking, the last decode's time on the engine, and the caption delay
+// Status strip: the speaking dot, then the last decode's time on the engine and the caption delay
 static void show_status(int speaking, double decode_ms, long waiting) {
     char line[96];
     if (!status)
         return;
     if (decode_ms > 0)
-        snprintf(line, sizeof line, "%-10s fpga engine   decode %.0f ms   delay %.0f ms",
-                 speaking ? "speaking" : "listening", decode_ms, decode_ms + 10.0 * waiting);
+        snprintf(line, sizeof line, "fpga engine  decode %.0f ms  delay %.0f ms", decode_ms,
+                 decode_ms + 10.0 * waiting);
     else
-        snprintf(line, sizeof line, "%-10s fpga engine", speaking ? "speaking" : "listening");
-    display_status(line);
+        snprintf(line, sizeof line, "fpga engine");
+    display_status(speaking, line);
 }
 
 static void stop(int signal) {
@@ -131,6 +131,9 @@ static void emit(unsigned id, long t, int final, const char* text, const char* p
     fputs(line, stdout);
     fflush(stdout);
     broadcast(line);
+    // The screen: earlier finals dim, then this phrase large, its stable words settled and the rest tentative. A
+    // final stays on the live line until the next phrase moves it up
+    display_show(captions, text, final ? strlen(text) : stable);
     if (final && *text) {
         size_t n = strlen(captions), m = strlen(text);
         if (n + m + 2 > sizeof captions) { // keep the newest half
@@ -139,16 +142,10 @@ static void emit(unsigned id, long t, int final, const char* text, const char* p
         }
         snprintf(captions + n, sizeof captions - n, "%s%s", n ? " " : "", text);
     }
-    // The screen: the finals so far, then this phrase's stable words in white and the rest in amber
-    static char firm[sizeof captions + TEXT + 1], shown[sizeof captions + TEXT + 1];
-    const char* gap = *captions && !final ? " " : "";
-    snprintf(shown, sizeof shown, "%s%s%s", captions, gap, final ? "" : text);
-    snprintf(firm, sizeof firm, "%s%s%.*s", captions, stable ? gap : "", (int)stable, text);
-    display_show(firm, shown);
 }
 
-// Speech: energy 8 dB above the noise floor of the last 5 s
-static int speech(double e, long t) {
+// Speech: energy 8 dB above the noise floor of the last 5 s; also the energy over the floor in dB, for the meter
+static int speech(double e, long t, double* above) {
     static double block, floors[10] = {INFINITY, INFINITY, INFINITY, INFINITY, INFINITY,
                                        INFINITY, INFINITY, INFINITY, INFINITY, INFINITY};
     double floor = INFINITY;
@@ -160,6 +157,7 @@ static int speech(double e, long t) {
     for (int i = 0; i < 10; i++)
         floor = fmin(floor, floors[i]);
     floor = fmin(floor, block);
+    *above = e > 0 && floor > 0 && isfinite(floor) ? 10 * log10(e / floor) : 0;
     return t > 30 && e >= 2e-6 && e >= floor * 6.31; // the microphone settles in the first 0.3 s
 }
 
@@ -181,12 +179,18 @@ int main(int argc, char** argv) {
             status = 1;
         else if (!strcmp(argv[i], "--clear-after") && i + 1 < argc)
             clear_after = atof(argv[++i]);
+        else if (!strcmp(argv[i], "--theme") && i + 1 < argc && !strcmp(argv[i + 1], "butter")) {
+            theme = DISPLAY_BUTTER;
+            i++;
+        }
+        else if (!strcmp(argv[i], "--theme") && i + 1 < argc && !strcmp(argv[i + 1], "night"))
+            i++;
         else
             argc = 0;
     }
     if (argc < 3) {
         fprintf(stderr, "usage: sttcap quartznet_engine.bin running_prior.json [--wav clip.wav [--paced]] "
-                        "[--gain DB] [--port PORT] [--display [--status] [--clear-after SEC]]\n");
+                        "[--gain DB] [--port PORT] [--display [--status] [--clear-after SEC] [--theme night|butter]]\n");
         return 2;
     }
     if (phrase_prior(argv[2])) {
@@ -206,7 +210,7 @@ int main(int argc, char** argv) {
             return 1;
         }
     }
-    if (display && display_open(status))
+    if (display && display_open(status, theme))
         fprintf(stderr, "sttcap: no framebuffer; captions are not drawn\n");
     show_status(0, 0, 0);
 
@@ -234,7 +238,7 @@ int main(int argc, char** argv) {
     unsigned id = 0;
     int in_phrase = 0, silent = 0;
     long waiting, shown = 0; // the frame of the last caption
-    double decode_ms = 0, started;
+    double decode_ms = 0, started, above, loudest = 0;
     static char text[TEXT], previous[TEXT];
     uint64_t power[FE_BANDS];
     for (long t = 0; next_frame(t, power, &waiting); t++) {
@@ -243,7 +247,13 @@ int main(int argc, char** argv) {
             energy += ldexp((double)power[b], -42);
         for (int b = 0; b < FE_BANDS; b++)
             history[t % RING][b] = logf((float)(ldexp((double)power[b], -42) * gain) + 0x1p-24f);
-        int voiced = speech(energy, t);
+        int voiced = speech(energy, t, &above);
+        // The meter: the loudest of every 50 ms, 4 dB a bar; two bars is about the speech threshold
+        loudest = fmax(loudest, above);
+        if (t % 5 == 4) {
+            display_level(loudest / 28);
+            loudest = 0;
+        }
         if (!in_phrase && voiced) {
             in_phrase = 1;
             silent = 0;
@@ -284,7 +294,7 @@ int main(int argc, char** argv) {
         // After clear_after seconds of silence the next phrase starts on an empty screen; the log keeps everything
         if (clear_after > 0 && !in_phrase && *captions && t - shown >= clear_after * 100) {
             captions[0] = 0;
-            display_show("", "");
+            display_show("", "", 0);
         }
         // The button ends the session
         if (!wav && fe_button())
