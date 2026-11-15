@@ -3,6 +3,7 @@ set root [file normalize [file join [file dirname [info script]] ..]]
 set bin [file join $::env(XILINX_VIVADO) bin]
 set suites {
  frontend {tb_frontend_stream tb_frontend_control}
+ engine   {tb_engine_layers tb_engine_network}
 }
 
 proc tool {log name args} {

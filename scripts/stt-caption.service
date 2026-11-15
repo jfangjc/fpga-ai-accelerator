@@ -1,0 +1,19 @@
+[Unit]
+Description=Live speech-to-text captions on the KV260 FPGA
+After=dfx-mgr.service network-online.target
+Wants=dfx-mgr.service network-online.target
+
+[Service]
+Type=simple
+ExecStartPre=/opt/stt-caption/bin/stt-caption prepare
+ExecStart=/opt/stt-caption/bin/stt-caption run
+ExecStopPost=/opt/stt-caption/bin/stt-caption cleanup
+KillSignal=SIGINT
+TimeoutStopSec=10
+Restart=always
+RestartSec=1
+# 75: another overlay is loaded
+RestartPreventExitStatus=75
+
+[Install]
+WantedBy=multi-user.target
