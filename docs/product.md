@@ -61,11 +61,16 @@ then loads the four DMA buffers and detaches the text console from the
 framebuffer. `stt-caption run` starts `sttcap` on the live microphone.
 
 - **Listening:** the screen is blank and the LED is off.
-- **Speaking:** the LED is on. The preview updates every 120 ms and shows the
-  stable text followed by an amber tentative suffix.
+- **Speaking:** the LED is on. The phrase is drawn large on a fixed live line;
+  the preview updates every 120 ms and shows the stable words in the text
+  colour followed by an orange tentative suffix. Earlier phrases sit above it
+  as two dim history lines.
 - **Finalising and Committed:** about 0.7 s after speech ends, the phrase is
-  re-decoded as a whole and replaced in place by the final text, shown in
-  white. On the test set this takes about 1.4 s from the end of a clip to the
+  re-decoded as a whole and replaced in place by the final text, all in the
+  text colour. It stays on the live line until the next phrase moves it up.
+- **Status strip** (bottom edge): a dot lit while speaking, a microphone level
+  meter (4 dB a bar), then the backend, the last window's compute time and the
+  caption delay. The layout and the `THEME` colours match main's FPGA version. On the test set this takes about 1.4 s from the end of a clip to the
   caption on a PC.
 - **Button:** pressing it ends the session cleanly. When the service runs it,
   systemd starts a new session within about 1 s, so the screen clears.
@@ -130,6 +135,7 @@ single event.
 | `VAD_SNR_DB` | `8` | speech threshold above the tracked noise floor |
 | `PORT` | `8765` | TCP caption port |
 | `BACKEND` | `pl` | `pl` = FPGA engine, `cpu` = A53 INT8 fallback |
+| `THEME` | `butter` | screen colours: `butter` (pastel yellow) or `night` (dark) |
 | `FINAL_BACKEND` | `auto` | finals up to 6.4 s on the PL, longer ones on a CPU worker |
 | `EXTRA_ARGS` | empty | more `sttcap` options, e.g. `--vad-log vad.csv` |
 

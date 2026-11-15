@@ -14,9 +14,9 @@
 > ```
 >
 > Install it with `tools/product_install.ps1` (see [docs/product.md](docs/product.md); the
-> paths there read `stt-caption-cpu` on this branch). The monitor's status strip shows
-> `cpu int8` and the compute time per 3 s window, expected around 220-280 ms against about 70
-> ms on the FPGA. For a fully PS run with no PL at all (WAV files only, since the microphone is
+> paths there read `stt-caption-cpu` on this branch). The monitor uses the same layout and
+> `THEME` colours as `main`; its status strip shows `cpu int8` and the decode time per 3 s
+> window, expected around 220-280 ms against about 70 ms on the FPGA. For a fully PS run with no PL at all (WAV files only, since the microphone is
 > wired to the PL), build `make -C sw/app CPU_ONLY=1 all` and use `--source cpu-wav FILE`.
 
 A live captioning device on the AMD Kria KV260. A PMOD I2S MEMS microphone

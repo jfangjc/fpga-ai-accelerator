@@ -173,6 +173,9 @@ static void set_realtime(int priority) {
         fprintf(stderr,"SCHED_FIFO %d unavailable; continuing\n",priority);
 }
 static int pl_source, mic_source;
+/* Microphone level for the status strip's meter: dB above the noise floor
+ * (the loudest of every 50 ms) x 1000, written by the capture thread. */
+static _Atomic int mic_level;
 /* Microphone VAD: summed linear-mel energy of bands 1..63 (band 0 carries the
  * MEMS microphone's DC offset) against a minimum-statistics noise floor over
  * the previous 5 s, plus an absolute minimum. --mic-gain scales mic band power
@@ -335,7 +338,7 @@ static void *capture_pl(void *unused) {
     /* Large buffer: the capture thread writes this log; avoid per-4 KiB I/O. */
     if(vad) setvbuf(vad,NULL,_IOFBF,1<<20);
     struct fe_norm_state norm={0};
-    struct mic_vad mic={0};
+    struct mic_vad mic={0}; double loudest=0;
     if(!stream || !history || !frames || !logs || warm_features() || fe_open(&device)) { failed=1; goto finish; }
     opened=1;
     struct fe_config cfg={.source=pl_source==1?FE_SRC_INJECT:(enum fe_source)mic_source,
@@ -386,6 +389,9 @@ static void *capture_pl(void *unused) {
         if(pl_source==2) {
             double floor; active=mic_vad_step(&mic,frame.power,&energy,&floor);
             if(vad) fprintf(vad,"%u,%.12g,%.12g,%d\n",seq,energy,floor,active);
+            double above=energy>0 && floor>0 && isfinite(floor)?10*log10(energy/floor):0;
+            if(above>loudest) loudest=above;
+            if(seq%5==4) { atomic_store(&mic_level,(int)(loudest*1000)); loudest=0; }
         }
         else if(audio && end<=samples) {
             double square=0;
@@ -562,23 +568,28 @@ static void accept_clients(const char *last,size_t last_len) {
 }
 /* Display: --fb-scale (-1 keeps the measured 1:1 layout), --status strip,
  * --clear-after idle seconds (0 keeps the rolling transcript on screen). */
-static int fb_scale=-1, show_status;
+static int fb_scale=-1, show_status, theme_butter;
 static double clear_after;
 static const char *backend_label="cpu int8";
 static int outstanding(const struct caption_model *c) {
     for(unsigned i=0;i<32;i++) if(c->part[i].state) return 1;
     return 0;
 }
-static void status_line(const char *state,double window_ms,double delay_ms) {
-    char s[128]; size_t n=(size_t)snprintf(s,sizeof(s),"%-10s %s",state,backend_label);
-    if(window_ms>0 && n<sizeof(s)) n+=(size_t)snprintf(s+n,sizeof(s)-n,"  %.0f ms/window",window_ms);
+/* The strip: the speaking dot, then the backend, the last preview window's
+ * compute time and the caption delay, worded as on main's FPGA version. */
+static void status_line(int speaking,double window_ms,double delay_ms) {
+    char s[128]; size_t n=(size_t)snprintf(s,sizeof(s),"%s",backend_label);
+    if(window_ms>0 && n<sizeof(s)) n+=(size_t)snprintf(s+n,sizeof(s)-n,"  decode %.0f ms",window_ms);
     if(delay_ms>0 && n<sizeof(s)) n+=(size_t)snprintf(s+n,sizeof(s)-n,"  delay %.0f ms",delay_ms);
-    cap_render_status(s);
+    cap_render_status(speaking,s);
 }
 static void *output(void *unused) {
     (void)unused;
     pin_io(); set_realtime(40);
+    cap_theme(theme_butter);
     int have_fb=cap_fb_open(fb_scale,show_status)==0;
+    /* The level meter needs the microphone and the strip: redraw it every 50 ms. */
+    int metering=have_fb && show_status && pl_source==2;
     static char inbuf[524288], line[262144], rendered[262144], last[262144];
     static struct caption_model captions;
     static char caption[69632],tail[69632],segments[140000];
@@ -592,26 +603,30 @@ static void *output(void *unused) {
     fault_zero(&captions,sizeof(captions)); fault_zero(caption,sizeof(caption));
     fault_zero(tail,sizeof(tail)); fault_zero(segments,sizeof(segments));
     fault_zero(visible,sizeof(visible)); fault_zero(styles,sizeof(styles));
-    size_t have=0, last_len=0, clear_from=0;
+    size_t have=0, last_len=0, clear_from=0, last_final=0;
     double last_ppm=-1e9, last_render=0, window_ms=0, delay_ms=0; int drawn=0, listening=1, cleared=0;
     struct pollfd fds[2]={{events[0],POLLIN,0},{listener,POLLIN,0}};
     for(;;) {
         char *newline=memchr(inbuf,'\n',have);
         if(!newline) {
             if(have==sizeof(inbuf)) { failed=1; break; }
-            int timeout=-1;
+            int timeout=-1, clearing=0;
             if(clear_after>0 && drawn && listening && !cleared && !outstanding(&captions)) {
                 double left=last_render+clear_after-now();
-                timeout=left>0?(int)(left*1000)+1:0;
+                timeout=left>0?(int)(left*1000)+1:0; clearing=1;
             }
+            if(metering && (timeout<0 || timeout>50)) timeout=50;
             int polled=poll(fds,listener>=0?2:1,timeout);
             if(polled<0) { if(errno==EINTR) continue; failed=1; break; }
+            /* The meter: 4 dB a bar, so two bars is about the speech threshold. */
+            if(metering && cap_render_level(atomic_load(&mic_level)/28000.0)) (void)cap_fb(0);
+            if(!polled && !(clearing && now()>=last_render+clear_after)) continue;
             if(!polled) {
                 /* Silent for --clear-after: blank the screen. The transcript
                  * stays in the log and on TCP; new speech starts a fresh screen. */
                 clear_from=strlen(captions.prefix); cleared=1;
-                cap_render_styled("",styles);
-                if(show_status) status_line("listening",window_ms,delay_ms);
+                cap_render_styled("",styles,0);
+                if(show_status) status_line(0,window_ms,delay_ms);
                 if(have_fb) (void)cap_fb(1);
                 continue;
             }
@@ -645,13 +660,16 @@ static void *output(void *unused) {
         const char *phrase_field=strstr(line,"\"phrase\":");
         unsigned phrase=phrase_field?(unsigned)strtoul(phrase_field+9,NULL,10):0;
         int state=is_final?3:strstr(line,"\"state\":\"Finalising\"")?2:1;
+        size_t before_update=strlen(captions.prefix);
         if(caption_update(&captions,phrase,state,a,b,event_only,caption,sizeof(caption),
                           tail,sizeof(tail),segments,sizeof(segments))) { failed=1; stopping=1; continue; }
+        /* Phrases just committed stay on the live line until the next one starts. */
+        if(strlen(captions.prefix)>before_update) last_final=before_update;
         if(event_only && strstr(line,"\"state\":\"Listening\"")) listening=1;
         else if(state==1) listening=0;
         const char *compute=strstr(line,"\"compute_ms\":");
         if(!event_only && state==1 && compute && strtod(compute+13,NULL)>0) window_ms=strtod(compute+13,NULL);
-        const char *label=listening?"listening":state==3?"committed":state==2?"finalising":"speaking";
+        int speaking=!listening;
         /* L_update is stamped at framebuffer completion; without a usable
          * framebuffer, immediately before the (nonblocking) TCP send. */
         int shown=0;
@@ -660,10 +678,14 @@ static void *output(void *unused) {
             while(*start==' ') start++;
             strcpy(visible,start);
             memset(styles,0,strlen(visible));
+            /* The live line: the newest phrase still in flight, else the newest final. */
+            size_t offset=(size_t)(start-captions.prefix);
+            size_t live=last_final>offset?last_final-offset:0;
             for(unsigned i=0;i<32;i++) {
                 unsigned k=(captions.base+i)%32;
                 if(!captions.part[k].state) continue;
                 size_t before=strlen(visible);
+                live=before;
                 const char *text=captions.part[k].text;
                 if(captions.part[k].state==1 &&
                    !strncmp(text,captions.part[k].tentative,strlen(text)))
@@ -676,13 +698,13 @@ static void *output(void *unused) {
                     if(stable<end) memset(styles+stable,1,end-stable);
                 }
             }
-            cap_render_styled(visible,styles); drawn=1; st->render=now()-epoch;
-            if(show_status) status_line(label,window_ms,delay_ms);
+            cap_render_styled(visible,styles,live); drawn=1; st->render=now()-epoch;
+            if(show_status) status_line(speaking,window_ms,delay_ms);
             /* Finals repaint every row, repairing any fbcon overdraw. */
             if(have_fb && cap_fb(is_final)>=0) { shown=1; st->fb=now()-epoch; }
             last_render=now(); cleared=0;
         }
-        else if(have_fb && show_status) { status_line(label,window_ms,delay_ms); (void)cap_fb(0); }
+        else if(have_fb && show_status) { status_line(speaking,window_ms,delay_ms); (void)cap_fb(0); }
         double display_time=now()-epoch;
         const char *old_time=strstr(line,"\"inference_time\":");
         const char *old_update=strstr(line,"\"inference_update_ms\":");
@@ -896,6 +918,7 @@ int main(int argc,char **argv) {
             else fb_scale=(int)n;
         }
         else if(!strcmp(argv[i],"--status")) show_status=1;
+        else if(!strcmp(argv[i],"--theme") && i+1<argc) { const char *t=argv[++i]; if(strcmp(t,"night") && strcmp(t,"butter")) return 2; theme_butter=!strcmp(t,"butter"); }
         else if(!strcmp(argv[i],"--clear-after") && i+1<argc) { clear_after=atof(argv[++i]); if(!(clear_after>=0)) return 2; }
         else if(!strcmp(argv[i],"--mic") && i+1<argc) { const char *m=argv[++i]; if(strcmp(m,"1") && strcmp(m,"2") && strcmp(m,"beam")) return 2; mic_source=!strcmp(m,"beam")?2:atoi(m)-1; }
         else if(!strcmp(argv[i],"--backend") && i+1<argc) { const char *b=argv[++i]; if(strcmp(b,"cpu") && strcmp(b,"pl")) return 2; use_pl=!strcmp(b,"pl"); }
@@ -909,7 +932,7 @@ int main(int argc,char **argv) {
     if(pl_source) { fprintf(stderr,"CPU_ONLY build: PL unavailable\n"); return 2; }
 #endif
     if((!wav && pl_source!=2) || !blob || !prior_path || threads<1 || threads>4 || final_threads<1 || final_threads>3 || port>65535) {
-        fprintf(stderr,"usage: sttcap --source cpu-wav|pl-inject FILE|pl-mic --blob BLOB --prior JSON [--backend cpu|pl --program QNP2] [--final-backend auto|cpu|pl] [--final-threads 1..3] [--bulk] [--threads 1..4] [--log JSONL] [--port PORT] [--ppm FILE|--no-ppm] [--ppm-every SEC] [--stages CSV] [--sample-rate HZ] [--rt] [--fb-scale auto|1..6] [--status] [--clear-after SEC] [--mic 1|2|beam] [--mic-gain DB] [--vad-snr DB] [--mel-threshold E] [--vad-log CSV]\n"); return 2;
+        fprintf(stderr,"usage: sttcap --source cpu-wav|pl-inject FILE|pl-mic --blob BLOB --prior JSON [--backend cpu|pl --program QNP2] [--final-backend auto|cpu|pl] [--final-threads 1..3] [--bulk] [--threads 1..4] [--log JSONL] [--port PORT] [--ppm FILE|--no-ppm] [--ppm-every SEC] [--stages CSV] [--sample-rate HZ] [--rt] [--fb-scale auto|1..6] [--status] [--clear-after SEC] [--theme night|butter] [--mic 1|2|beam] [--mic-gain DB] [--vad-snr DB] [--mel-threshold E] [--vad-log CSV]\n"); return 2;
     }
     if(use_pl && !program) { fprintf(stderr,"--backend pl requires --program QNP2 (exported from the --blob weights)\n"); return 2; }
     if(!use_pl && !strcmp(final_mode,"pl")) { fprintf(stderr,"--final-backend pl requires --backend pl\n"); return 2; }
