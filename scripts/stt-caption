@@ -3,7 +3,7 @@
 set -euo pipefail
 prefix=/opt/stt-caption
 sessions=/var/lib/stt-caption/sessions
-MIC_GAIN_DB=20 PORT=8765 DISPLAY_CAPTIONS=yes
+MIC_GAIN_DB=20 PORT=8765 DISPLAY_CAPTIONS=yes DISPLAY_STATUS=yes CLEAR_AFTER=5
 [ -r /etc/default/stt-caption ] && . /etc/default/stt-caption
 
 overlay() { xmutil listapps | awk '/0->/ {print $NF}'; }
@@ -38,7 +38,11 @@ run() {
     ln -sfn "$dir" "$sessions/latest"
     # Keep the newest 20 sessions
     find "$sessions" -mindepth 1 -maxdepth 1 -type d -name '20*' | sort | head -n -20 | xargs -r rm -rf --
-    local display=(); [ "$DISPLAY_CAPTIONS" = yes ] && display=(--display)
+    local display=()
+    if [ "$DISPLAY_CAPTIONS" = yes ]; then
+        display=(--display --clear-after "$CLEAR_AFTER")
+        [ "$DISPLAY_STATUS" = yes ] && display+=(--status)
+    fi
     exec "$prefix/bin/sttcap" "$prefix/share/quartznet_engine.bin" "$prefix/share/running_prior.json" \
         --gain "$MIC_GAIN_DB" --port "$PORT" "${display[@]}" > "$dir/session.jsonl" 2> "$dir/stderr.txt"
 }

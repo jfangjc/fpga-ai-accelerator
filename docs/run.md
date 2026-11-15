@@ -28,8 +28,13 @@ the phrase being spoken is redrawn. Each event is one JSON line on TCP port 8765
 {"t":7.71,"phrase":0,"final":true,"text":"it was a pain to see them and a sword like pain to see the signs ..."}
 ```
 
-**Settings** are in `/etc/default/stt-caption`: the microphone gain, the TCP port and whether to draw captions on
-the monitor. Apply them with `sudo systemctl restart stt-caption`.
+**On the monitor** the captions are drawn at the largest whole-number scale that fits, centred (scale 3 at 1080p).
+Under them a status strip shows listening or speaking, the last decode's time on the engine, and the caption delay:
+that decode time plus the audio still queued behind it. After 5 s of silence the screen clears, so the next phrase
+starts on an empty screen; the session log and the TCP stream keep everything.
+
+**Settings** are in `/etc/default/stt-caption`: the microphone gain, the TCP port, whether to draw captions on the
+monitor, the status strip and the silence before clearing. Apply them with `sudo systemctl restart stt-caption`.
 
 **Session logs.** Every session writes `/var/lib/stt-caption/sessions/<time>/session.jsonl` (all events) and
 `stderr.txt`; `latest` points at the newest, and the newest 20 are kept. `sudo /opt/stt-caption/bin/stt-caption

@@ -66,3 +66,5 @@ vivado -mode batch -source sim/run.tcl
 ```
 
 This runs the two front end and two engine testbenches in `sim/`; each prints `PASS` or a `FAIL` message.
+
+The display has a test of its own, run on the board or any Linux PC: `make -C sw test`.

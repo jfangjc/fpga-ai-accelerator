@@ -1,5 +1,5 @@
 // Live captions: sttcap quartznet_engine.bin running_prior.json [--wav clip.wav [--paced]] [--gain DB] [--port PORT]
-//                [--display]
+//                [--display [--status] [--clear-after SEC]]
 #define _GNU_SOURCE
 #include "display.h"
 #include "kv260.h"
@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
+#include <time.h>
 #include <unistd.h>
 
 #define RING 1024  // captured frames waiting to be processed: 10 s
@@ -32,8 +33,28 @@ static struct {
 static volatile sig_atomic_t stopping;
 static double gain = 1;
 static float history[RING][FE_BANDS]; // log mel of recent frames
-static int server = -1, clients[CLIENTS], display;
+static int server = -1, clients[CLIENTS], display, status;
+static double clear_after;  // seconds of silence before the screen is cleared; 0 never
 static char captions[4096]; // finals so far, for the screen
+
+static double now(void) {
+    struct timespec t;
+    clock_gettime(CLOCK_MONOTONIC, &t);
+    return t.tv_sec + t.tv_nsec * 1e-9;
+}
+
+// Status strip: listening or speaking, the last decode's time on the engine, and the caption delay
+static void show_status(int speaking, double decode_ms, long waiting) {
+    char line[96];
+    if (!status)
+        return;
+    if (decode_ms > 0)
+        snprintf(line, sizeof line, "%-10s fpga engine   decode %.0f ms   delay %.0f ms",
+                 speaking ? "speaking" : "listening", decode_ms, decode_ms + 10.0 * waiting);
+    else
+        snprintf(line, sizeof line, "%-10s fpga engine", speaking ? "speaking" : "listening");
+    display_status(line);
+}
 
 static void stop(int signal) {
     (void)signal;
@@ -118,7 +139,12 @@ static void emit(unsigned id, long t, int final, const char* text, const char* p
         }
         snprintf(captions + n, sizeof captions - n, "%s%s", n ? " " : "", text);
     }
-    display_show(captions, final ? "" : text);
+    // The screen: the finals so far, then this phrase's stable words in white and the rest in amber
+    static char firm[sizeof captions + TEXT + 1], shown[sizeof captions + TEXT + 1];
+    const char* gap = *captions && !final ? " " : "";
+    snprintf(shown, sizeof shown, "%s%s%s", captions, gap, final ? "" : text);
+    snprintf(firm, sizeof firm, "%s%s%.*s", captions, stable ? gap : "", (int)stable, text);
+    display_show(firm, shown);
 }
 
 // Speech: energy 8 dB above the noise floor of the last 5 s
@@ -151,12 +177,16 @@ int main(int argc, char** argv) {
             port = atoi(argv[++i]);
         else if (!strcmp(argv[i], "--display"))
             display = 1;
+        else if (!strcmp(argv[i], "--status"))
+            status = 1;
+        else if (!strcmp(argv[i], "--clear-after") && i + 1 < argc)
+            clear_after = atof(argv[++i]);
         else
             argc = 0;
     }
     if (argc < 3) {
         fprintf(stderr, "usage: sttcap quartznet_engine.bin running_prior.json [--wav clip.wav [--paced]] "
-                        "[--gain DB] [--port PORT] [--display]\n");
+                        "[--gain DB] [--port PORT] [--display [--status] [--clear-after SEC]]\n");
         return 2;
     }
     if (phrase_prior(argv[2])) {
@@ -176,8 +206,9 @@ int main(int argc, char** argv) {
             return 1;
         }
     }
-    if (display)
-        display_open();
+    if (display && display_open(status))
+        fprintf(stderr, "sttcap: no framebuffer; captions are not drawn\n");
+    show_status(0, 0, 0);
 
     ring.total = -1;
     if (wav) {
@@ -202,7 +233,8 @@ int main(int argc, char** argv) {
 
     unsigned id = 0;
     int in_phrase = 0, silent = 0;
-    long waiting;
+    long waiting, shown = 0; // the frame of the last caption
+    double decode_ms = 0, started;
     static char text[TEXT], previous[TEXT];
     uint64_t power[FE_BANDS];
     for (long t = 0; next_frame(t, power, &waiting); t++) {
@@ -221,23 +253,38 @@ int main(int argc, char** argv) {
             previous[0] = 0;
             if (!wav)
                 fe_control(FE_MIC | FE_LED);
+            show_status(1, decode_ms, waiting);
         }
         if (in_phrase) {
             phrase_add(history[t % RING]);
             silent = voiced ? 0 : silent + 1;
             if (silent == SILENCE || phrase_length() == PHRASE || ring.total == t + 1 || stopping) {
+                started = now();
                 phrase_decode(0, text);
+                decode_ms = 1000 * (now() - started);
                 emit(id++, t, 1, text, "");
+                shown = t;
                 in_phrase = 0;
                 if (!wav)
                     fe_control(FE_MIC);
+                show_status(0, decode_ms, waiting);
             }
             else if (phrase_length() % PREVIEW == 0 && waiting < PREVIEW) { // the last 6.4 s; skipped when behind
+                started = now();
                 phrase_decode(phrase_length() > ENGINE_FRAMES ? phrase_length() - ENGINE_FRAMES : 0, text);
-                if (*text)
+                decode_ms = 1000 * (now() - started);
+                if (*text) {
                     emit(id, t, 0, text, previous);
+                    shown = t;
+                }
                 strcpy(previous, text);
+                show_status(1, decode_ms, waiting);
             }
+        }
+        // After clear_after seconds of silence the next phrase starts on an empty screen; the log keeps everything
+        if (clear_after > 0 && !in_phrase && *captions && t - shown >= clear_after * 100) {
+            captions[0] = 0;
+            display_show("", "");
         }
         // The button ends the session
         if (!wav && fe_button())
