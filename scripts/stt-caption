@@ -1,0 +1,63 @@
+#!/bin/bash
+# Captioning appliance: stt-caption prepare|run|cleanup|status
+set -euo pipefail
+prefix=/opt/stt-caption
+sessions=/var/lib/stt-caption/sessions
+MIC_GAIN_DB=20 PORT=8765 DISPLAY_CAPTIONS=yes DISPLAY_STATUS=yes CLEAR_AFTER=5
+[ -r /etc/default/stt-caption ] && . /etc/default/stt-caption
+
+overlay() { xmutil listapps | awk '/0->/ {print $NF}'; }
+
+console() { # 1 gives the screen to the text console, 0 takes it away
+    for v in /sys/class/vtconsole/vtcon*; do
+        grep -q 'frame buffer' "$v/name" 2>/dev/null && echo "$1" > "$v/bind" || true
+    done
+}
+
+prepare() {
+    local app; app=$(overlay || true)
+    if [ "$app" != stt-kv260 ]; then
+        # Replace only the boot default
+        case "$app" in
+            ''|k26-starter-kits|stt-*) ;;
+            *) echo "stt-caption: overlay $app is loaded; not replacing it" >&2; exit 75 ;;
+        esac
+        [ -n "$app" ] && xmutil unloadapp
+        xmutil loadapp stt-kv260
+    fi
+    # DMA buffers, uncached
+    [ -d /sys/class/u-dma-buf/udmabuf0 ] ||
+        insmod "$prefix/lib/u-dma-buf.ko" udmabuf0=16777216 udmabuf1=16777216 udmabuf2=33554432 udmabuf3=1048576
+    for b in 0 1 2 3; do echo 1 > /sys/class/u-dma-buf/udmabuf$b/sync_mode; done
+    console 0
+}
+
+run() {
+    local dir; dir=$sessions/$(date +%Y%m%d-%H%M%S)
+    mkdir -p "$dir"
+    ln -sfn "$dir" "$sessions/latest"
+    # Keep the newest 20 sessions
+    find "$sessions" -mindepth 1 -maxdepth 1 -type d -name '20*' | sort | head -n -20 | xargs -r rm -rf --
+    local display=()
+    if [ "$DISPLAY_CAPTIONS" = yes ]; then
+        display=(--display --clear-after "$CLEAR_AFTER")
+        [ "$DISPLAY_STATUS" = yes ] && display+=(--status)
+    fi
+    exec "$prefix/bin/sttcap" "$prefix/share/quartznet_engine.bin" "$prefix/share/running_prior.json" \
+        --gain "$MIC_GAIN_DB" --port "$PORT" "${display[@]}" > "$dir/session.jsonl" 2> "$dir/stderr.txt"
+}
+
+status() {
+    echo "overlay: $(overlay || echo none)"
+    systemctl --no-pager --lines=0 status stt-caption 2>/dev/null | head -3 || true
+    local log=$sessions/latest/session.jsonl
+    [ -e "$log" ] && echo "latest session: $(readlink -f "$sessions/latest")" && grep '"final":true' "$log" | tail -5
+}
+
+case "${1:-}" in
+    prepare) prepare ;;
+    run) run ;;
+    cleanup) console 1 ;;
+    status) status ;;
+    *) echo "usage: stt-caption prepare|run|cleanup|status" >&2; exit 2 ;;
+esac

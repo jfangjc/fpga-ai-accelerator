@@ -1,3 +1,7 @@
+# Downloads, model assets and build products
+/data/
+/build/
+
 # Python
 __pycache__/
 .venv/
@@ -6,3 +10,8 @@ __pycache__/
 .Xil/
 vivado*.jou
 vivado*.log
+clockInfo.txt
+iter_*_CongestedCLBsAndNets.txt
+
+# Board credentials (scripts/board.ps1)
+.board.env

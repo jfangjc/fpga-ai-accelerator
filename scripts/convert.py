@@ -2,7 +2,8 @@
 # Convert the FP32 checkpoint to INT8 and write the model files:
 #   data/int8.pkl                     the INT8 model, for run.py
 #   data/export/quartznet_int8.bin    the QNW1 weights the board loads
-#   data/export/running_prior.json    the board's starting normalisation statistics
+#   data/export/running_prior.json    the board's starting normalisation statistics and input scale
+#   data/export/quartznet_engine.bin  the program the PL engine runs
 # Calibration sets each tensor's INT8 scale from the first 100 LibriSpeech
 # dev-clean clips run through the FP32 network: the 99.99th percentile of
 # |activation|. The normalisation prior is those clips' log-mel statistics.
@@ -186,6 +187,30 @@ def qnw1(model):
     header = struct.pack("<4s7If", b"QNW1", 1, 64, len(layers), 128, 64, base + len(payload), 0, model["input_scale"])
     return header.ljust(64, b'\0') + b"".join(descriptors) + payload
 
+# PL engine program: per layer a 16-byte record (see stt_engine_pkg) and its arrays; banks are reused when free
+def program(model):
+    layers = model["layers"]
+    last_use = {name: i for i, l in enumerate(layers) for name in l["inputs"]}
+    bank = {"input": 0}
+    out = bytearray()
+    for i, l in enumerate(layers):
+        busy = {bank[name] for name in bank if last_use.get(name, -1) >= i}
+        bank[l["name"]] = min({0, 1, 2} - busy)
+        inputs = [bank[name] for name in l["inputs"]] + [0]
+        if l["op"] == "conv":
+            co, ci, taps = l["w"].shape
+            kind = 1 if l["groups"] > 1 else 0
+            shape = [taps, l["stride"], l["dilation"], l["padding"]]
+            arrays = [l["b"], l["mult"], l["shift"], tiled(l["w"])]
+        else:
+            co = ci = len(l["mult0"])
+            kind = 2
+            shape = [0, 0, 0, 0]
+            arrays = [l["mult0"], l["shift0"], l["mult1"], l["shift1"]]
+        out += struct.pack("<9B3x2H", kind, l["relu"], inputs[0], inputs[1], bank[l["name"]], *shape, co, ci)
+        out += b"".join(a.tobytes() + bytes(-a.nbytes % 16) for a in arrays)
+    return bytes(out)
+
 def convert():
     torch.set_num_threads(4)
     layers = load_layers()
@@ -196,5 +221,7 @@ def convert():
     export = pathlib.Path("data/export")
     export.mkdir(exist_ok=True)
     (export / "quartznet_int8.bin").write_bytes(qnw1(model))
+    (export / "quartznet_engine.bin").write_bytes(program(model))
     prior = {k: v if k == "count" else v.tolist() for k, v in prior.items()}
+    prior["input_scale"] = float(model["input_scale"]) # the board quantises the normalised features with it
     (export / "running_prior.json").write_text(json.dumps(prior, indent=2), newline="\n")
