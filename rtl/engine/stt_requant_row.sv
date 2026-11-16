@@ -37,23 +37,29 @@ module stt_requant_row
         mult4 <= mult3;
         n[3] <= 6'(31 + p_shift);
         zero[3] <= p_shift > 32;
+
         for (int i = 4; i <= 7; i++) begin
             n[i] <= n[i-1];
             zero[i] <= zero[i-1];
         end
+
         half[5] <= 64'd1 << (n[4] - 1);
         below[5] <= (64'd1 << (n[4] - 1)) - 1;
         half[6] <= half[5];
         below[6] <= below[5];
+
         for (int l = 0; l < FRAMES; l++) begin
             sum1[l] <= row_sum[l];
             sum2[l] <= sum1[l];
             sum3[l] <= sum2[l];
             sum4[l] <= sum3[l];
+
             product5[l] <= sum4[l] * mult4;
             product6[l] <= product5[l];
             rounded7[l] <= product6[l] + (product6[l] < 0 ? below[6] : half[6]);
+            
             q8[l] <= zero[7] ? 0 : rounded7[l] >>> n[7];
+
             if (relu) begin
                 data[8*l+:8] <= q8[l] < 0 ? 0 : q8[l] > 255 ? 255 : 8'(q8[l]);
             end

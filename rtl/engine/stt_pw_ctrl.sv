@@ -97,18 +97,23 @@ module stt_pw_ctrl
             dv <= {dv[LAT-2:0], issue};
             a_valid <= dv[LAT-1];
         end
+
         df <= {df[LAT-2:0], first};
         dl <= {dl[LAT-2:0], last};
+
         dtag[0] <= '{otile: otile, base: obase + AW'(tile)};
         dtile[0] <= tile;
+
         for (int i = 1; i < LAT; i++) begin
             dtag[i] <= dtag[i-1];
             dtile[i] <= dtile[i-1];
         end
+
         a_first <= df[LAT-1];
         a_last <= dl[LAT-1];
         a_tag <= dtag[LAT-1];
         a_weight <= w_rdata;
+        
         for (int t = 0; t < FRAMES; t++)
             a_act[t] <= {dtile[LAT-1], 4'(t)} < valid ? {in_signed && act_rdata[8*t+7], act_rdata[8*t+:8]} : 0;
     end
