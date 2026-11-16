@@ -12,6 +12,8 @@ static double prior_count, prior_mean[FE_BANDS], prior_m2[FE_BANDS], scale;
 static double count, mean[FE_BANDS], m2[FE_BANDS];
 static int8_t phrase[FE_BANDS][PHRASE];
 static unsigned length;
+static uint8_t classes[TEXT]; // the phrase's output frames (two input frames each), class by class
+static unsigned covered;      // output frames a decode has given classes to, this phrase
 
 // running_prior.json: "count", then "mean" and "m2" with 64 numbers each, and "input_scale"
 int phrase_prior(const char* path) {
@@ -40,7 +42,7 @@ void phrase_begin(void) {
     count = prior_count;
     memcpy(mean, prior_mean, sizeof mean);
     memcpy(m2, prior_m2, sizeof m2);
-    length = 0;
+    length = covered = 0;
 }
 
 void phrase_add(const float z[FE_BANDS]) {
@@ -58,11 +60,11 @@ void phrase_add(const float z[FE_BANDS]) {
 
 unsigned phrase_length(void) { return length; }
 
-// Longer than 6.4 s: windows overlapping by 3.2 s
-void phrase_decode(unsigned from, char text[TEXT]) {
+// Classes for output frames from from / 2 on, leaving those before `keep` as they are. Longer than 6.4 s: windows
+// overlapping by 3.2 s, each kept from where the last left off to 3/4 of the way through
+static unsigned decode(unsigned from, unsigned keep) {
     static int8_t features[FE_BANDS * ENGINE_FRAMES], logits[ENGINE_CLASSES * ENGINE_FRAMES];
-    static uint8_t classes[TEXT];
-    unsigned filled = 0; // output frames decoded
+    unsigned filled = from / 2; // output frames decoded
     for (unsigned start = from;; start += ENGINE_FRAMES / 2) {
         int last = start + ENGINE_FRAMES >= length;
         if (last && length - from > ENGINE_FRAMES)
@@ -75,23 +77,42 @@ void phrase_decode(unsigned from, char text[TEXT]) {
         int out = engine_run(features, padded, n, logits, &valid);
         if (out < 0)
             break;
-        unsigned offset = (start - from) / 2, end = last ? offset + valid : offset + 3 * ENGINE_FRAMES / 8;
+        unsigned offset = start / 2, end = last ? offset + valid : offset + 3 * ENGINE_FRAMES / 8;
         for (; filled < end; filled++) {
             unsigned t = filled - offset, best = 0;
             for (unsigned k = 1; k < ENGINE_CLASSES; k++)
                 if (logits[k * out + t] > logits[best * out + t])
                     best = k;
-            classes[filled] = best;
+            if (filled >= keep)
+                classes[filled] = best;
         }
         if (last)
             break;
     }
-    // CTC: collapse repeats, drop blanks, trim spaces
-    size_t n = 0;
-    for (unsigned t = 0, prev = 28; t < filled; prev = classes[t++])
-        if (classes[t] != prev && classes[t] != 28 && (n || classes[t]))
-            text[n++] = VOCAB[classes[t]];
-    while (n && text[n - 1] == ' ')
-        n--;
-    text[n] = 0;
+    if (filled > covered)
+        covered = filled;
+    return filled;
+}
+
+// CTC over the first n output frames: collapse repeats, drop blanks, trim spaces
+static void collapse(unsigned n, char text[TEXT]) {
+    size_t k = 0;
+    for (unsigned t = 0, prev = 28; t < n; prev = classes[t++])
+        if (classes[t] != prev && classes[t] != 28 && (k || classes[t]))
+            text[k++] = VOCAB[classes[t]];
+    while (k && text[k - 1] == ' ')
+        k--;
+    text[k] = 0;
+}
+
+void phrase_decode(char text[TEXT]) { collapse(decode(0, 0), text); }
+
+// The engine sees the last 6.4 s. Its first 1.6 s lack the words before them, so up to there the classes stay as the
+// previews before gave them, when each had the context; the text covers the whole phrase
+void phrase_preview(char text[TEXT]) {
+    unsigned from = length > ENGINE_FRAMES ? (length - ENGINE_FRAMES + 1) / 2 * 2 : 0,
+             keep = from ? from / 2 + ENGINE_FRAMES / 8 : 0;
+    if (keep > covered) // previews were skipped for too long: decode it all
+        from = keep = 0;
+    collapse(decode(from, keep), text);
 }

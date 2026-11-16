@@ -1,4 +1,5 @@
 // Framebuffer layouts on a file standing in for /dev/fb0 (RGB565): make -C sw test
+#define _GNU_SOURCE // pread, pwrite, fileno and off_t under -std=c11
 #include "display.h"
 #include <assert.h>
 #include <stdint.h>
@@ -70,9 +71,11 @@ int main(void) {
     // The next phrase moves the last one up into the history
     display_show("hello world and more", "next", 0);
     assert(ROW(fd, 1920, history_row, history) > 0 && ROW(fd, 1920, live_row, text) == 0);
-    // A long phrase keeps its newest two lines and still starts on the first live line
+    // A long phrase keeps its newest two lines and still starts on the first live line; its first line moves up
+    // into the history rather than off the screen
     display_show("", "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen", 90);
     assert(ROW(fd, 1920, live_row, text) > 0 && ROW(fd, 1920, top + (148 + 10) * 3, text) > 0);
+    assert(ROW(fd, 1920, history_row, history) > 0);
 
     // The strip: speaking lights the dot, the detail is right-aligned, the meter follows the level
     unsigned dot_row = top + (240 + 20) * 3, meter_x0 = (1920 - 640 * 3) / 2 + (32 + 20) * 3,

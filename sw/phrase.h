@@ -11,7 +11,9 @@ int phrase_prior(const char* path);
 void phrase_begin(void);
 void phrase_add(const float z[FE_BANDS]);
 unsigned phrase_length(void);
-// Decode frames from `from` to the end
-void phrase_decode(unsigned from, char text[TEXT]);
+// The whole phrase
+void phrase_decode(char text[TEXT]);
+// A preview: only the last 6.4 s goes through the engine, and the text before it is what earlier previews decoded
+void phrase_preview(char text[TEXT]);
 
 #endif

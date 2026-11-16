@@ -1,9 +1,10 @@
 // Live captions: sttcap quartznet_engine.bin running_prior.json [--wav clip.wav [--paced]] [--gain DB] [--port PORT]
-//                [--display [--status] [--clear-after SEC] [--theme night|butter]]
+//                [--display [--status] [--clear-after SEC] [--theme night|butter]] [--settle N]
 #define _GNU_SOURCE
 #include "display.h"
 #include "kv260.h"
 #include "phrase.h"
+#include "settle.h"
 #include <math.h>
 #include <netinet/in.h>
 #include <pthread.h>
@@ -35,6 +36,8 @@ static double gain = 1;
 static float history[RING][FE_BANDS]; // log mel of recent frames
 static int server = -1, clients[CLIENTS], display, status, theme = DISPLAY_NIGHT;
 static double clear_after;  // seconds of silence before the screen is cleared; 0 never
+static int settle;          // previews that must agree before a word settles; 0 the previous preview only
+_Static_assert(SETTLE_TEXT == TEXT, "settle.h buffers match phrase.h");
 static char captions[4096]; // finals before the live phrase, for the screen
 
 static double now(void) {
@@ -115,12 +118,19 @@ static void broadcast(const char* line) {
         }
 }
 
-// A preview's words shared with the previous preview are stable, the rest tentative
+// With --settle 0, a preview's words shared with the previous preview are stable and the rest tentative. With
+// --settle N, a word settles once N previews in a row agree on it and then stays settled (settle.c)
 static void emit(unsigned id, long t, int final, const char* text, const char* previous) {
+    static char shown[TEXT];
     size_t stable = 0;
-    for (size_t i = 0; !final && text[i] && text[i] == previous[i]; i++)
-        if (text[i + 1] == ' ' || (!text[i + 1] && !previous[i + 1]))
-            stable = i + 1;
+    if (!final && settle) {
+        stable = settle_preview(text, settle, shown);
+        text = shown;
+    }
+    else
+        for (size_t i = 0; !final && text[i] && text[i] == previous[i]; i++)
+            if (text[i + 1] == ' ' || (!text[i + 1] && !previous[i + 1]))
+                stable = i + 1;
     char line[2 * TEXT + 128];
     if (final)
         snprintf(line, sizeof line, "{\"t\":%.2f,\"phrase\":%u,\"final\":true,\"text\":\"%s\"}\n", t / 100.0, id, text);
@@ -185,12 +195,14 @@ int main(int argc, char** argv) {
         }
         else if (!strcmp(argv[i], "--theme") && i + 1 < argc && !strcmp(argv[i + 1], "night"))
             i++;
+        else if (!strcmp(argv[i], "--settle") && i + 1 < argc)
+            settle = atoi(argv[++i]);
         else
             argc = 0;
     }
     if (argc < 3) {
         fprintf(stderr, "usage: sttcap quartznet_engine.bin running_prior.json [--wav clip.wav [--paced]] "
-                        "[--gain DB] [--port PORT] [--display [--status] [--clear-after SEC] [--theme night|butter]]\n");
+                        "[--gain DB] [--port PORT] [--display [--status] [--clear-after SEC] [--theme night|butter]] [--settle N]\n");
         return 2;
     }
     if (phrase_prior(argv[2])) {
@@ -261,6 +273,7 @@ int main(int argc, char** argv) {
             for (long k = t - LEAD < 0 ? 0 : t - LEAD; k < t; k++)
                 phrase_add(history[k % RING]);
             previous[0] = 0;
+            settle_reset();
             if (!wav)
                 fe_control(FE_MIC | FE_LED);
             show_status(1, decode_ms, waiting);
@@ -270,7 +283,7 @@ int main(int argc, char** argv) {
             silent = voiced ? 0 : silent + 1;
             if (silent == SILENCE || phrase_length() == PHRASE || ring.total == t + 1 || stopping) {
                 started = now();
-                phrase_decode(0, text);
+                phrase_decode(text);
                 decode_ms = 1000 * (now() - started);
                 emit(id++, t, 1, text, "");
                 shown = t;
@@ -279,9 +292,9 @@ int main(int argc, char** argv) {
                     fe_control(FE_MIC);
                 show_status(0, decode_ms, waiting);
             }
-            else if (phrase_length() % PREVIEW == 0 && waiting < PREVIEW) { // the last 6.4 s; skipped when behind
+            else if (phrase_length() % PREVIEW == 0 && waiting < PREVIEW) { // skipped when behind
                 started = now();
-                phrase_decode(phrase_length() > ENGINE_FRAMES ? phrase_length() - ENGINE_FRAMES : 0, text);
+                phrase_preview(text);
                 decode_ms = 1000 * (now() - started);
                 if (*text) {
                     emit(id, t, 0, text, previous);
@@ -301,7 +314,7 @@ int main(int argc, char** argv) {
             stopping = 1;
     }
     if (in_phrase) { // stopped mid-phrase
-        phrase_decode(0, text);
+        phrase_decode(text);
         emit(id, ring.count, 1, text, "");
     }
     stopping = 1;

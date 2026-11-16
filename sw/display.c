@@ -2,6 +2,7 @@
 #include "display.h"
 #include <fcntl.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -184,16 +185,25 @@ int display_open(int status, int which) {
 }
 
 // History: two lines at twice the font, tops at rows 60 and 80. Live: two lines at three times, at 116 and 148.
-// Both keep their newest lines, and the live phrase always starts on the same line, so the eye stays put
+// Both keep their newest lines, and the live phrase always starts on the same line, so the eye stays put. A live
+// phrase longer than two lines moves its earlier lines up into the history, so no word leaves the screen unseen
 void display_show(const char* history, const char* live, size_t stable) {
-    size_t start[2], end[2];
+    static char past[8192];
+    size_t start[64], end[64];
     if (fb < 0)
         return;
     fill(0, 0, WIDTH, HEIGHT, theme->background);
-    unsigned n = wrap(history, HISTORY, start, end, 2);
+    unsigned lines = wrap(live, LIVE, start, end, 64);
+    size_t moved = lines > 2 ? start[lines - 2] : 0, h = strlen(history);
+    while (moved && live[moved - 1] == ' ')
+        moved--;
+    if (h + moved + 2 > sizeof past) // the oldest history is off the screen anyway
+        history += h + moved + 2 - sizeof past, h = strlen(history);
+    snprintf(past, sizeof past, "%s%s%.*s", history, h && moved ? " " : "", (int)moved, live);
+    unsigned n = wrap(past, HISTORY, start, end, 2);
     for (unsigned i = 0; i < n; i++)
         for (size_t j = start[i]; j < end[i]; j++)
-            character(history[j], LEFT + 12 * (unsigned)(j - start[i]), 60 + 20 * (i + 2 - n), 2, theme->history);
+            character(past[j], LEFT + 12 * (unsigned)(j - start[i]), 60 + 20 * (i + 2 - n), 2, theme->history);
     n = wrap(live, LIVE, start, end, 2);
     for (unsigned i = 0; i < n; i++)
         for (size_t j = start[i]; j < end[i]; j++)
